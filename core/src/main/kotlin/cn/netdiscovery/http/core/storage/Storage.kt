@@ -12,7 +12,7 @@ import java.io.File
  */
 interface Storage {
 
-    fun getCacheDir(): File
+    val cacheDir: File
 
-    fun getCookieDir(): File
+    val cookieDir: File
 }
