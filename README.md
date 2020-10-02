@@ -8,3 +8,4 @@
 * 支持响应式
 * 支持协程
 * 支持 RxCache
+* 支持 Retrofit、Feigin、Ktor
