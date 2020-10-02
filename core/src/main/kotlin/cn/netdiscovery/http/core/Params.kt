@@ -15,12 +15,9 @@ class Params private constructor(private var params: MutableList<Pair<String, St
 
     override fun contains(element: Pair<String, String>) = params.contains(element)
 
-
     override fun containsAll(elements: Collection<Pair<String, String>>) = params.containsAll(elements)
 
-
     override fun addAll(elements: Collection<Pair<String, String>>) = this.params.addAll(elements)
-
 
     override fun clear() {
         params = mutableListOf()
@@ -79,7 +76,7 @@ class Params private constructor(private var params: MutableList<Pair<String, St
     override fun toString(): String = "Params(params=$params)"
 
     companion object {
-        
+
         fun of(vararg params: Pair<String, String>): Params = Params(params.toMutableList())
 
         fun from(map: Map<String, String>): Params = Params(map.map { it.toPair() }.toMutableList())
