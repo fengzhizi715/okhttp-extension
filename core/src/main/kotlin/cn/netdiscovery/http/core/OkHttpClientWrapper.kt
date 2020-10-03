@@ -53,7 +53,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call {
-        val request = createRequestWithoutBody(url, customUrl, query, headers) {
+        val request = createRequest(url, customUrl, query, headers) {
             it.get()
         }
 
@@ -61,7 +61,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        val request = createRequestWithBody(url, customUrl, body, headers) { builder, body ->
+        val request = createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.post(body)
         }
 
@@ -69,7 +69,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        val request = createRequestWithBody(url, customUrl, body, headers) { builder, body ->
+        val request = createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.put(body)
         }
 
@@ -77,7 +77,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Call {
-        val request = createRequestWithoutBody(url, customUrl, query, headers) {
+        val request = createRequest(url, customUrl, query, headers) {
             it.delete()
         }
 
@@ -112,11 +112,11 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getStorageProvider(): Storage = storageProvider
 
-    private fun createRequestWithoutBody(url: String,
-                                         customUrl: String?,
-                                         query: Params?,
-                                         header: Params?,
-                                         block: (Request.Builder) -> Unit): Request {
+    private fun createRequest(url: String,
+                              customUrl: String?,
+                              query: Params?,
+                              header: Params?,
+                              block: (Request.Builder) -> Unit): Request {
 
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
@@ -145,7 +145,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return request.build()
     }
 
-    private fun createRequestWithBody(url: String,
+    private fun createBodyRequest(url: String,
                                       customUrl: String?,
                                       body: Params,
                                       header: Params?,
@@ -189,14 +189,14 @@ class OkHttpClientWrapper(private var baseUrl: String,
             request.addHeader("User-Agent", userAgent)
         }
 
+        val requestBody = json.toRequestBody(jsonMediaType)
+
+        block.invoke(request, requestBody)
+
         processorStore.getRequestProcessors()
                 .forEach {
                     request = it.process(this, request)
                 }
-
-        val requestBody = json.toRequestBody(jsonMediaType)
-
-        block.invoke(request, requestBody)
 
         return request.build()
     }
