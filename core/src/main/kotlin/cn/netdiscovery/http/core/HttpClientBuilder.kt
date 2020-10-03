@@ -27,7 +27,7 @@ import javax.net.ssl.X509TrustManager
  * @date: 2020-10-04 01:34
  * @version: V1.0 <描述当前版本功能>
  */
-class HttpClientBuilder {
+class Builder {
 
     private val builder = OkHttpClient.Builder()
 
@@ -41,134 +41,134 @@ class HttpClientBuilder {
     private var isCookieJarSet = false
     private var isCacheSet = false
 
-    fun connectTimeout(timeout: Long, unit: TimeUnit): HttpClientBuilder {
+    fun connectTimeout(timeout: Long, unit: TimeUnit): Builder {
         builder.connectTimeout(timeout, unit)
         return this
     }
 
-    fun readTimeout(timeout: Long, unit: TimeUnit): HttpClientBuilder {
+    fun readTimeout(timeout: Long, unit: TimeUnit): Builder {
         builder.readTimeout(timeout, unit)
         return this
     }
 
-    fun writeTimeout(timeout: Long, unit: TimeUnit): HttpClientBuilder {
+    fun writeTimeout(timeout: Long, unit: TimeUnit): Builder {
         builder.writeTimeout(timeout, unit)
         return this
     }
 
-    fun pingInterval(interval: Long, unit: TimeUnit): HttpClientBuilder {
+    fun pingInterval(interval: Long, unit: TimeUnit): Builder {
         builder.pingInterval(interval, unit)
         return this
     }
 
-    fun proxy(proxy: Proxy?): HttpClientBuilder {
+    fun proxy(proxy: Proxy?): Builder {
         builder.proxy(proxy)
         return this
     }
 
-    fun proxySelector(proxySelector: ProxySelector): HttpClientBuilder {
+    fun proxySelector(proxySelector: ProxySelector): Builder {
         builder.proxySelector(proxySelector)
         return this
     }
 
-    fun cookieJar(cookieJar: CookieJar): HttpClientBuilder {
+    fun cookieJar(cookieJar: CookieJar): Builder {
         isCookieJarSet = true
         builder.cookieJar(cookieJar)
         return this
     }
 
-    fun cache(cache: Cache?): HttpClientBuilder {
+    fun cache(cache: Cache?): Builder {
         isCacheSet = true
         builder.cache(cache)
         return this
     }
 
-    fun dns(dns: Dns): HttpClientBuilder {
+    fun dns(dns: Dns): Builder {
         builder.dns(dns)
         return this
     }
 
-    fun socketFactory(socketFactory: SocketFactory): HttpClientBuilder {
+    fun socketFactory(socketFactory: SocketFactory): Builder {
         builder.socketFactory(socketFactory)
         return this
     }
 
-    fun sslSocketFactory(sslSocketFactory: SSLSocketFactory, trustManager: X509TrustManager): HttpClientBuilder {
+    fun sslSocketFactory(sslSocketFactory: SSLSocketFactory, trustManager: X509TrustManager): Builder {
         builder.sslSocketFactory(sslSocketFactory, trustManager)
         return this
     }
 
-    fun hostnameVerifier(hostnameVerifier: HostnameVerifier): HttpClientBuilder {
+    fun hostnameVerifier(hostnameVerifier: HostnameVerifier): Builder {
         builder.hostnameVerifier(hostnameVerifier)
         return this
     }
 
-    fun certificatePinner(certificatePinner: CertificatePinner): HttpClientBuilder {
+    fun certificatePinner(certificatePinner: CertificatePinner): Builder {
         builder.certificatePinner(certificatePinner)
         return this
     }
 
-    fun authenticator(authenticator: Authenticator): HttpClientBuilder {
+    fun authenticator(authenticator: Authenticator): Builder {
         builder.authenticator(authenticator)
         return this
     }
 
-    fun proxyAuthenticator(proxyAuthenticator: Authenticator): HttpClientBuilder {
+    fun proxyAuthenticator(proxyAuthenticator: Authenticator): Builder {
         builder.proxyAuthenticator(proxyAuthenticator)
         return this
     }
 
-    fun connectionPool(connectionPool: ConnectionPool): HttpClientBuilder {
+    fun connectionPool(connectionPool: ConnectionPool): Builder {
         builder.connectionPool(connectionPool)
         return this
     }
 
-    fun followSslRedirects(followProtocolRedirects: Boolean): HttpClientBuilder {
+    fun followSslRedirects(followProtocolRedirects: Boolean): Builder {
         builder.followSslRedirects(followProtocolRedirects)
         return this
     }
 
-    fun followRedirects(followRedirects: Boolean): HttpClientBuilder {
+    fun followRedirects(followRedirects: Boolean): Builder {
         builder.followRedirects(followRedirects)
         return this
     }
 
-    fun retryOnConnectionFailure(retryOnConnectionFailure: Boolean): HttpClientBuilder {
+    fun retryOnConnectionFailure(retryOnConnectionFailure: Boolean): Builder {
         builder.retryOnConnectionFailure(retryOnConnectionFailure)
         return this
     }
 
-    fun dispatcher(dispatcher: Dispatcher): HttpClientBuilder {
+    fun dispatcher(dispatcher: Dispatcher): Builder {
         builder.dispatcher(dispatcher)
         return this
     }
 
-    fun protocols(protocols: MutableList<Protocol>): HttpClientBuilder {
+    fun protocols(protocols: MutableList<Protocol>): Builder {
         builder.protocols(protocols)
         return this
     }
 
-    fun connectionSpecs(connectionSpecs: List<ConnectionSpec>): HttpClientBuilder {
+    fun connectionSpecs(connectionSpecs: List<ConnectionSpec>): Builder {
         builder.connectionSpecs(connectionSpecs)
         return this
     }
 
-    fun addInterceptor(interceptor: Interceptor): HttpClientBuilder {
+    fun addInterceptor(interceptor: Interceptor): Builder {
         builder.addInterceptor(interceptor)
         return this
     }
 
-    fun addNetworkInterceptor(interceptor: Interceptor): HttpClientBuilder {
+    fun addNetworkInterceptor(interceptor: Interceptor): Builder {
         builder.addNetworkInterceptor(interceptor)
         return this
     }
 
-    fun eventListener(eventListener: EventListener): HttpClientBuilder {
+    fun eventListener(eventListener: EventListener): Builder {
         builder.eventListener(eventListener)
         return this
     }
 
-    fun eventListenerFactory(eventListenerFactory: EventListener.Factory): HttpClientBuilder {
+    fun eventListenerFactory(eventListenerFactory: EventListener.Factory): Builder {
         builder.eventListenerFactory(eventListenerFactory)
         return this
     }
@@ -176,44 +176,44 @@ class HttpClientBuilder {
     /**
      * Extended
      */
-    fun allTimeouts(timeout: Long, unit: TimeUnit): HttpClientBuilder {
+    fun allTimeouts(timeout: Long, unit: TimeUnit): Builder {
         connectTimeout(timeout, unit)
         readTimeout(timeout, unit)
         writeTimeout(timeout, unit)
         return this
     }
 
-    fun baseUrl(url: String): HttpClientBuilder {
+    fun baseUrl(url: String): Builder {
         baseUrl = url
         return this
     }
 
-    fun addRequestProcessor(processor: RequestProcessor): HttpClientBuilder {
+    fun addRequestProcessor(processor: RequestProcessor): Builder {
         processorStore.registerRequestProcessor(processor)
         return this
     }
 
-    fun addResponseProcessor(processor: ResponseProcessor): HttpClientBuilder {
+    fun addResponseProcessor(processor: ResponseProcessor): Builder {
         processorStore.registerResponseProcessor(processor)
         return this
     }
 
-    fun storageProvider(storageProvider: Storage): HttpClientBuilder {
+    fun storageProvider(storageProvider: Storage): Builder {
         this.storageProvider = storageProvider
         return this
     }
 
-    fun cookiesFileName(fileName: String): HttpClientBuilder {
+    fun cookiesFileName(fileName: String): Builder {
         cookiesFileName = fileName
         return this
     }
 
-    fun cookieManager(cookieManager: CookieManager): HttpClientBuilder {
+    fun cookieManager(cookieManager: CookieManager): Builder {
         this.cookieManager = cookieManager
         return this
     }
 
-    fun userAgent(agent: String): HttpClientBuilder {
+    fun userAgent(agent: String): Builder {
         userAgent = agent
         return this
     }
