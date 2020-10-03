@@ -146,10 +146,10 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     private fun createBodyRequest(url: String,
-                                      customUrl: String?,
-                                      body: Params,
-                                      header: Params?,
-                                      block: (Request.Builder, FormBody) -> Unit): Request {
+                                  customUrl: String?,
+                                  body: Params,
+                                  header: Params?,
+                                  block: (Request.Builder, FormBody) -> Unit): Request {
 
         var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
 
