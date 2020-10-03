@@ -17,12 +17,14 @@ import kotlin.reflect.KClass
  */
 interface HttpClient {
 
+    fun getBaseUrl(): String
+
     fun userAgent(agent: String): HttpClient
 
     /**
      * @see ClientCookieHandler
      */
-    fun getClientCookieHandler(): ClientCookieHandler
+    fun getClientCookieHandler(): ClientCookieHandler?
 
     /**
      * Create post request
