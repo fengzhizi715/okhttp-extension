@@ -37,8 +37,7 @@ interface HttpClient {
      *
      * @return okhttp3.Call
      */
-    fun get(url: String = "", customUrl: String? = null, query: Params? = null,
-            headers: Params? = null): Call
+    fun get(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Call
 
     /**
      * Create post request
@@ -52,24 +51,21 @@ interface HttpClient {
      *
      * @return okhttp3.Call
      */
-    fun post(url: String = "", customUrl: String? = null, body: Params,
-             headers: Params? = null): Call
+    fun post(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
 
     /**
      * @see #post
      * @see Params
      * @see Call
      */
-    fun put(url: String = "", customUrl: String? = null, body: Params,
-            headers: Params? = null): Call
+    fun put(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
 
     /**
      * @see #get
      * @see Params
      * @see Call
      */
-    fun delete(url: String = "", customUrl: String? = null, query: Params,
-               headers: Params? = null): Call
+    fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Call
 
     /**
      * @see #post
@@ -78,16 +74,14 @@ interface HttpClient {
      *
      * @json - used instead bady in post request
      */
-    fun jsonPost(url: String = "", customUrl: String? = null, json: String,
-                 headers: Params? = null): Call
+    fun jsonPost(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Call
 
     /**
      * @see #put and #jsonPost
      * @see Params
      * @see Call
      */
-    fun jsonPut(url: String = "", customUrl: String? = null, json: String,
-                headers: Params? = null): Call
+    fun jsonPut(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Call
 
     /**
      * You can send okhttp.Request instead using defined methods

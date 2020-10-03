@@ -75,14 +75,14 @@ class Params private constructor(private var params: MutableList<Pair<String, St
 
     override fun toString(): String = "Params(params=$params)"
 
+    override fun iterator(): MutableIterator<Pair<String, String>> = params.iterator()
+
     companion object {
 
         fun of(vararg params: Pair<String, String>): Params = Params(params.toMutableList())
 
         fun from(map: Map<String, String>): Params = Params(map.map { it.toPair() }.toMutableList())
     }
-
-    override fun iterator(): MutableIterator<Pair<String, String>> = params.iterator()
 }
 
 fun params(vararg params: Pair<String, String>): Params = Params.of(*params)

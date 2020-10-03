@@ -33,11 +33,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
     private var userAgent = ""
 
     init {
-
         if (cookieManager != null) {
             if (cookieHandler == null)
                 cookieHandler = DefaultClientCookieHandler(this, cookieManager, storageProvider, cookiesFileName)
-
 
             if (cookiesFileName != null) {
                 cookieHandler!!.restoreCookies(cookiesFileName).forEach {
@@ -54,9 +52,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return this
     }
 
-    override fun getClientCookieHandler(): ClientCookieHandler? {
-        return cookieHandler
-    }
+    override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call {
         val request = createRequestWithoutBody(url, customUrl, query, headers) {
@@ -70,6 +66,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         val request = createRequestWithBody(url, customUrl, body, headers) { builder, body ->
             builder.post(body)
         }
+
         return okHttpClient.newCall(request)
     }
 

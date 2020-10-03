@@ -7,5 +7,4 @@
 * 支持自定义线程池
 * 支持响应式
 * 支持协程
-* 支持 RxCache
 * 支持 Retrofit、Feigin、Ktor 等框架
