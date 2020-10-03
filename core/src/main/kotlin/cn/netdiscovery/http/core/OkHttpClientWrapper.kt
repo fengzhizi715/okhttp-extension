@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.Call
+import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -58,11 +59,18 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createRequestWithoutBody(url, customUrl, query, headers) {
+            it.get()
+        }
+
+        return okHttpClient.newCall(request)
     }
 
     override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createRequestWithBody(url, customUrl, body, headers) { builder, body ->
+            builder.post(body)
+        }
+        return okHttpClient.newCall(request)
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call {
@@ -99,6 +107,69 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getStorageProvider(): Storage {
         TODO("Not yet implemented")
+    }
+
+    private fun createRequestWithoutBody(url: String,
+                                         customUrl: String?,
+                                         query: Params?,
+                                         header: Params?,
+                                         methodInvoker: (Request.Builder) -> Unit): Request {
+
+        val query = query?.joinToString("&") { "${it.first}=${it.second}" }
+
+        val url = if (query != null) {
+            val base = customUrl ?: "$baseUrl$url"
+            "$base?$query"
+        } else {
+            customUrl ?: "$baseUrl$url"
+        }
+
+        var request = Request.Builder().url(url)
+
+        methodInvoker(request)
+
+        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+
+        if (userAgent.isNotEmpty()) {
+            request.addHeader("User-Agent", userAgent)
+        }
+
+        processorStore.getRequestProcessors()
+                .forEach {
+                    request = it.process(this, request)
+                }
+
+        return request.build()
+    }
+
+    private fun createRequestWithBody(url: String,
+                                      customUrl: String?,
+                                      body: Params,
+                                      header: Params?,
+                                      methodInvoker: (Request.Builder, FormBody) -> Unit): Request {
+
+        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+
+        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+
+        if (userAgent.isNotEmpty()) {
+            request.addHeader("User-Agent", userAgent)
+        }
+
+        val formBody = FormBody.Builder()
+
+        body.getParams().forEach {
+            formBody.add(it.first, it.second)
+        }
+
+        methodInvoker(request, formBody.build())
+
+        processorStore.getRequestProcessors()
+                .forEach {
+                    request = it.process(this, request)
+                }
+
+        return request.build()
     }
 
 }
