@@ -5,11 +5,9 @@ import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
-import okhttp3.Call
-import okhttp3.FormBody
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.CookieManager
 import java.net.URI
 
@@ -71,46 +69,54 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createRequestWithBody(url, customUrl, body, headers) { builder, body ->
+            builder.put(body)
+        }
+
+        return okHttpClient.newCall(request)
     }
 
     override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createRequestWithoutBody(url, customUrl, query, headers) {
+            it.delete()
+        }
+
+        return okHttpClient.newCall(request)
     }
 
     override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+            builder.post(requestBody)
+        }
+
+        return okHttpClient.newCall(request)
     }
 
     override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Call {
-        TODO("Not yet implemented")
+        val request = createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+            builder.put(requestBody)
+        }
+
+        return okHttpClient.newCall(request)
     }
 
-    override fun send(request: Request): Call {
-        TODO("Not yet implemented")
-    }
+    override fun send(request: Request) = okHttpClient.newCall(request)
 
     override fun processAndSend(request: Request.Builder): Call {
         TODO("Not yet implemented")
     }
 
-    override fun okHttpClient(): OkHttpClient {
-        TODO("Not yet implemented")
-    }
+    override fun okHttpClient() = okHttpClient
 
-    override fun getUserAgent(): String? {
-        TODO("Not yet implemented")
-    }
+    override fun getUserAgent(): String? = userAgent
 
-    override fun getStorageProvider(): Storage {
-        TODO("Not yet implemented")
-    }
+    override fun getStorageProvider(): Storage = storageProvider
 
     private fun createRequestWithoutBody(url: String,
                                          customUrl: String?,
                                          query: Params?,
                                          header: Params?,
-                                         methodInvoker: (Request.Builder) -> Unit): Request {
+                                         block: (Request.Builder) -> Unit): Request {
 
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
@@ -123,7 +129,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
         var request = Request.Builder().url(url)
 
-        methodInvoker(request)
+        block.invoke(request)
 
         header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
 
@@ -143,7 +149,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
                                       customUrl: String?,
                                       body: Params,
                                       header: Params?,
-                                      methodInvoker: (Request.Builder, FormBody) -> Unit): Request {
+                                      block: (Request.Builder, FormBody) -> Unit): Request {
 
         var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
 
@@ -159,7 +165,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
             formBody.add(it.first, it.second)
         }
 
-        methodInvoker(request, formBody.build())
+        block.invoke(request, formBody.build())
 
         processorStore.getRequestProcessors()
                 .forEach {
@@ -169,4 +175,29 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return request.build()
     }
 
+    private fun createJsonRequest(url: String,
+                                  customUrl: String?,
+                                  json: String,
+                                  header: Params?,
+                                  block: (Request.Builder, RequestBody) -> Unit): Request {
+
+        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+
+        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+
+        if (userAgent.isNotEmpty()) {
+            request.addHeader("User-Agent", userAgent)
+        }
+
+        processorStore.getRequestProcessors()
+                .forEach {
+                    request = it.process(this, request)
+                }
+
+        val requestBody = json.toRequestBody(jsonMediaType)
+
+        block.invoke(request, requestBody)
+
+        return request.build()
+    }
 }
