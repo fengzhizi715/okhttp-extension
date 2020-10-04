@@ -1,6 +1,7 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
+import java.util.concurrent.CompletableFuture
 
 /**
  *
@@ -12,4 +13,22 @@ import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
  */
 class ProcessResult <T : Any>(private val methodProcessor: RequestMethodProcessor<out T>) {
 
+    /**
+     * Blocking send, used Call.execute()
+     *
+     * @see okhttp3.Call
+     */
+    fun sync(): T {
+        return methodProcessor.process().getResult()
+    }
+
+    /**
+     * Async send, used Call.enqueue()
+     *
+     * @see okhttp3.Call
+     */
+    fun async(): CompletableFuture<T> {
+        return methodProcessor.processAsync()
+                .thenApply(ResponseConsumer<out T>::getResult)
+    }
 }
