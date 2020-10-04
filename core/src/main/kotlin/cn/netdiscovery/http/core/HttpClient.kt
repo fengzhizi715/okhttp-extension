@@ -104,7 +104,7 @@ interface HttpClient {
      */
     fun processAndSend(request: Request.Builder): Call
 
-    fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): Expected<T>
+    fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
     /**
      * @see ProcessorStore

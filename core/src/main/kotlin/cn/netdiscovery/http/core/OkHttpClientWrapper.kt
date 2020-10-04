@@ -10,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.CookieManager
 import java.net.URI
+import kotlin.reflect.KClass
 
 /**
  *
@@ -101,6 +102,10 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun send(request: Request) = okHttpClient.newCall(request)
+
+    override fun <T : Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): ProcessResult<T> {
+        TODO("Not yet implemented")
+    }
 
     override fun processAndSend(request: Request.Builder): Call {
         TODO("Not yet implemented")
