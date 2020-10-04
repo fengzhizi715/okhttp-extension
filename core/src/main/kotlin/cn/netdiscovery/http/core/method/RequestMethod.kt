@@ -1,6 +1,7 @@
 package cn.netdiscovery.http.core.method
 
 import cn.netdiscovery.http.core.Params
+import cn.netdiscovery.http.core.ResponseMapper
 import kotlin.reflect.KClass
 
 /**
@@ -38,7 +39,7 @@ open class RequestMethod<T> protected constructor() {
 //    var headersCountable: Countable? = null
 //    var headersModelConverter: KClass<out RequestModelConverter>? = null
 
-//    var responseMapper: KClass<out ResponseMapper<*>>? = null
+    var responseMapper: KClass<out ResponseMapper<*>>? = null
 }
 
 class GetMethod<T> : RequestMethod<T>()
