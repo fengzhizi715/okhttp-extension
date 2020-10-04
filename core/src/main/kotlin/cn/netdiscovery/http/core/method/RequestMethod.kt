@@ -1,11 +1,12 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.method
 
+import cn.netdiscovery.http.core.Params
 import kotlin.reflect.KClass
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.RequestMethod
+ *          cn.netdiscovery.http.core.method.RequestMethod
  * @author: Tony Shen
  * @date: 2020-10-03 01:27
  * @version: V1.0 <描述当前版本功能>
@@ -42,7 +43,7 @@ open class RequestMethod<T> protected constructor() {
 
 class GetMethod<T> : RequestMethod<T>()
 
-open class PostMethod<T> : RequestMethod<T>() {
+class PostMethod<T> : RequestMethod<T>() {
     var bodyParams: Params? = null
     var bodyMap: Map<String, String>? = null
     var bodyModel: Any? = null
@@ -50,14 +51,24 @@ open class PostMethod<T> : RequestMethod<T>() {
 //    var bodyModelConverter: KClass<out RequestModelConverter>? = null
 }
 
-class PutMethod<T>: PostMethod<T>()
+class PutMethod<T>: RequestMethod<T>() {
+    var bodyParams: Params? = null
+    var bodyMap: Map<String, String>? = null
+    var bodyModel: Any? = null
+//    var bodyCountable: Countable? = null
+//    var bodyModelConverter: KClass<out RequestModelConverter>? = null
+}
 
 class DeleteMethod<T>: RequestMethod<T>()
 
-open class JsonPostMethod<T> : RequestMethod<T>() {
+class JsonPostMethod<T> : RequestMethod<T>() {
     var json: String? = null
     var jsonModel: Any? = null
 //    var jsonConverter: KClass<out RequestJsonConverter>? = null
 }
 
-class JsonPutMethod<T>: JsonPostMethod<T>()
+class JsonPutMethod<T>: RequestMethod<T>() {
+    var json: String? = null
+    var jsonModel: Any? = null
+//    var jsonConverter: KClass<out RequestJsonConverter>? = null
+}

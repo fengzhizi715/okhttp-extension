@@ -2,6 +2,7 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
+import cn.netdiscovery.http.core.method.RequestMethod
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
@@ -105,6 +106,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun <T : Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): ProcessResult<T> {
         TODO("Not yet implemented")
+//        return MethodBuilder(this, expectedClass).build(request)
     }
 
     override fun processAndSend(request: Request.Builder): Call {
