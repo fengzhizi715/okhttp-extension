@@ -106,6 +106,8 @@ class OkHttpClientWrapper(private var baseUrl: String,
         TODO("Not yet implemented")
     }
 
+    override fun getProcessorStore() = processorStore
+
     override fun okHttpClient() = okHttpClient
 
     override fun getUserAgent(): String? = userAgent

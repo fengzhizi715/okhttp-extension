@@ -116,7 +116,7 @@ class JavaNetCookieJar(private var cookieHandler: CookieHandler) : CookieJar {
             if (cookie.expiresAt == java.lang.Long.MIN_VALUE) {
                 result.append("; max-age=0")
             } else {
-                // TODO:
+                // TODO: expires
 //                result.append("; expires=").append(HttpDate.format(Date(cookie.expiresAt)))
             }
         }

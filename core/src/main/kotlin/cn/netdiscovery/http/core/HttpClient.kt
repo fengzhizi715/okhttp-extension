@@ -1,6 +1,7 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
+import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.Call
 import okhttp3.OkHttpClient
@@ -103,12 +104,12 @@ interface HttpClient {
      */
     fun processAndSend(request: Request.Builder): Call
 
-//    fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): Expected<T>
-//
-//    /**
-//     * @see ProcessorStore
-//     */
-//    fun getProcessorStore(): ProcessorStore
+    fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): Expected<T>
+
+    /**
+     * @see ProcessorStore
+     */
+    fun getProcessorStore(): ProcessorStore
 
     /**
      * @see OkHttpClient
