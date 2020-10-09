@@ -16,15 +16,6 @@ import java.net.URI
 object CookieFileStore {
 
     @Throws(IOException::class)
-    fun saveCookie(cookies: List<HttpCookie>?, saveFile: File) {
-        ObjectOutputStream(FileOutputStream(saveFile)).use {
-            val list = cookies?.map { CookieTo.of(it) } ?: emptyList()
-            it.writeObject(list)
-            it.flush()
-        }
-    }
-
-    @Throws(IOException::class)
     fun saveCookie(cookies: List<HttpCookie>?, saveFile: String) {
         saveCookie(cookies, File(saveFile))
     }
@@ -39,6 +30,15 @@ object CookieFileStore {
     fun saveCookie(client: HttpClient, saveFile: String) {
         val cookies = client.getClientCookieHandler()?.getCookieStore()?.cookies
         saveCookie(cookies, saveFile)
+    }
+
+    @Throws(IOException::class)
+    fun saveCookie(cookies: List<HttpCookie>?, saveFile: File) {
+        ObjectOutputStream(FileOutputStream(saveFile)).use {
+            val list = cookies?.map { CookieTo.of(it) } ?: emptyList()
+            it.writeObject(list)
+            it.flush()
+        }
     }
 
     @Throws(IOException::class)

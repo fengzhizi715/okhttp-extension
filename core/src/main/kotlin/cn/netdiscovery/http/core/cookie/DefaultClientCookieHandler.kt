@@ -20,8 +20,10 @@ import java.net.HttpCookie
  * @date: 2020-10-03 14:02
  * @version: V1.0 <描述当前版本功能>
  */
-class DefaultClientCookieHandler(private val client: HttpClient, private val cookieManager: CookieManager?,
-                                 private val storageProvider: Storage, private val cookiesFileName: String? = null) : ClientCookieHandler {
+class DefaultClientCookieHandler(private val client: HttpClient,
+                                 private val cookieManager: CookieManager?,
+                                 private val storageProvider: Storage,
+                                 private val cookiesFileName: String? = null) : ClientCookieHandler {
 
     override fun addCookie(cookie: HttpCookie) {
         addCookie(cookie.name, cookie.value)
@@ -61,13 +63,9 @@ class DefaultClientCookieHandler(private val client: HttpClient, private val coo
                 .saveFromResponse(client.getBaseUrl().toHttpUrlOrNull()!!, cookies)
     }
 
-    override fun getCookies(): List<HttpCookie> {
-        return cookieManager?.cookieStore?.cookies ?: listOf()
-    }
+    override fun getCookies(): List<HttpCookie> = cookieManager?.cookieStore?.cookies ?: listOf()
 
-    override fun getCookieStore(): CookieStore? {
-        return cookieManager?.cookieStore
-    }
+    override fun getCookieStore(): CookieStore? = cookieManager?.cookieStore
 
     override fun saveCookie() {
         if (cookiesFileName != null) {
@@ -86,17 +84,15 @@ class DefaultClientCookieHandler(private val client: HttpClient, private val coo
         } catch (e: Exception) {
             when (e) {
                 is FileNotFoundException -> e.printStackTrace()
-                is IOException -> e.printStackTrace()
-                else -> throw e
+                is IOException           -> e.printStackTrace()
+                else                     -> throw e
             }
         }
 
         return cookies
     }
 
-    override fun getCookieManager(): CookieHandler? {
-        return cookieManager
-    }
+    override fun getCookieManager(): CookieHandler? = cookieManager
 
     private fun getSafeDomain(domain: String?): String {
         return if (domain == null) {
