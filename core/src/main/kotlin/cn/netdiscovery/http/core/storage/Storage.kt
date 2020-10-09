@@ -12,7 +12,7 @@ import java.io.File
  */
 interface Storage {
 
-    val cacheDir: File
+    val cacheDir: File  // 缓存的目录
 
-    val cookieDir: File
+    val cookieDir: File // cookie 存放的目录
 }

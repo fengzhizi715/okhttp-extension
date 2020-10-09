@@ -2,6 +2,7 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
+import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.method.RequestMethod
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.Storage

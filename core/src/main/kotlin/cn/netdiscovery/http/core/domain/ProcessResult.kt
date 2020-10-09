@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.domain
 
 import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
 import cn.netdiscovery.http.core.domain.response.ResponseConsumer
@@ -7,7 +7,7 @@ import java.util.concurrent.CompletableFuture
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.ProcessResult
+ *          cn.netdiscovery.http.core.domain.ProcessResult
  * @author: Tony Shen
  * @date: 2020-10-04 13:31
  * @version: V1.0 <描述当前版本功能>

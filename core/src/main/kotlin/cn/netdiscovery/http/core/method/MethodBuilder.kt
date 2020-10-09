@@ -3,6 +3,7 @@ package cn.netdiscovery.http.core.method
 import cn.netdiscovery.http.core.*
 import cn.netdiscovery.http.core.domain.Content
 import cn.netdiscovery.http.core.domain.JsonContent
+import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import cn.netdiscovery.http.core.exception.UrlNotFoundException
@@ -34,7 +35,6 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
 
     private var responseMapper: KClass<out ResponseMapper<*>>? = null
 
-    @Suppress("UNCHECKED_CAST")
     fun build(method: RequestMethod<T>): ProcessResult<T> {
         method.url ?: throw UrlNotFoundException()
 

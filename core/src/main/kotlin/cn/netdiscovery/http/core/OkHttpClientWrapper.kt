@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
+import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.extension.newCall
 import cn.netdiscovery.http.core.method.RequestMethod
 import cn.netdiscovery.http.core.processor.ProcessorStore
