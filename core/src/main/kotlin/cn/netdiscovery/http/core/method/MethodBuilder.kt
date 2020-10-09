@@ -1,9 +1,7 @@
 package cn.netdiscovery.http.core.method
 
 import cn.netdiscovery.http.core.*
-import cn.netdiscovery.http.core.domain.Content
-import cn.netdiscovery.http.core.domain.JsonContent
-import cn.netdiscovery.http.core.domain.ProcessResult
+import cn.netdiscovery.http.core.domain.*
 import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import cn.netdiscovery.http.core.exception.UrlNotFoundException

@@ -8,7 +8,7 @@ import cn.netdiscovery.http.core.converter.JsonContentConverter
 import cn.netdiscovery.http.core.domain.Content
 import cn.netdiscovery.http.core.domain.JsonContent
 import cn.netdiscovery.http.core.domain.params
-import cn.netdiscovery.http.core.method.RequestMethod
+import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.processor.params.ParamsProcessor
 import cn.netdiscovery.http.core.processor.params.SingleParamsProcessor
 import java.util.concurrent.CompletableFuture

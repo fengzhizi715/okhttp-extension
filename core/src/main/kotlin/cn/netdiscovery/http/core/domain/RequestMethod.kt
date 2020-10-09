@@ -1,6 +1,5 @@
-package cn.netdiscovery.http.core.method
+package cn.netdiscovery.http.core.domain
 
-import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.response.ResponseMapper
 import cn.netdiscovery.http.core.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.converter.RequestModelConverter
@@ -9,7 +8,7 @@ import kotlin.reflect.KClass
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.method.RequestMethod
+ *          cn.netdiscovery.http.core.domain.RequestMethod
  * @author: Tony Shen
  * @date: 2020-10-03 01:27
  * @version: V1.0 <描述当前版本功能>

@@ -5,7 +5,7 @@ import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.response.ResponseConsumer
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import cn.netdiscovery.http.core.extension.executeAsync
-import cn.netdiscovery.http.core.method.RequestMethod
+import cn.netdiscovery.http.core.domain.RequestMethod
 import okhttp3.Request
 import java.util.concurrent.CompletableFuture
 
