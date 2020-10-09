@@ -72,7 +72,3 @@ data class RequestMethodModel(
         }
     }
 }
-
-enum class RequestMethodName {
-    GET, POST, PUT, DELETE
-}
