@@ -19,7 +19,7 @@ data class RequestMethodModel(
         val baseUrl: String = "",
         var apiUrl: String? = null,
         var customUrl: String? = null,
-        var requestMethod: RequestMethodName = RequestMethodName.GET) {
+        var httpMethod: HttpMethodName = HttpMethodName.GET) {
 
     fun build(): Request.Builder {
         if (apiUrl != null)
@@ -27,30 +27,30 @@ data class RequestMethodModel(
         else if (customUrl != null)
             requestBuilder.url(customUrl!!)
 
-        when(requestMethod) {
-            RequestMethodName.GET    -> requestBuilder.get()
-            RequestMethodName.POST   -> {
+        when(httpMethod) {
+            HttpMethodName.GET    -> requestBuilder.get()
+            HttpMethodName.POST   -> {
                 requestBody ?: throw RequestMethodException("Can't send post without body")
                 requestBuilder.post(requestBody!!)
             }
-            RequestMethodName.PUT    -> {
+            HttpMethodName.PUT    -> {
                 requestBody ?: throw RequestMethodException("Can't send put without body")
                 requestBuilder.put(requestBody!!)
             }
-            RequestMethodName.DELETE -> requestBuilder.delete()
+            HttpMethodName.DELETE -> requestBuilder.delete()
         }
 
         return requestBuilder
     }
 
     fun setMethod(method: RequestMethod<*>) {
-        requestMethod = when(method) {
-            is GetMethod -> RequestMethodName.GET
-            is PostMethod -> RequestMethodName.POST
-            is JsonPostMethod -> RequestMethodName.POST
-            is PutMethod -> RequestMethodName.PUT
-            is JsonPutMethod -> RequestMethodName.PUT
-            is DeleteMethod -> RequestMethodName.DELETE
+        httpMethod = when(method) {
+            is GetMethod      -> HttpMethodName.GET
+            is PostMethod     -> HttpMethodName.POST
+            is JsonPostMethod -> HttpMethodName.POST
+            is PutMethod      -> HttpMethodName.PUT
+            is JsonPutMethod  -> HttpMethodName.PUT
+            is DeleteMethod   -> HttpMethodName.DELETE
             else              -> throw IllegalStateException()
         }
     }
