@@ -55,8 +55,4 @@ class ReflectiveContentResolver(private val nameContaining: String) : ContentRes
     }
 }
 
-fun jsonContentResolver(method: JsonPostMethod<out Any>) = JsonContent(
-        method.json,
-        method.jsonModel,
-        method.jsonConverter
-)
+fun jsonContentResolver(method: JsonPostMethod<out Any>) = JsonContent(method.json, method.jsonModel, method.jsonConverter)
