@@ -11,6 +11,8 @@ import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
 import cn.netdiscovery.http.core.domain.response.EmptyResponseMapper
 import cn.netdiscovery.http.core.domain.response.ResponseMapper
 import cn.netdiscovery.http.core.domain.response.StringResponseMapper
+import cn.netdiscovery.http.core.processor.method.IterableMethodProcessor
+import cn.netdiscovery.http.core.processor.method.SingleMethodProcessor
 import okhttp3.Call
 import okhttp3.Response
 import kotlin.reflect.KClass

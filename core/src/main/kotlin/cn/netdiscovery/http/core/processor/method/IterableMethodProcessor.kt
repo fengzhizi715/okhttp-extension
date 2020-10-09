@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.method
+package cn.netdiscovery.http.core.processor.method
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.response.ResponseConsumer
@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.domain.Content
 import cn.netdiscovery.http.core.domain.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelNotFoundException
 import cn.netdiscovery.http.core.extension.collect
+import cn.netdiscovery.http.core.method.RequestMethod
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.Stream
@@ -13,7 +14,7 @@ import java.util.stream.Stream
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.method.IterableMethodProcessor
+ *          cn.netdiscovery.http.core.processor.method.IterableMethodProcessor
  * @author: Tony Shen
  * @date: 2020-10-09 00:50
  * @version: V1.0 <描述当前版本功能>
@@ -27,14 +28,12 @@ class IterableMethodProcessor<T : Any>(
 ) : AbstractRequestMethodProcessor<T>() {
 
     @Throws(IterableModelNotFoundException::class, ClassCastException::class)
-    @Suppress("UNCHECKED_CAST")
     override fun process(): ResponseConsumer<T> {
         return toResponses().collect()
     }
 
     override fun processAsync(): CompletableFuture<ResponseConsumer<T>> {
-        return asyncToResponses().collect()
-                .thenApply { it.collect() }
+        return asyncToResponses().collect().thenApply { it.collect() }
     }
 
     private fun createStream(iterableModel: Iterable<*>): Stream<*> {
@@ -98,7 +97,6 @@ class IterableMethodProcessor<T : Any>(
                     jsonContent)
 
             singleMethodProcessor.processAsync()
-        }.collect(Collectors.toList())
-                .filterNotNull()
+        }.collect(Collectors.toList()).filterNotNull()
     }
 }

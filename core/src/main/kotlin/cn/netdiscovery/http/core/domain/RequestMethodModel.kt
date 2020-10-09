@@ -22,7 +22,6 @@ data class RequestMethodModel(
         var customUrl: String? = null,
         var requestMethod: RequestMethodName = RequestMethodName.GET) {
 
-    @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     fun build(): Request.Builder {
         if (apiUrl != null)
             requestBuilder.url("$baseUrl$apiUrl")
@@ -30,12 +29,12 @@ data class RequestMethodModel(
             requestBuilder.url(customUrl!!)
 
         when(requestMethod) {
-            RequestMethodName.GET -> requestBuilder.get()
-            RequestMethodName.POST -> {
+            RequestMethodName.GET    -> requestBuilder.get()
+            RequestMethodName.POST   -> {
                 requestBody ?: throw RequestMethodException("Can't send post without body")
                 requestBuilder.post(requestBody!!)
             }
-            RequestMethodName.PUT -> {
+            RequestMethodName.PUT    -> {
                 requestBody ?: throw RequestMethodException("Can't send put without body")
                 requestBuilder.put(requestBody!!)
             }
