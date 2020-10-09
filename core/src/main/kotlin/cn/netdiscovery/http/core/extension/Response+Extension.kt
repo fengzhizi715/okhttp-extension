@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.extension
 
-import cn.netdiscovery.http.core.response.ResponseConsumer
+import cn.netdiscovery.http.core.domain.response.ResponseConsumer
 import okhttp3.Response
 import okhttp3.ResponseBody
 

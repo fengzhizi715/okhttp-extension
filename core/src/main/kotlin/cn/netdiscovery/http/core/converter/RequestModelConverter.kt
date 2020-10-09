@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.converter
 
-import cn.netdiscovery.http.core.Params
+import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.Content
 
 /**

@@ -1,9 +1,9 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.domain
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.Params
+ *          cn.netdiscovery.http.core.domain.Params
  * @author: Tony Shen
  * @date: 2020-09-20 21:38
  * @version: V1.0 <描述当前版本功能>

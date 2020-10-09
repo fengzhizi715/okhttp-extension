@@ -1,6 +1,5 @@
 package cn.netdiscovery.http.core.domain
 
-import cn.netdiscovery.http.core.Params
 import cn.netdiscovery.http.core.converter.RequestModelConverter
 import kotlin.reflect.KClass
 

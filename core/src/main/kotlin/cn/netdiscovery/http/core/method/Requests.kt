@@ -1,11 +1,9 @@
 package cn.netdiscovery.http.core.method
 
-import cn.netdiscovery.http.core.Params
+import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import okhttp3.FormBody
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 
 /**

@@ -1,13 +1,13 @@
 package cn.netdiscovery.http.core.method
 
 import cn.netdiscovery.http.core.HttpClient
-import cn.netdiscovery.http.core.Params
-import cn.netdiscovery.http.core.response.ResponseConsumer
+import cn.netdiscovery.http.core.domain.Params
+import cn.netdiscovery.http.core.domain.response.ResponseConsumer
 import cn.netdiscovery.http.core.converter.ContentConverter
 import cn.netdiscovery.http.core.converter.JsonContentConverter
 import cn.netdiscovery.http.core.domain.Content
 import cn.netdiscovery.http.core.domain.JsonContent
-import cn.netdiscovery.http.core.params
+import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.processor.params.ParamsProcessor
 import cn.netdiscovery.http.core.processor.params.SingleParamsProcessor
 import java.util.concurrent.CompletableFuture

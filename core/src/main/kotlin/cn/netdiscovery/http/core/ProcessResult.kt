@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
-import cn.netdiscovery.http.core.response.ResponseConsumer
+import cn.netdiscovery.http.core.domain.response.ResponseConsumer
 import java.util.concurrent.CompletableFuture
 
 /**

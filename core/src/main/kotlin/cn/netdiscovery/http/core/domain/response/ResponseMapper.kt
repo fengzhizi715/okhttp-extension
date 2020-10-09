@@ -1,11 +1,11 @@
-package cn.netdiscovery.http.core.response
+package cn.netdiscovery.http.core.domain.response
 
 import okhttp3.Response
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.response.ResponseMapper
+ *          cn.netdiscovery.http.core.domain.response.ResponseMapper
  * @author: Tony Shen
  * @date: 2020-10-05 01:34
  * @version: V1.0 <描述当前版本功能>

@@ -1,9 +1,9 @@
 package cn.netdiscovery.http.core.converter
 
-import cn.netdiscovery.http.core.Params
+import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.annotation.ParamName
 import cn.netdiscovery.http.core.domain.Content
-import cn.netdiscovery.http.core.params
+import cn.netdiscovery.http.core.domain.params
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAccessor
 import kotlin.reflect.KProperty1
