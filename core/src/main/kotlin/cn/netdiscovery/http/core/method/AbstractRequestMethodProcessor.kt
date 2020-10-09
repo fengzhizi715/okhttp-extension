@@ -16,10 +16,10 @@ abstract class AbstractRequestMethodProcessor<T : Any> : RequestMethodProcessor<
 
     protected val contentModifications: Map<String, (Params, RequestMethodModel) -> RequestMethodModel> = mapOf(
             "queries" to ::processQuery,
-            "path" to ::processPath,
-            "body" to ::processBody,
+            "path"    to ::processPath,
+            "body"    to ::processBody,
             "headers" to ::processHeaders,
-            "json" to ::processJson
+            "json"    to ::processJson
     )
 
     protected fun getContentNames() = contentModifications.keys

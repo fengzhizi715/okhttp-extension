@@ -58,16 +58,16 @@ fun processBody(params: Params, requestMethodModel: RequestMethodModel): Request
     return requestMethodModel
 }
 
-fun processJson(json: String, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    val requestBody = RequestBody.create(jsonMediaType, json)
-    requestMethodModel.requestBody = requestBody
-    return requestMethodModel
-}
-
 fun processJson(json: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
     if (json.size > 1)
         throw IllegalArgumentException("Invalid json")
 
     val jsonString = json.first().second
     return processJson(jsonString, requestMethodModel)
+}
+
+private fun processJson(json: String, requestMethodModel: RequestMethodModel): RequestMethodModel {
+    val requestBody = RequestBody.create(jsonMediaType, json)
+    requestMethodModel.requestBody = requestBody
+    return requestMethodModel
 }
