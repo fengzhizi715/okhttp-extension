@@ -11,3 +11,5 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
  * @version: V1.0 <描述当前版本功能>
  */
 val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+
+val ua = "User-Agent"

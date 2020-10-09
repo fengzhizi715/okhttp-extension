@@ -1,6 +1,7 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.config.jsonMediaType
+import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.method.RequestMethod
@@ -121,6 +122,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getStorageProvider(): Storage = storageProvider
 
+    /**
+     * 创建 request 请求，适用于 GET、DELETE
+     */
     private fun createRequest(url: String,
                               customUrl: String?,
                               query: Params?,
@@ -143,7 +147,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader("User-Agent", userAgent)
+            request.addHeader(ua, userAgent)
         }
 
         processorStore.getRequestProcessors()
@@ -154,6 +158,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return request.build()
     }
 
+    /**
+     * 创建 request 请求，适用于 POST、PUT
+     */
     private fun createBodyRequest(url: String,
                                   customUrl: String?,
                                   body: Params,
@@ -165,7 +172,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader("User-Agent", userAgent)
+            request.addHeader(ua, userAgent)
         }
 
         val formBody = FormBody.Builder()
@@ -184,6 +191,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return request.build()
     }
 
+    /**
+     * 创建 request 请求，适用于 POST、PUT
+     */
     private fun createJsonRequest(url: String,
                                   customUrl: String?,
                                   json: String,
@@ -195,7 +205,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader("User-Agent", userAgent)
+            request.addHeader(ua, userAgent)
         }
 
         val requestBody = json.toRequestBody(jsonMediaType)
