@@ -65,9 +65,7 @@ class IterableMethodProcessor<T : Any>(
 
             contentMap[modelContent.name] = modelContent
 
-
-            val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(),
-                    jsonContent)
+            val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(), jsonContent)
 
             singleMethodProcessor.process()
         }.collect(Collectors.toList()).filterNotNull()
@@ -93,8 +91,7 @@ class IterableMethodProcessor<T : Any>(
 
             contentMap[modelContent.name] = modelContent
 
-            val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(),
-                    jsonContent)
+            val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(), jsonContent)
 
             singleMethodProcessor.processAsync()
         }.collect(Collectors.toList()).filterNotNull()

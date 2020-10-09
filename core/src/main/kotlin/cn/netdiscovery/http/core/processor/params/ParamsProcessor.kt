@@ -27,32 +27,7 @@ abstract class ParamsProcessor<T> {
 
     fun cloneResponse(response: Response, body: ResponseBody?): Response? {
         body ?: return null
-        return response.newBuilder()
-                .body(
-                        ResponseBody.create(body.contentType(),
-                                body.bytes())
-                ).build()
-    }
-
-    fun doubleResponse(response: Response, body: ResponseBody?): Pair<Response, Response>? {
-        body ?: return null
-
-        val contentType = body.contentType()
-        val content = body.bytes()
-
-        val first = response.newBuilder()
-                .body(
-                        ResponseBody.create(contentType,
-                                content)
-                ).build()
-
-        val second = response.newBuilder()
-                .body(
-                        ResponseBody.create(contentType,
-                                content)
-                ).build()
-
-        return Pair(first, second)
+        return response.newBuilder().body(ResponseBody.create(body.contentType(), body.bytes())).build()
     }
 
     fun applyMapper(mapperClass: KClass<out ResponseMapper<*>>?, call: Call): ResponseConsumer<T> {
@@ -64,8 +39,7 @@ abstract class ParamsProcessor<T> {
             ResponseConsumer(call = call)
         }
     }
-
-    @Suppress("UNCHECKED_CAST")
+    
     @Synchronized
     fun applyMapper(mapperClass: KClass<out ResponseMapper<*>>?, response: Response): ResponseConsumer<T> {
         return if (mapperClass != null) {

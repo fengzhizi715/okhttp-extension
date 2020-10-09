@@ -36,13 +36,13 @@ class SingleMethodProcessor<T : Any>(
 
     override fun process(): ResponseConsumer<T> {
         val params = createParams()
-        setUpParamsProcessor()
+        paramsProcessor = SingleParamsProcessor(method, client, contentModifications)
         return paramsProcessor.process(params)
     }
 
     override fun processAsync(): CompletableFuture<ResponseConsumer<T>> {
         val params = createParams()
-        setUpParamsProcessor()
+        paramsProcessor = SingleParamsProcessor(method, client, contentModifications)
         return paramsProcessor.processAsync(params)
     }
 
@@ -55,10 +55,6 @@ class SingleMethodProcessor<T : Any>(
                         injectJsonParam(it.toMutableMap())
                     } else it
                 }
-    }
-
-    private fun setUpParamsProcessor() {
-        paramsProcessor = SingleParamsProcessor(method, client, contentModifications)
     }
 
     private fun injectJsonParam(namedParams: MutableMap<String, Params>): Map<String, Params> {
