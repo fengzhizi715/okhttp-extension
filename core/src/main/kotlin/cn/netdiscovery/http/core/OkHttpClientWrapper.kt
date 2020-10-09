@@ -116,7 +116,13 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun <T : Any> send(clazz: KClass<T>, requestMethod: RequestMethod<T>): ProcessResult<T> = MethodBuilder(this, clazz).build(requestMethod)
 
     override fun processAndSend(request: Request.Builder): Call {
-        TODO("Not yet implemented")
+        var builder = request
+        processorStore.getRequestProcessors()
+                .forEach {
+                    builder = it.process(this, builder)
+                }
+
+        return send(builder.build())
     }
 
     override fun getProcessorStore() = processorStore
