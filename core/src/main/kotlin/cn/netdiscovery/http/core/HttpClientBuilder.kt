@@ -222,7 +222,7 @@ class Builder {
         addInterceptor(ResponseProcessingInterceptor(processorStore))
 
         storageProvider = storageProvider ?: DefaultStorage()
-        cookieManager = cookieManager ?: CookieManager().also { it.setCookiePolicy(CookiePolicy.ACCEPT_ALL) }
+        cookieManager = cookieManager ?: CookieManager().apply { this.setCookiePolicy(CookiePolicy.ACCEPT_ALL) }
 
         if(!isCookieJarSet) {
             cookieJar(JavaNetCookieJar(cookieManager!!))

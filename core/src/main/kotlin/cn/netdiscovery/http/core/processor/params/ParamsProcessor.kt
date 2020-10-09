@@ -1,8 +1,8 @@
 package cn.netdiscovery.http.core.processor.params
 
 import cn.netdiscovery.http.core.Params
-import cn.netdiscovery.http.core.ResponseConsumer
-import cn.netdiscovery.http.core.ResponseMapper
+import cn.netdiscovery.http.core.response.ResponseConsumer
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import okhttp3.Call
 import okhttp3.Response

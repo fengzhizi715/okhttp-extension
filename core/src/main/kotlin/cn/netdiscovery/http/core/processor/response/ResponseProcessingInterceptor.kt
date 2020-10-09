@@ -17,9 +17,9 @@ import java.nio.charset.Charset
 class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val request = chain.request()
-        val response = chain.proceed(request)
-        val body = response.body
+        val request= chain.request()
+        val response= chain.proceed(request)
+        val body= response.body
 
         val source = body?.source()
         source?.request(Long.MAX_VALUE) // Buffer the entire body.
@@ -27,6 +27,7 @@ class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) 
         val stringBody = buffer?.clone()?.readString(Charset.forName("UTF-8")).toString()
 
         val responseProcessors = processorStore.getResponseProcessors()
+
         if (responseProcessors.isEmpty())
             return response
 

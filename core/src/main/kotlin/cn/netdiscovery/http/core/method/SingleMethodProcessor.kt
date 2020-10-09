@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core.method
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.Params
-import cn.netdiscovery.http.core.ResponseConsumer
+import cn.netdiscovery.http.core.response.ResponseConsumer
 import cn.netdiscovery.http.core.converter.ContentConverter
 import cn.netdiscovery.http.core.converter.JsonContentConverter
 import cn.netdiscovery.http.core.domain.Content

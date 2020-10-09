@@ -7,10 +7,11 @@ import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import cn.netdiscovery.http.core.exception.UrlNotFoundException
 import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
+import cn.netdiscovery.http.core.response.EmptyResponseMapper
+import cn.netdiscovery.http.core.response.ResponseMapper
+import cn.netdiscovery.http.core.response.StringResponseMapper
 import okhttp3.Call
 import okhttp3.Response
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.Executors
 import kotlin.reflect.KClass
 
 /**

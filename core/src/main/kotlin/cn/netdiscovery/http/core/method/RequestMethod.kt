@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.method
 
 import cn.netdiscovery.http.core.Params
-import cn.netdiscovery.http.core.ResponseMapper
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.converter.RequestModelConverter
 import kotlin.reflect.KClass

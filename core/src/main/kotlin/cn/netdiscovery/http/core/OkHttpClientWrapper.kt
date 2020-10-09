@@ -10,7 +10,6 @@ import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.CookieManager
 import java.net.URI
