@@ -4,6 +4,7 @@ import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
+import cn.netdiscovery.http.core.extension.newCall
 import cn.netdiscovery.http.core.method.RequestMethod
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
@@ -38,8 +39,8 @@ class OkHttpClientWrapper(private var baseUrl: String,
             if (cookieHandler == null)
                 cookieHandler = DefaultClientCookieHandler(this, cookieManager, storageProvider, cookiesFileName)
 
-            if (cookiesFileName != null) {
-                cookieHandler!!.restoreCookies(cookiesFileName).forEach {
+            cookiesFileName?.let {
+                cookieHandler!!.restoreCookies(it).forEach {
                     cookieManager.cookieStore.add(URI.create(baseUrl), it)
                 }
             }
@@ -56,51 +57,57 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call {
-        val request = createRequest(url, customUrl, query, headers) {
-            it.get()
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createRequest(url, customUrl, query, headers) {
+                it.get()
+            }
+        }
     }
 
     override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        val request = createBodyRequest(url, customUrl, body, headers) { builder, body ->
-            builder.post(body)
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createBodyRequest(url, customUrl, body, headers) { builder, body ->
+                builder.post(body)
+            }
+        }
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call {
-        val request = createBodyRequest(url, customUrl, body, headers) { builder, body ->
-            builder.put(body)
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createBodyRequest(url, customUrl, body, headers) { builder, body ->
+                builder.put(body)
+            }
+        }
     }
 
     override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Call {
-        val request = createRequest(url, customUrl, query, headers) {
-            it.delete()
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createRequest(url, customUrl, query, headers) {
+                it.delete()
+            }
+        }
     }
 
     override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Call {
-        val request = createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
-            builder.post(requestBody)
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+                builder.post(requestBody)
+            }
+        }
     }
 
     override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Call {
-        val request = createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
-            builder.put(requestBody)
-        }
+        return okHttpClient.newCall{
 
-        return okHttpClient.newCall(request)
+            createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+                builder.put(requestBody)
+            }
+        }
     }
 
     override fun send(request: Request) = okHttpClient.newCall(request)
