@@ -19,11 +19,7 @@ data class Content(
         val modelConverter: KClass<out RequestModelConverter>? = null
 ) {
 
-    fun isEmpty(): Boolean {
-        return params == null
-                && map == null
-                && model == null
-    }
+    fun isEmpty(): Boolean = params == null && map == null && model == null
 
     fun isNotEmpty(): Boolean = !isEmpty()
 }

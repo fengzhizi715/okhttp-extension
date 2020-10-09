@@ -19,17 +19,12 @@ class ProcessResult <T : Any>(private val methodProcessor: RequestMethodProcesso
      *
      * @see okhttp3.Call
      */
-    fun sync(): T {
-        return methodProcessor.process().getResult()
-    }
+    fun sync(): T = methodProcessor.process().getResult()
 
     /**
      * Async send, used Call.enqueue()
      *
      * @see okhttp3.Call
      */
-    fun async(): CompletableFuture<T> {
-        return methodProcessor.processAsync()
-                .thenApply(ResponseConsumer<out T>::getResult)
-    }
+    fun async(): CompletableFuture<T> = methodProcessor.processAsync().thenApply(ResponseConsumer<out T>::getResult)
 }

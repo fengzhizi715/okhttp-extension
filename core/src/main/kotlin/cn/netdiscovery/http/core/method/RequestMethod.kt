@@ -25,20 +25,17 @@ open class RequestMethod<T> protected constructor() {
     var queriesParams: Params? = null
     var queriesMap: Map<String, String>? = null
     var queriesModel: Any? = null
-//    var queriesCountable: Countable? = null
     var queriesModelConverter: KClass<out RequestModelConverter>? = null
 
     // url "localhost/{path_name}"
     var pathParams: Params? = null
     var pathMap: Map<String, String>? = null
     var pathModel: Any? = null
-//    var pathCountable: Countable? = null
     var pathModelConverter: KClass<out RequestModelConverter>? = null
 
     var headersParams: Params? = null
     var headersMap: Map<String, String>? = null
     var headersModel: Any? = null
-//    var headersCountable: Countable? = null
     var headersModelConverter: KClass<out RequestModelConverter>? = null
 
     var responseMapper: KClass<out ResponseMapper<*>>? = null
@@ -50,7 +47,6 @@ class PostMethod<T> : RequestMethod<T>() {
     var bodyParams: Params? = null
     var bodyMap: Map<String, String>? = null
     var bodyModel: Any? = null
-//    var bodyCountable: Countable? = null
     var bodyModelConverter: KClass<out RequestModelConverter>? = null
 }
 
@@ -58,20 +54,15 @@ class PutMethod<T>: RequestMethod<T>() {
     var bodyParams: Params? = null
     var bodyMap: Map<String, String>? = null
     var bodyModel: Any? = null
-//    var bodyCountable: Countable? = null
     var bodyModelConverter: KClass<out RequestModelConverter>? = null
 }
 
 class DeleteMethod<T>: RequestMethod<T>()
 
-class JsonPostMethod<T> : RequestMethod<T>() {
+open class JsonPostMethod<T>: RequestMethod<T>() {
     var json: String? = null
     var jsonModel: Any? = null
     var jsonConverter: KClass<out RequestJsonConverter>? = null
 }
 
-class JsonPutMethod<T>: RequestMethod<T>() {
-    var json: String? = null
-    var jsonModel: Any? = null
-    var jsonConverter: KClass<out RequestJsonConverter>? = null
-}
+class JsonPutMethod<T>: JsonPostMethod<T>()

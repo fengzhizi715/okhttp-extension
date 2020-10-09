@@ -47,13 +47,13 @@ data class RequestMethodModel(
 
     fun setMethod(method: RequestMethod<*>) {
         requestMethod = when(method) {
-            is GetMethod -> RequestMethodName.GET
-            is PostMethod -> RequestMethodName.POST
+            is GetMethod      -> RequestMethodName.GET
+            is PostMethod     -> RequestMethodName.POST
             is JsonPostMethod -> RequestMethodName.POST
-            is PutMethod -> RequestMethodName.PUT
-            is JsonPutMethod -> RequestMethodName.PUT
-            is DeleteMethod -> RequestMethodName.DELETE
-            else -> throw IllegalStateException()
+            is PutMethod      -> RequestMethodName.PUT
+            is JsonPutMethod  -> RequestMethodName.PUT
+            is DeleteMethod   -> RequestMethodName.DELETE
+            else              -> throw IllegalStateException()
         }
     }
 

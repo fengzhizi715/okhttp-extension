@@ -41,9 +41,7 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
         responseMapper = method.responseMapper ?: getDefaultMapper(type.java)
         method.responseMapper = responseMapper
 
-
-        val contents = resolvers.map { ReflectiveContentResolver(it.key).resolve(method) }
-                .filterNotNull()
+        val contents = resolvers.map { ReflectiveContentResolver(it.key).resolve(method) }.filterNotNull()
 
         val jsonContent = if (method is JsonPostMethod<T>) {
             jsonContentResolver(method)

@@ -24,14 +24,11 @@ class ReflectiveContentResolver(private val nameContaining: String) : ContentRes
 
     override fun resolve(method: RequestMethod<out Any>): Content? {
         val methodClass = method::class
-        val fields = methodClass.memberProperties
-                .filter { it.name.contains(nameContaining) }
+        val fields = methodClass.memberProperties.filter { it.name.contains(nameContaining) }
 
-        if (fields.isEmpty())
-            return null
+        if (fields.isEmpty()) return null
 
-        val objects = fields.map { it.name to it.getter.call(method) }
-                .toMap()
+        val objects = fields.map { it.name to it.getter.call(method) }.toMap()
 
         val primaryConstructor = Content::class.primaryConstructor!!
         val params = primaryConstructor.parameters
