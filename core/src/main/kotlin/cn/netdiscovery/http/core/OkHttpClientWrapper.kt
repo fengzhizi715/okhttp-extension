@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.method.RequestMethod
@@ -26,10 +27,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
                           private val processorStore: ProcessorStore,
                           private val cookieManager: CookieManager?,
                           private val storageProvider: Storage = DefaultStorage(),
-                          cookiesFileName: String?) : HttpClient {
+                          private val cookiesFileName: String?) : HttpClient {
 
     private var cookieHandler: ClientCookieHandler? = null
-    private val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
     private var userAgent = ""
 
     init {
