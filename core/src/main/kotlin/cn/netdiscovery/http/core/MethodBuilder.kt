@@ -1,6 +1,6 @@
-package cn.netdiscovery.http.core.method
+package cn.netdiscovery.http.core
 
-import cn.netdiscovery.http.core.*
+import cn.netdiscovery.http.core.config.resolvers
 import cn.netdiscovery.http.core.domain.*
 import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
@@ -18,20 +18,12 @@ import kotlin.reflect.KClass
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.method.MethodBuilder
+ *          cn.netdiscovery.http.core.MethodBuilder
  * @author: Tony Shen
  * @date: 2020-10-05 01:25
  * @version: V1.0 <描述当前版本功能>
  */
 class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KClass<out T>) {
-
-    private val resolvers = mapOf(
-            "queries" to ::processQuery,
-            "path" to ::processPath,
-            "body" to ::processBody,
-            "headers" to ::processHeaders,
-            "json" to ::processJson
-    )
 
     private var responseMapper: KClass<out ResponseMapper<*>>? = null
 

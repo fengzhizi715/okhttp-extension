@@ -1,8 +1,8 @@
 package cn.netdiscovery.http.core.processor.method
 
+import cn.netdiscovery.http.core.config.resolvers
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethodModel
-import cn.netdiscovery.http.core.method.*
 
 /**
  *
@@ -14,13 +14,7 @@ import cn.netdiscovery.http.core.method.*
  */
 abstract class AbstractRequestMethodProcessor<T : Any> : RequestMethodProcessor<T> {
 
-    protected val contentModifications: Map<String, (Params, RequestMethodModel) -> RequestMethodModel> = mapOf(
-            "queries" to ::processQuery,
-            "path"    to ::processPath,
-            "body"    to ::processBody,
-            "headers" to ::processHeaders,
-            "json"    to ::processJson
-    )
+    protected val contentModifications: Map<String, (Params, RequestMethodModel) -> RequestMethodModel> = resolvers
 
     protected fun getContentNames() = contentModifications.keys
 }
