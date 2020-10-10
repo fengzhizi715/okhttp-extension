@@ -12,4 +12,4 @@ import okhttp3.Request
  * @date: 2020-10-09 21:30
  * @version: V1.0 <描述当前版本功能>
  */
-fun OkHttpClient.newCall(block:()->Request):Call = newCall(block.invoke())
+fun OkHttpClient.newCall(block:()->Request):Call = this.newCall(block.invoke())

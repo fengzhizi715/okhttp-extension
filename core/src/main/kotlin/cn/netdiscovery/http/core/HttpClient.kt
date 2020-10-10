@@ -88,6 +88,15 @@ interface HttpClient {
     fun jsonPut(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Call
 
     /**
+     * Same as send but request will be processed by RequestProcessors
+     *
+     * @see Request
+     * @see Call
+     * @see RequestMethod
+     */
+    fun processAndSend(request: Request.Builder): Call
+
+    /**
      * You can send okhttp.Request instead using defined methods
      * RequestProcessors will be avoided
      *
@@ -97,15 +106,6 @@ interface HttpClient {
      * @return okhttp3.Call
      */
     fun send(request: Request): Call
-
-    /**
-     * Same as send but request will be processed by RequestProcessors
-     *
-     * @see Request
-     * @see Call
-     * @see RequestMethod
-     */
-    fun processAndSend(request: Request.Builder): Call
 
     fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 

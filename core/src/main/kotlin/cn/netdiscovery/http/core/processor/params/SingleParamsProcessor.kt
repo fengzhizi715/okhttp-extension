@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.domain.response.ResponseConsumer
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import cn.netdiscovery.http.core.extension.executeAsync
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.requestBlock
 import okhttp3.Request
 import java.util.concurrent.CompletableFuture
 
@@ -20,7 +21,7 @@ import java.util.concurrent.CompletableFuture
 class SingleParamsProcessor<T>(
         private val method: RequestMethod<*>,
         private val client: HttpClient,
-        private val modifications: Map<String, (Params, RequestMethodModel) -> RequestMethodModel>
+        private val modifications: Map<String, requestBlock>
 ) : ParamsProcessor<T>() {
 
     @Suppress("UNCHECKED_CAST")

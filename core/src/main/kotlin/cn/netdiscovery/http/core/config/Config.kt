@@ -1,8 +1,6 @@
 package cn.netdiscovery.http.core.config
 
 import cn.netdiscovery.http.core.*
-import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.domain.RequestMethodModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 /**
@@ -17,7 +15,7 @@ val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
 
 val ua = "User-Agent"
 
-val resolvers: Map<String, (Params, RequestMethodModel) -> RequestMethodModel>  = mapOf(
+val resolvers: Map<String, requestBlock>  = mapOf(
         "queries" to ::processQuery,
         "path"    to ::processPath,
         "body"    to ::processBody,
