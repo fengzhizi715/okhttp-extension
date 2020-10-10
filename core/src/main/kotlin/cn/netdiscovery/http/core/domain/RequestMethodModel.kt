@@ -64,9 +64,9 @@ data class RequestMethodModel(
 
     fun setUrl(url: String) {
         when {
-            apiUrl != null -> apiUrl = url
+            apiUrl != null    -> apiUrl = url
             customUrl != null -> customUrl = url
-            else -> throw UrlNotFoundException()
+            else              -> throw UrlNotFoundException()
         }
     }
 }

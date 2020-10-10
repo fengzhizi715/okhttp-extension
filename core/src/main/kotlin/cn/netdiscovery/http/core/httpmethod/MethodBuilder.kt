@@ -1,5 +1,6 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.httpmethod
 
+import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.config.resolvers
 import cn.netdiscovery.http.core.domain.*
 import cn.netdiscovery.http.core.domain.content.Content
@@ -11,8 +12,6 @@ import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
 import cn.netdiscovery.http.core.domain.response.EmptyResponseMapper
 import cn.netdiscovery.http.core.domain.response.ResponseMapper
 import cn.netdiscovery.http.core.domain.response.StringResponseMapper
-import cn.netdiscovery.http.core.processor.method.IterableMethodProcessor
-import cn.netdiscovery.http.core.processor.method.SingleMethodProcessor
 import okhttp3.Call
 import okhttp3.Response
 import kotlin.reflect.KClass
@@ -20,7 +19,7 @@ import kotlin.reflect.KClass
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.MethodBuilder
+ *          cn.netdiscovery.http.core.httpmethod.MethodBuilder
  * @author: Tony Shen
  * @date: 2020-10-05 01:25
  * @version: V1.0 <描述当前版本功能>

@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.httpmethod
 
 import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.content.JsonContent
@@ -10,7 +10,7 @@ import kotlin.reflect.full.primaryConstructor
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.ContentResolver
+ *          cn.netdiscovery.http.core.httpmethod.ContentResolver
  * @author: Tony Shen
  * @date: 2020-10-08 01:22
  * @version: V1.0 <描述当前版本功能>

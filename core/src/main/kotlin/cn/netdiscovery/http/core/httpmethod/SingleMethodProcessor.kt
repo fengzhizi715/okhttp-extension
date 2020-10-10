@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.processor.method
+package cn.netdiscovery.http.core.httpmethod
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
@@ -9,6 +9,7 @@ import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.processor.method.AbstractRequestMethodProcessor
 import cn.netdiscovery.http.core.processor.params.ParamsProcessor
 import cn.netdiscovery.http.core.processor.params.SingleParamsProcessor
 import java.util.concurrent.CompletableFuture
@@ -16,7 +17,7 @@ import java.util.concurrent.CompletableFuture
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.processor.method.SingleMethodProcessor
+ *          cn.netdiscovery.http.core.httpmethod.SingleMethodProcessor
  * @author: Tony Shen
  * @date: 2020-10-09 01:28
  * @version: V1.0 <描述当前版本功能>

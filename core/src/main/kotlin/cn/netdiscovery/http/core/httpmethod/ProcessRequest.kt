@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.httpmethod
 
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.config.jsonMediaType
