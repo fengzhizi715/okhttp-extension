@@ -1,14 +1,14 @@
-package cn.netdiscovery.http.core.converter
+package cn.netdiscovery.http.core.domain.content
 
+import cn.netdiscovery.http.core.converter.DefaultRequestModelConverter
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.domain.Content
 import cn.netdiscovery.http.core.domain.params
 import kotlin.reflect.full.primaryConstructor
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.converter.ContentConverter
+ *          cn.netdiscovery.http.core.domain.content.ContentConverter
  * @author: Tony Shen
  * @date: 2020-10-09 01:33
  * @version: V1.0 <描述当前版本功能>

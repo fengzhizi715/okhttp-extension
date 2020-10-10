@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.domain
+package cn.netdiscovery.http.core.domain.content
 
 import cn.netdiscovery.http.core.converter.RequestJsonConverter
 import kotlin.reflect.KClass
@@ -6,7 +6,7 @@ import kotlin.reflect.KClass
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.domain.JsonContent
+ *          cn.netdiscovery.http.core.domain.content.JsonContent
  * @author: Tony Shen
  * @date: 2020-10-08 01:11
  * @version: V1.0 <描述当前版本功能>

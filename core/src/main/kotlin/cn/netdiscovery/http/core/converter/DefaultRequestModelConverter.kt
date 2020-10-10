@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core.converter
 
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.annotation.ParamName
-import cn.netdiscovery.http.core.domain.Content
+import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.params
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAccessor
@@ -49,10 +49,9 @@ class DefaultRequestModelConverter(
                     }
                 }
 
-        val params = params(*paramPairs.toTypedArray())
-        params.addAll(*collectionsParams.toTypedArray())
-
-        return params
+        return params(*paramPairs.toTypedArray()).apply {
+            addAll(*collectionsParams.toTypedArray())
+        }
     }
 
     private fun resolveString(obj: Any?): String {

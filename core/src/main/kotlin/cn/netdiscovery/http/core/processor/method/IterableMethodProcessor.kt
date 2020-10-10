@@ -2,8 +2,8 @@ package cn.netdiscovery.http.core.processor.method
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.response.ResponseConsumer
-import cn.netdiscovery.http.core.domain.Content
-import cn.netdiscovery.http.core.domain.JsonContent
+import cn.netdiscovery.http.core.domain.content.Content
+import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelNotFoundException
 import cn.netdiscovery.http.core.extension.collect
 import cn.netdiscovery.http.core.domain.RequestMethod

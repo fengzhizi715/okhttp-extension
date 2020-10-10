@@ -1,12 +1,13 @@
-package cn.netdiscovery.http.core.domain
+package cn.netdiscovery.http.core.domain.content
 
 import cn.netdiscovery.http.core.converter.RequestModelConverter
+import cn.netdiscovery.http.core.domain.Params
 import kotlin.reflect.KClass
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.domain.Content
+ *          cn.netdiscovery.http.core.domain.content.Content
  * @author: Tony Shen
  * @date: 2020-10-05 11:15
  * @version: V1.0 <描述当前版本功能>
