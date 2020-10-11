@@ -20,6 +20,11 @@ dependencies {
 
     implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
     implementation project(":core")
+
+    implementation "io.ktor:ktor-server-core:${libs.ktor}"
+    implementation "io.ktor:ktor-server-netty:${libs.ktor}"
+    implementation "io.ktor:ktor-freemarker:${libs.ktor}"
+    implementation "io.ktor:ktor-gson:${libs.ktor}"
 }
 
 compileKotlin {
