@@ -38,8 +38,8 @@ class HttpClientBuilder {
     private var cookieManager: CookieManager? = null
     private var userAgent: String? = null
 
-    private var isCookieJarSet = false
-    private var isCacheSet = false
+    private var isCookieJar = false
+    private var isCache = false
 
     fun connectTimeout(timeout: Long, unit: TimeUnit): HttpClientBuilder {
         builder.connectTimeout(timeout, unit)
@@ -72,13 +72,13 @@ class HttpClientBuilder {
     }
 
     fun cookieJar(cookieJar: CookieJar): HttpClientBuilder {
-        isCookieJarSet = true
+        isCookieJar = true
         builder.cookieJar(cookieJar)
         return this
     }
 
     fun cache(cache: Cache?): HttpClientBuilder {
-        isCacheSet = true
+        isCache = true
         builder.cache(cache)
         return this
     }
@@ -224,11 +224,11 @@ class HttpClientBuilder {
         storageProvider = storageProvider ?: DefaultStorage()
         cookieManager = cookieManager ?: CookieManager().apply { this.setCookiePolicy(CookiePolicy.ACCEPT_ALL) }
 
-        if(!isCookieJarSet) {
+        if(!isCookieJar) {
             cookieJar(JavaNetCookieJar(cookieManager!!))
         }
 
-        if(!isCacheSet) {
+        if(!isCache) {
             cache(Cache(File(storageProvider!!.cacheDir, getCacheFileName(baseUrl)), 1024))
         }
 

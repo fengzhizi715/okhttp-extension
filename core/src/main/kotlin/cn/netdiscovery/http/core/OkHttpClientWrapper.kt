@@ -56,11 +56,12 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return this
     }
 
+    override fun getUserAgent(): String? = userAgent
+
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createRequest(url, customUrl, query, headers) {
                 it.get()
             }
@@ -69,7 +70,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createBodyRequest(url, customUrl, body, headers) { builder, body ->
                 builder.post(body)
             }
@@ -78,7 +78,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createBodyRequest(url, customUrl, body, headers) { builder, body ->
                 builder.put(body)
             }
@@ -87,7 +86,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createRequest(url, customUrl, query, headers) {
                 it.delete()
             }
@@ -96,7 +94,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
                 builder.post(requestBody)
             }
@@ -105,7 +102,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Call {
         return okHttpClient.newCall{
-
             createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
                 builder.put(requestBody)
             }
@@ -129,8 +125,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun getProcessorStore() = processorStore
 
     override fun okHttpClient() = okHttpClient
-
-    override fun getUserAgent(): String? = userAgent
 
     override fun getStorageProvider(): Storage = storageProvider
 

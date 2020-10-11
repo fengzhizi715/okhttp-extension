@@ -25,6 +25,8 @@ interface HttpClient {
 
     fun userAgent(agent: String): HttpClient
 
+    fun getUserAgent(): String?
+
     /**
      * @see ClientCookieHandler
      */
@@ -107,7 +109,7 @@ interface HttpClient {
      */
     fun send(request: Request): Call
 
-    fun <T: Any> send(expectedClass: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
+    fun <T: Any> send(clazz: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
     /**
      * @see ProcessorStore
@@ -119,7 +121,6 @@ interface HttpClient {
      */
     fun okHttpClient(): OkHttpClient
 
-    fun getUserAgent(): String?
 
     /**
      * @see StorageProvider

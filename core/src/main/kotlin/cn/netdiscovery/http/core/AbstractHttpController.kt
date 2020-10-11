@@ -13,16 +13,16 @@ import cn.netdiscovery.http.core.domain.*
 abstract class AbstractHttpController(protected val client: HttpClient) {
 
     @Suppress("UNCHECKED_CAST")
-    protected inline fun <reified T : Any> post(post: PostMethod<T>.() -> Unit): ProcessResult<T> {
-        val method = PostMethod<T>()
-        post(method)
+    protected inline fun <reified T : Any> get(get: GetMethod<T>.() -> Unit): ProcessResult<T> {
+        val method = GetMethod<T>()
+        get(method)
         return client.send(T::class, method)
     }
 
     @Suppress("UNCHECKED_CAST")
-    protected inline fun <reified T : Any> get(get: GetMethod<T>.() -> Unit): ProcessResult<T> {
-        val method = GetMethod<T>()
-        get(method)
+    protected inline fun <reified T : Any> post(post: PostMethod<T>.() -> Unit): ProcessResult<T> {
+        val method = PostMethod<T>()
+        post(method)
         return client.send(T::class, method)
     }
 
@@ -41,16 +41,16 @@ abstract class AbstractHttpController(protected val client: HttpClient) {
     }
 
     @Suppress("UNCHECKED_CAST")
-    protected inline fun <reified T : Any> delete(delete: DeleteMethod<T>.() -> Unit): ProcessResult<T> {
-        val method = DeleteMethod<T>()
-        delete(method)
+    protected inline fun <reified T : Any> jsonPut(jsonPut: JsonPutMethod<T>.() -> Unit): ProcessResult<T> {
+        val method = JsonPutMethod<T>()
+        jsonPut(method)
         return client.send(T::class, method)
     }
 
     @Suppress("UNCHECKED_CAST")
-    protected inline fun <reified T : Any> jsonPut(jsonPut: JsonPutMethod<T>.() -> Unit): ProcessResult<T> {
-        val method = JsonPutMethod<T>()
-        jsonPut(method)
+    protected inline fun <reified T : Any> delete(delete: DeleteMethod<T>.() -> Unit): ProcessResult<T> {
+        val method = DeleteMethod<T>()
+        delete(method)
         return client.send(T::class, method)
     }
 }
