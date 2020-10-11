@@ -18,15 +18,12 @@ open class RequestMethod<T> protected constructor() {
     var customUrl: String? = null
     var dateTimePattern: String = "yyyy-MM-dd hh:mm"
     var parallel: Boolean = false
-    var isCountableEnabled: Boolean = true
 
-    // url "localhost?myquery=myvalue"
     var queriesParams: Params? = null
     var queriesMap: Map<String, String>? = null
     var queriesModel: Any? = null
     var queriesModelConverter: KClass<out RequestModelConverter>? = null
 
-    // url "localhost/{path_name}"
     var pathParams: Params? = null
     var pathMap: Map<String, String>? = null
     var pathModel: Any? = null

@@ -27,14 +27,14 @@ class SingleParamsProcessor<T>(
     @Suppress("UNCHECKED_CAST")
     override fun process(namedParams: Map<String, Params>): ResponseConsumer<T> {
         val methodModel = createMethodModel(namedParams)
-        val call = client.processAndSend(methodModel.build())!!
+        val call = client.processAndSend(methodModel.build())
 
         return applyMapper(method.responseMapper, call)
     }
 
     override fun processAsync(namedParams: Map<String, Params>): CompletableFuture<ResponseConsumer<T>> {
         val methodModel = createMethodModel(namedParams)
-        val call = client.processAndSend(methodModel.build())!!
+        val call = client.processAndSend(methodModel.build())
 
         return call.executeAsync()
                 .thenApply {
@@ -43,14 +43,16 @@ class SingleParamsProcessor<T>(
     }
 
     private fun createMethodModel(namedParams: Map<String, Params>): RequestMethodModel {
-        var methodModel = RequestMethodModel(requestBuilder = Request.Builder(), apiUrl = method.url,
-                customUrl = method.customUrl, baseUrl = client.getBaseUrl())
+        var methodModel = RequestMethodModel(requestBuilder = Request.Builder(),
+                apiUrl = method.url,
+                customUrl = method.customUrl,
+                baseUrl = client.getBaseUrl())
 
         methodModel.setMethod(method)
 
-        modifications.forEach { name, func ->
+        modifications.forEach { (name, block) ->
             if (namedParams.containsKey(name))
-                methodModel = func(namedParams[name]!!, methodModel)
+                methodModel = block(namedParams[name]!!, methodModel)
         }
         return methodModel
     }
