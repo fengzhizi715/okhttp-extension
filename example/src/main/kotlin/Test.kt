@@ -85,8 +85,7 @@ fun testPostWithModel() {
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    val response = controller.testPostWithResponseMapper(requestBody).sync()
-    println(response.content)
+    controller.testPostWithResponseMapper(requestBody).async()
 }
 
 class TestHttpController(client:HttpClient) : AbstractHttpController(client) {
