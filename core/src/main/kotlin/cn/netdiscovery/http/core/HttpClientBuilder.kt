@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.cookie.JavaNetCookieJar
 import cn.netdiscovery.http.core.processor.DefaultProcessorStore
 import cn.netdiscovery.http.core.processor.request.RequestProcessor
@@ -37,6 +38,7 @@ class HttpClientBuilder {
     private var cookiesFileName: String = "default.cookies"
     private var cookieManager: CookieManager? = null
     private var userAgent: String? = null
+    private var jsonConverter:RequestJsonConverter? = null
 
     private var isCookieJar = false
     private var isCache = false
@@ -218,6 +220,11 @@ class HttpClientBuilder {
         return this
     }
 
+    fun jsonConverter(jsonConverter: RequestJsonConverter): HttpClientBuilder {
+        this.jsonConverter = jsonConverter
+        return this
+    }
+
     fun build(): HttpClient {
         addInterceptor(ResponseProcessingInterceptor(processorStore))
 
@@ -244,6 +251,10 @@ class HttpClientBuilder {
         ).apply {
             userAgent?.let {
                 this.userAgent(it)
+            }
+
+            jsonConverter?.let {
+                this.jsonConverter(it)
             }
         }
     }

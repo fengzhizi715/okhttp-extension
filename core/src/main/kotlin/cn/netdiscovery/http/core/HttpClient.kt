@@ -1,9 +1,11 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.domain.content.JsonContentConverter
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.Call
@@ -26,6 +28,10 @@ interface HttpClient {
     fun userAgent(agent: String): HttpClient
 
     fun getUserAgent(): String?
+
+    fun jsonConverter(jsonConverter: RequestJsonConverter): HttpClient
+
+    fun getJsonConverter(): RequestJsonConverter?
 
     /**
      * @see ClientCookieHandler
