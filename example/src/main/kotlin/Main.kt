@@ -57,6 +57,12 @@ fun Application.module() {
             val requestBody = call.receiveText()
             call.respondText(requestBody)
         }
+        post("/response-body-with-model") {
+
+            val requestBody = call.receive(RequestBody::class)
+            val response = WrapperResponse(data = requestBody)
+            call.respond(response)
+        }
     }
 }
 
