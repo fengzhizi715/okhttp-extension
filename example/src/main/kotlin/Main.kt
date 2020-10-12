@@ -1,13 +1,18 @@
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*
+import io.ktor.content.*
 import io.ktor.features.*
 import io.ktor.freemarker.*
 import io.ktor.gson.*
+import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import io.ktor.util.*
 import java.text.DateFormat
 
 /**
@@ -18,6 +23,8 @@ import java.text.DateFormat
  * @date: 2020-10-11 02:02
  * @version: V1.0 <描述当前版本功能>
  */
+val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+
 fun Application.module() {
 
     install(DefaultHeaders)
@@ -39,6 +46,12 @@ fun Application.module() {
             val name = call.parameters["name"]
             val text = "hi $name!"
             call.respondText(text)
+        }
+        get("/response-headers") {
+            val params = call.request.headers.toMap()
+            val json = gson.toJson(params)
+            val content = TextContent(gson.toJson(params), ContentType.Application.Json)
+            call.respond(content)
         }
         post("/testPost") {
 

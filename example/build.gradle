@@ -25,6 +25,8 @@ dependencies {
     implementation "io.ktor:ktor-server-netty:${libs.ktor}"
     implementation "io.ktor:ktor-freemarker:${libs.ktor}"
     implementation "io.ktor:ktor-gson:${libs.ktor}"
+
+    implementation 'cn.netdiscovery.http.interceptor:okhttp-logging-interceptor:1.1.0'
 }
 
 compileKotlin {

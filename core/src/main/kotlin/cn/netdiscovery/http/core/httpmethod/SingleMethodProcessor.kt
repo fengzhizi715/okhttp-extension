@@ -54,7 +54,9 @@ class SingleMethodProcessor<T : Any>(
                 .let {
                     if(jsonContent != null) {
                         injectJsonParam(it.toMutableMap())
-                    } else it
+                    } else {
+                        it
+                    }
                 }
     }
 

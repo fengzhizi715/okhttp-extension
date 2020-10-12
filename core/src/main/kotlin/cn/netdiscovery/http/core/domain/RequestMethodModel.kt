@@ -21,28 +21,6 @@ data class RequestMethodModel(
         var customUrl: String? = null,
         var httpMethod: HttpMethodName = HttpMethodName.GET) {
 
-    fun build(): Request.Builder {
-        if (apiUrl != null)
-            requestBuilder.url("$baseUrl$apiUrl")
-        else if (customUrl != null)
-            requestBuilder.url(customUrl!!)
-
-        when(httpMethod) {
-            HttpMethodName.GET    -> requestBuilder.get()
-            HttpMethodName.POST   -> {
-                requestBody ?: throw RequestMethodException("Can't send post without body")
-                requestBuilder.post(requestBody!!)
-            }
-            HttpMethodName.PUT    -> {
-                requestBody ?: throw RequestMethodException("Can't send put without body")
-                requestBuilder.put(requestBody!!)
-            }
-            HttpMethodName.DELETE -> requestBuilder.delete()
-        }
-
-        return requestBuilder
-    }
-
     fun setMethod(method: RequestMethod<*>) {
         httpMethod = when(method) {
             is GetMethod      -> HttpMethodName.GET
@@ -68,5 +46,27 @@ data class RequestMethodModel(
             customUrl != null -> customUrl = url
             else              -> throw UrlNotFoundException()
         }
+    }
+
+    fun build(): Request.Builder {
+        if (apiUrl != null)
+            requestBuilder.url("$baseUrl$apiUrl")
+        else if (customUrl != null)
+            requestBuilder.url(customUrl!!)
+
+        when(httpMethod) {
+            HttpMethodName.GET    -> requestBuilder.get()
+            HttpMethodName.POST   -> {
+                requestBody ?: throw RequestMethodException("Can't send post without body")
+                requestBuilder.post(requestBody!!)
+            }
+            HttpMethodName.PUT    -> {
+                requestBody ?: throw RequestMethodException("Can't send put without body")
+                requestBuilder.put(requestBody!!)
+            }
+            HttpMethodName.DELETE -> requestBuilder.delete()
+        }
+
+        return requestBuilder
     }
 }
