@@ -49,11 +49,10 @@ fun Application.module() {
         }
         get("/response-headers") {
             val params = call.request.headers.toMap()
-            val json = gson.toJson(params)
             val content = TextContent(gson.toJson(params), ContentType.Application.Json)
             call.respond(content)
         }
-        post("/testPost") {
+        post("/response-body") {
 
             val requestBody = call.receiveText()
             call.respondText(requestBody)
