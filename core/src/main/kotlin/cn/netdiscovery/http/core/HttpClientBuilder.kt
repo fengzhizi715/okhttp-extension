@@ -1,9 +1,9 @@
 package cn.netdiscovery.http.core
 
-import cn.netdiscovery.http.core.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.cookie.JavaNetCookieJar
 import cn.netdiscovery.http.core.processor.DefaultProcessorStore
-import cn.netdiscovery.http.core.processor.request.RequestProcessor
+import cn.netdiscovery.http.core.request.RequestProcessor
 import cn.netdiscovery.http.core.processor.response.ResponseProcessingInterceptor
 import cn.netdiscovery.http.core.processor.response.ResponseProcessor
 import cn.netdiscovery.http.core.storage.DefaultStorage

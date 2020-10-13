@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.domain.content
 
-import cn.netdiscovery.http.core.converter.DefaultRequestModelConverter
+import cn.netdiscovery.http.core.request.converter.DefaultRequestModelConverter
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.params
 import kotlin.reflect.full.primaryConstructor

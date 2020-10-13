@@ -1,4 +1,4 @@
-import cn.netdiscovery.http.core.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
 
 /**
  *

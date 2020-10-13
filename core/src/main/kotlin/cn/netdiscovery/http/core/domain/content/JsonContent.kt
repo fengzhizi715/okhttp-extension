@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.domain.content
 
-import cn.netdiscovery.http.core.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
 import kotlin.reflect.KClass
 
 /**

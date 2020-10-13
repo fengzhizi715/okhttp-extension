@@ -1,8 +1,8 @@
 package cn.netdiscovery.http.core.domain
 
 import cn.netdiscovery.http.core.domain.response.ResponseMapper
-import cn.netdiscovery.http.core.converter.RequestJsonConverter
-import cn.netdiscovery.http.core.converter.RequestModelConverter
+import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestModelConverter
 import kotlin.reflect.KClass
 
 /**

@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
-import cn.netdiscovery.http.core.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
 import cn.netdiscovery.http.core.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
