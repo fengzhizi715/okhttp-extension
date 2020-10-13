@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.processor.params
+package cn.netdiscovery.http.core.request.params
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.processor.params.SingleParamsProcessor
+ *          cn.netdiscovery.http.core.request.params.SingleParamsProcessor
  * @author: Tony Shen
  * @date: 2020-10-09 11:28
  * @version: V1.0 <描述当前版本功能>

@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.domain
 
-import cn.netdiscovery.http.core.processor.method.RequestMethodProcessor
+import cn.netdiscovery.http.core.request.method.RequestMethodProcessor
 import java.util.concurrent.CompletableFuture
 
 /**

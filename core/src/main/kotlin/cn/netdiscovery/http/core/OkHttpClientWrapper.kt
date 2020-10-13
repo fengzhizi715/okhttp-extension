@@ -10,7 +10,6 @@ import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.extension.newCall
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.httpmethod.MethodBuilder
-import cn.netdiscovery.http.core.processor.ProcessorStore
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.*

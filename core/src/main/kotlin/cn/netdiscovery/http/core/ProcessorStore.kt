@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.processor
+package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.request.RequestProcessor
 import cn.netdiscovery.http.core.response.ResponseProcessor
@@ -6,7 +6,7 @@ import cn.netdiscovery.http.core.response.ResponseProcessor
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.processor.ProcessorStore
+ *          cn.netdiscovery.http.core.ProcessorStore
  * @author: Tony Shen
  * @date: 2020-10-03 13:34
  * @version: V1.0 <描述当前版本功能>

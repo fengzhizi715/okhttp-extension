@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.processor.params
+package cn.netdiscovery.http.core.request.params
 
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ResponseConsumer

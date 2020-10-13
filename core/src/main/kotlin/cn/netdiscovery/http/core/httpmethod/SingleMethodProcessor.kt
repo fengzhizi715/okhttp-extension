@@ -9,9 +9,9 @@ import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.processor.method.AbstractRequestMethodProcessor
-import cn.netdiscovery.http.core.processor.params.ParamsProcessor
-import cn.netdiscovery.http.core.processor.params.SingleParamsProcessor
+import cn.netdiscovery.http.core.request.method.AbstractRequestMethodProcessor
+import cn.netdiscovery.http.core.request.params.ParamsProcessor
+import cn.netdiscovery.http.core.request.params.SingleParamsProcessor
 import java.util.concurrent.CompletableFuture
 
 /**

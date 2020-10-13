@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.interceptor
 
-import cn.netdiscovery.http.core.processor.ProcessorStore
+import cn.netdiscovery.http.core.ProcessorStore
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody

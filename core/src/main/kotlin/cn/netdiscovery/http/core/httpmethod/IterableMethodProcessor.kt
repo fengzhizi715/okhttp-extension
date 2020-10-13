@@ -7,7 +7,7 @@ import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelNotFoundException
 import cn.netdiscovery.http.core.extension.collect
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.processor.method.AbstractRequestMethodProcessor
+import cn.netdiscovery.http.core.request.method.AbstractRequestMethodProcessor
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.Stream
