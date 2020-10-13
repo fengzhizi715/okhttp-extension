@@ -13,6 +13,6 @@ import cn.netdiscovery.http.core.converter.ConverterManager
 class GlobalRequestJSONConverter : RequestJSONConverter {
 
     override fun convert(model: Any): String {
-        return ConverterManager.toJson(model)?:""
+        return ConverterManager.toJson(model) ?: ""
     }
 }
