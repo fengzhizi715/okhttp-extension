@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.httpmethod
+package cn.netdiscovery.http.core.request.method
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.ResponseConsumer
@@ -7,7 +7,6 @@ import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelNotFoundException
 import cn.netdiscovery.http.core.extension.collect
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.request.method.AbstractRequestMethodProcessor
 import java.util.concurrent.CompletableFuture
 import java.util.stream.Collectors
 import java.util.stream.Stream
@@ -15,7 +14,7 @@ import java.util.stream.Stream
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.httpmethod.IterableMethodProcessor
+ *          cn.netdiscovery.http.core.request.method.IterableMethodProcessor
  * @author: Tony Shen
  * @date: 2020-10-09 00:50
  * @version: V1.0 <描述当前版本功能>

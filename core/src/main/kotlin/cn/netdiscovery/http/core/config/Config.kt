@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.config
 
 import cn.netdiscovery.http.core.*
-import cn.netdiscovery.http.core.httpmethod.*
+import cn.netdiscovery.http.core.request.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 /**

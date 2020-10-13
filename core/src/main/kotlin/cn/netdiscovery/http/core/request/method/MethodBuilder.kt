@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.httpmethod
+package cn.netdiscovery.http.core.request.method
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.config.resolvers
@@ -8,7 +8,6 @@ import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import cn.netdiscovery.http.core.exception.UrlNotFoundException
-import cn.netdiscovery.http.core.request.method.RequestMethodProcessor
 import cn.netdiscovery.http.core.response.mapper.EmptyResponseMapper
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
 import cn.netdiscovery.http.core.response.mapper.StringResponseMapper
@@ -19,7 +18,7 @@ import kotlin.reflect.KClass
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.httpmethod.MethodBuilder
+ *          cn.netdiscovery.http.core.request.method.MethodBuilder
  * @author: Tony Shen
  * @date: 2020-10-05 01:25
  * @version: V1.0 <描述当前版本功能>
