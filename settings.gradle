@@ -2,3 +2,6 @@ rootProject.name = 'okhttp-extension'
 include 'core'
 include 'example'
 
+include 'extension'
+include 'extension:rxjava3'
+findProject(':extension:rxjava3')?.name = 'rxjava3'
