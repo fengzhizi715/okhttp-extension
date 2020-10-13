@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.extension.rxjava3
 
 import cn.netdiscovery.http.core.domain.ProcessResult
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.*
 
 /**
  *
@@ -16,4 +16,16 @@ fun <T> ProcessResult<out Any>.asObservable(): Observable<T> {
     return Observable.create {
         it.onNext(sync() as T)
     }
+}
+
+fun <T> ProcessResult<out Any>.asFlowable(): Flowable<T> = Flowable.create({
+    it.onNext(sync() as T)
+}, BackpressureStrategy.BUFFER)
+
+fun <T> ProcessResult<out Any>.asSingle(): Single<T> = Single.create {
+    it.onSuccess(sync() as T)
+}
+
+fun <T> ProcessResult<out Any>.asMaybe(): Maybe<T> = Maybe.create {
+    it.onSuccess(sync() as T)
 }

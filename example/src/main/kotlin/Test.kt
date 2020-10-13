@@ -99,9 +99,10 @@ fun testPostWithResponseMapper() {
     controller.testPostWithResponseMapper(requestBody).sync()
 }
 
-fun testPostWithResponseMapper2() {
+fun testPostWithResponseMapperAndObservable() {
     val requestBody = RequestBody()
-    controller.testPostWithResponseMapper(requestBody).asObservable<ResponseData>()
+    controller.testPostWithResponseMapper(requestBody)
+        .asObservable<ResponseData>()
         .subscribe {
             println(it.content)
         }
