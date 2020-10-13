@@ -1,4 +1,4 @@
-import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 
 /**
  *
@@ -14,7 +14,7 @@ data class RequestBody(
         var c:Double = 0.0
 )
 
-class RequestBodyConverter: RequestJsonConverter {
+class RequestBodyConverter: RequestJSONConverter {
 
     override fun convert(model: Any): String {
         return gson.toJson(model)

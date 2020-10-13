@@ -2,7 +2,8 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
-import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.converter.Converter
+import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.storage.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
@@ -35,7 +36,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     private var cookieHandler: ClientCookieHandler? = null
     private var userAgent = ""
-    private var jsonConverterClass:KClass<out RequestJsonConverter>? = null
+    private var jsonConverterClass:KClass<out RequestJSONConverter>? = null
 
     init {
         if (cookieManager != null) {
@@ -59,12 +60,12 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getUserAgent(): String? = userAgent
 
-    override fun jsonConverter(jsonConverterClass:KClass<out RequestJsonConverter>): HttpClient {
+    override fun jsonConverter(jsonConverterClass:KClass<out RequestJSONConverter>): HttpClient {
         this.jsonConverterClass = jsonConverterClass
         return this
     }
 
-    override fun getJsonConverter(): KClass<out RequestJsonConverter>? = jsonConverterClass
+    override fun getJsonConverter(): KClass<out RequestJSONConverter>? = jsonConverterClass
 
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 

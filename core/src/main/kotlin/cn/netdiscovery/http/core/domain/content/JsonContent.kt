@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.domain.content
 
-import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import kotlin.reflect.KClass
 
 /**
@@ -14,5 +14,5 @@ import kotlin.reflect.KClass
 data class JsonContent(
         var json: String? = null,
         var jsonModel: Any? = null,
-        var jsonConverter: KClass<out RequestJsonConverter>? = null
+        var jsonConverter: KClass<out RequestJSONConverter>? = null
 )

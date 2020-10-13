@@ -6,7 +6,9 @@ import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
+import okhttp3.Dispatcher
 import okhttp3.Response
+import java.util.concurrent.Executors
 
 /**
  *
@@ -85,7 +87,7 @@ fun testPostWithModel() {
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    controller.testPostWithResponseMapper(requestBody).sync()
+    controller.testPostWithResponseMapper(requestBody).async()
 }
 
 class TestHttpController(client:HttpClient) : AbstractHttpController(client) {

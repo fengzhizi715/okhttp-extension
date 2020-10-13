@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.domain
 
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
-import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
+import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.request.converter.RequestModelConverter
 import kotlin.reflect.KClass
 
@@ -58,7 +58,7 @@ class DeleteMethod<T>: RequestMethod<T>()
 open class JsonPostMethod<T>: RequestMethod<T>() {
     var json: String? = null
     var jsonModel: Any? = null
-    var jsonConverter: KClass<out RequestJsonConverter>? = null
+    var jsonConverter: KClass<out RequestJSONConverter>? = null
 }
 
 class JsonPutMethod<T>: JsonPostMethod<T>()
