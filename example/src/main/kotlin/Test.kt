@@ -2,14 +2,20 @@ import cn.netdiscovery.http.core.AbstractHttpController
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.domain.Params
+import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
+import cn.netdiscovery.http.extension.rxjava3.asObservable
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.Dispatcher
 import okhttp3.Response
 import java.util.concurrent.Executors
+import kotlin.concurrent.thread
 
 /**
  *
@@ -52,6 +58,7 @@ val controller by lazy {
             .addInterceptor(loggingInterceptor)
             .converter(GsonConverter())
             .jsonConverter(GlobalRequestJSONConverter::class)
+            .dispatcher(Dispatcher(Executors.newCachedThreadPool()))
             .build()
 
     TestHttpController(client)
@@ -90,6 +97,14 @@ fun testPostWithModel() {
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
     controller.testPostWithResponseMapper(requestBody).sync()
+}
+
+fun testPostWithResponseMapper2() {
+    val requestBody = RequestBody()
+    controller.testPostWithResponseMapper(requestBody).asObservable<ResponseData>()
+        .subscribe {
+            println(it.content)
+        }
 }
 
 class TestHttpController(client:HttpClient) : AbstractHttpController(client) {

@@ -3,7 +3,10 @@ apply plugin: 'java'
 ext {
     libraries = [
             okhttp3                   : "4.9.0",
-            ktor                      : "1.4.0"
+
+            ktor                      : "1.4.0",
+
+            rxjava3                   : "3.0.7",
     ]
 }
 

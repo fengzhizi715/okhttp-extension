@@ -19,12 +19,16 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
-    implementation project(":core")
 
     implementation "io.ktor:ktor-server-core:${libs.ktor}"
     implementation "io.ktor:ktor-server-netty:${libs.ktor}"
     implementation "io.ktor:ktor-freemarker:${libs.ktor}"
     implementation "io.ktor:ktor-gson:${libs.ktor}"
+
+    implementation "io.reactivex.rxjava3:rxjava:${libs.rxjava3}"
+
+    implementation project(":core")
+    implementation project(":extension:rxjava3")
 
     implementation 'cn.netdiscovery.http.interceptor:okhttp-logging-interceptor:1.1.0'
 }
