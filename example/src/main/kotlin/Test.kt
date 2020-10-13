@@ -1,4 +1,4 @@
-import cn.netdiscovery.http.core.AbstractHttpController
+import cn.netdiscovery.http.core.AbstractHttpService
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.domain.Params
@@ -20,7 +20,7 @@ import okhttp3.Response
  * @version: V1.0 <描述当前版本功能>
  */
 
-val controller by lazy {
+val apiService by lazy {
 
     LogManager.logProxy(object : LogProxy {  // 必须要实现 LogProxy ，否则无法打印网络请求的 request 、response
         override fun e(tag: String, msg: String) {
@@ -54,7 +54,7 @@ val controller by lazy {
             .jsonConverter(GlobalRequestJSONConverter::class)
             .build()
 
-    TestHttpController(client)
+    TestAPIService(client)
 }
 
 fun main() {
@@ -62,7 +62,7 @@ fun main() {
 }
 
 fun testGet() {
-    controller.testGet("Tony").sync()
+    apiService.testGet("Tony").sync()
 }
 
 fun testGetWithHeader() {
@@ -70,7 +70,7 @@ fun testGetWithHeader() {
     header["key1"] = "value1"
     header["key2"] = "value2"
     header["key3"] = "value3"
-    controller.testGetWithHeader(header).sync()
+    apiService.testGetWithHeader(header).sync()
 }
 
 fun testPost() {
@@ -79,29 +79,29 @@ fun testPost() {
         "name2" to "value2",
         "name3" to "value3"
     )
-    controller.testPost(body).sync()
+    apiService.testPost(body).sync()
 }
 
 fun testPostWithModel() {
     val requestBody = RequestBody()
-    controller.testPostWithModel(requestBody).sync()
+    apiService.testPostWithModel(requestBody).sync()
 }
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    controller.testPostWithResponseMapper(requestBody).sync()
+    apiService.testPostWithResponseMapper(requestBody).sync()
 }
 
 fun testPostWithResponseMapperAndObservable() {
     val requestBody = RequestBody()
-    controller.testPostWithResponseMapper(requestBody)
+    apiService.testPostWithResponseMapper(requestBody)
         .asObservable<ResponseData>()
         .subscribe {
             println(it.content)
         }
 }
 
-class TestHttpController(client: HttpClient) : AbstractHttpController(client) {
+class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
 
     fun testGet(name: String) = get<Response> {
         url = "/sayHi/$name"

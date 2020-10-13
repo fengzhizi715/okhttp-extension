@@ -5,12 +5,12 @@ import cn.netdiscovery.http.core.domain.*
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.AbstractHttpController
+ *          cn.netdiscovery.http.core.AbstractHttpService
  * @author: Tony Shen
  * @date: 2020-10-11 01:13
  * @version: V1.0 <描述当前版本功能>
  */
-abstract class AbstractHttpController(protected val client: HttpClient) {
+abstract class AbstractHttpService(protected val client: HttpClient) {
 
     @Suppress("UNCHECKED_CAST")
     protected inline fun <reified T : Any> get(get: GetMethod<T>.() -> Unit): ProcessResult<T> {
