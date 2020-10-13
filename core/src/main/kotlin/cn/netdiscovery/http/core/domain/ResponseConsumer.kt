@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.domain.response
+package cn.netdiscovery.http.core.domain
 
 import cn.netdiscovery.http.core.exception.RequestMethodException
 import okhttp3.Call
@@ -7,7 +7,7 @@ import okhttp3.Response
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.domain.response.ResponseConsumer
+ *          cn.netdiscovery.http.core.domain.ResponseConsumer
  * @author: Tony Shen
  * @date: 2020-10-03 20:41
  * @version: V1.0 <描述当前版本功能>

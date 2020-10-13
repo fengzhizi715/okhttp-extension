@@ -3,7 +3,6 @@ import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.params
-import cn.netdiscovery.http.core.extension.stringBody
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
@@ -48,6 +47,7 @@ val controller by lazy {
     val client = HttpClientBuilder()
             .baseUrl("http://localhost:8080")
             .addInterceptor(loggingInterceptor)
+            .jsonConverter(RequestBodyConverter::class)
             .build()
 
     TestHttpController(client)
@@ -85,7 +85,7 @@ fun testPostWithModel() {
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    controller.testPostWithResponseMapper(requestBody).async()
+    controller.testPostWithResponseMapper(requestBody).sync()
 }
 
 class TestHttpController(client:HttpClient) : AbstractHttpController(client) {
@@ -107,13 +107,11 @@ class TestHttpController(client:HttpClient) : AbstractHttpController(client) {
     fun testPostWithModel(model:RequestBody) = jsonPost<Response>{
         url = "/response-body-with-model"
         jsonModel = model
-        jsonConverter = RequestBodyConverter::class
     }
 
     fun testPostWithResponseMapper(model:RequestBody) = jsonPost<ResponseData>{
         url = "/response-body-with-model"
         jsonModel = model
-        jsonConverter = RequestBodyConverter::class
         responseMapper = ResponseDataMapper::class
     }
 }

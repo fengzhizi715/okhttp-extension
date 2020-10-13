@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core.processor.params
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.domain.response.ResponseConsumer
+import cn.netdiscovery.http.core.domain.ResponseConsumer
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import cn.netdiscovery.http.core.extension.executeAsync
 import cn.netdiscovery.http.core.domain.RequestMethod

@@ -1,4 +1,4 @@
-import cn.netdiscovery.http.core.domain.response.ResponseMapper
+import cn.netdiscovery.http.core.response.mapper.ResponseMapper
 import okhttp3.Response
 
 /**

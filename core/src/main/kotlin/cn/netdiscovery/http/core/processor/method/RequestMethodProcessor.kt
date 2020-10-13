@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.processor.method
 
-import cn.netdiscovery.http.core.domain.response.ResponseConsumer
+import cn.netdiscovery.http.core.domain.ResponseConsumer
 import java.util.concurrent.CompletableFuture
 
 /**

@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.processor.response
+package cn.netdiscovery.http.core.interceptor
 
 import cn.netdiscovery.http.core.processor.ProcessorStore
 import okhttp3.Interceptor
@@ -9,7 +9,7 @@ import java.nio.charset.Charset
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.processor.response.ResponseProcessingInterceptor
+ *          cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
  * @author: Tony Shen
  * @date: 2020-10-03 13:36
  * @version: V1.0 <描述当前版本功能>

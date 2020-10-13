@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.processor
 
 import cn.netdiscovery.http.core.request.RequestProcessor
-import cn.netdiscovery.http.core.processor.response.ResponseProcessor
+import cn.netdiscovery.http.core.response.ResponseProcessor
 
 /**
  *
