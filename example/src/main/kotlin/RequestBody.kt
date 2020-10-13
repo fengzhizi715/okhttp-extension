@@ -13,10 +13,3 @@ data class RequestBody(
         var b:String = "test",
         var c:Double = 0.0
 )
-
-class RequestBodyConverter: RequestJSONConverter {
-
-    override fun convert(model: Any): String {
-        return gson.toJson(model)
-    }
-}

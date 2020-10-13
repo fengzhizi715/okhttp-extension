@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.converter.Converter
+import cn.netdiscovery.http.core.converter.ConverterManager
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar
 import cn.netdiscovery.http.core.request.RequestProcessor
@@ -217,6 +219,11 @@ class HttpClientBuilder {
 
     fun userAgent(agent: String): HttpClientBuilder {
         userAgent = agent
+        return this
+    }
+
+    fun converter(converter:Converter): HttpClientBuilder {
+        ConverterManager.converter(converter)
         return this
     }
 

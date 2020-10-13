@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.core.request.converter
 
+import cn.netdiscovery.http.core.converter.ConverterManager
+
 /**
  *
  * @FileName:
@@ -11,7 +13,6 @@ package cn.netdiscovery.http.core.request.converter
 class GlobalRequestJSONConverter : RequestJSONConverter {
 
     override fun convert(model: Any): String {
-        TODO("Not yet implemented")
+        return ConverterManager.toJson(model)?:""
     }
-
 }
