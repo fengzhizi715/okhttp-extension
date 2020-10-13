@@ -3,8 +3,8 @@ package cn.netdiscovery.http.core
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.request.converter.RequestJsonConverter
-import cn.netdiscovery.http.core.cookie.ClientCookieHandler
-import cn.netdiscovery.http.core.cookie.DefaultClientCookieHandler
+import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
+import cn.netdiscovery.http.core.storage.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.extension.newCall

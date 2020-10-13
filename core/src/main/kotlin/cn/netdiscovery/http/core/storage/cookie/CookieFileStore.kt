@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.cookie
+package cn.netdiscovery.http.core.storage.cookie
 
 import cn.netdiscovery.http.core.HttpClient
 import java.io.*
@@ -8,7 +8,7 @@ import java.net.URI
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.cookie.CookieFileStore
+ *          cn.netdiscovery.http.core.storage.cookie.CookieFileStore
  * @author: Tony Shen
  * @date: 2020-10-03 14:11
  * @version: V1.0 <描述当前版本功能>

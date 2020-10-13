@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.cookie
+package cn.netdiscovery.http.core.storage.cookie
 
 import okhttp3.Cookie
 import okhttp3.CookieJar
@@ -15,7 +15,7 @@ import java.util.*
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.cookie.JavaNetCookieJar
+ *          cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar
  * @author: Tony Shen
  * @date: 2020-10-04 01:42
  * @version: V1.0 <描述当前版本功能>

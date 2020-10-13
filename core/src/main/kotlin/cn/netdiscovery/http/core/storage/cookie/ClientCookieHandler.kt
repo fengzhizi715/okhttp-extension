@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.cookie
+package cn.netdiscovery.http.core.storage.cookie
 
 import okhttp3.Cookie
 import java.net.CookieHandler
@@ -8,7 +8,7 @@ import java.net.HttpCookie
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.cookie.ClientCookieHandler
+ *          cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
  * @author: Tony Shen
  * @date: 2020-09-21 20:12
  * @version: V1.0 <描述当前版本功能>

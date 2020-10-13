@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.cookie
+package cn.netdiscovery.http.core.storage.cookie
 
 import okhttp3.Cookie
 import java.io.Serializable
@@ -7,7 +7,7 @@ import java.net.HttpCookie
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.cookie.CookieTo
+ *          cn.netdiscovery.http.core.storage.cookie.CookieTo
  * @author: Tony Shen
  * @date: 2020-10-03 14:13
  * @version: V1.0 <描述当前版本功能>
