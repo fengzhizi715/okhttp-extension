@@ -52,6 +52,13 @@ fun Application.module() {
             val content = TextContent(gson.toJson(params), ContentType.Application.Json)
             call.respond(content)
         }
+        get("/response-headers-queries") {
+            val headers = call.request.headers.toMap()
+            val queries = call.request.queryParameters.toMap()
+            val total = headers.plus(queries)
+            val content = TextContent(gson.toJson(total), ContentType.Application.Json)
+            call.respond(content)
+        }
         post("/response-body") {
 
             val requestBody = call.receiveText()

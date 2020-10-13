@@ -73,6 +73,19 @@ fun testGetWithHeader() {
     apiService.testGetWithHeader(header).sync()
 }
 
+fun testGetWithHeaderAndQuery() {
+    val header = mutableMapOf<String, String>()
+    header["key1"] = "value1"
+    header["key2"] = "value2"
+    header["key3"] = "value3"
+
+    val queries = mutableMapOf<String, String>()
+    queries["q1"] = "a"
+    queries["q2"] = "b"
+    queries["q3"] = "c"
+    apiService.testGetWithHeaderAndQuery(header,queries).sync()
+}
+
 fun testPost() {
     val body = params(
         "name1" to "value1",
@@ -89,7 +102,7 @@ fun testPostWithModel() {
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    apiService.testPostWithResponseMapper(requestBody).sync()
+    apiService.testPostWithResponseMapper(requestBody).async()
 }
 
 fun testPostWithResponseMapperAndObservable() {
@@ -110,6 +123,12 @@ class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
     fun testGetWithHeader(headers: Map<String, String>) = get<Response> {
         url = "/response-headers"
         headersParams = Params.from(headers)
+    }
+
+    fun testGetWithHeaderAndQuery(headers: Map<String, String>, queries: Map<String,String>) = get<Response> {
+        url = "/response-headers-queries"
+        headersParams = Params.from(headers)
+        queriesParams = Params.from(queries)
     }
 
     fun testPost(body: Params) = post<Response> {
