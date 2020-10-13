@@ -35,7 +35,7 @@ class SingleMethodProcessor<T : Any>(
         val converter = JsonContentConverter()
         if (jsonContent!=null && jsonContent.jsonConverter == null && client.getJsonConverter()!=null) {
             // jsonContent 的 jsonConverter 为空时，可以使用 client 的全局 jsonConverter
-            jsonContent.jsonConverter = client.getJsonConverter()!!.javaClass.kotlin
+            jsonContent.jsonConverter = client.getJsonConverter()
         }
 
         converter

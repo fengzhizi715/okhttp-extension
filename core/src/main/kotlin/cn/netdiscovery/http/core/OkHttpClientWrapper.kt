@@ -36,7 +36,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     private var cookieHandler: ClientCookieHandler? = null
     private var userAgent = ""
-    private var jsonConverter:RequestJsonConverter? = null
+    private var jsonConverterClass:KClass<out RequestJsonConverter>? = null
 
     init {
         if (cookieManager != null) {
@@ -60,12 +60,12 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getUserAgent(): String? = userAgent
 
-    override fun jsonConverter(jsonConverter: RequestJsonConverter): HttpClient {
-        this.jsonConverter = jsonConverter
+    override fun jsonConverter(jsonConverterClass:KClass<out RequestJsonConverter>): HttpClient {
+        this.jsonConverterClass = jsonConverterClass
         return this
     }
 
-    override fun getJsonConverter(): RequestJsonConverter? = jsonConverter
+    override fun getJsonConverter(): KClass<out RequestJsonConverter>? = jsonConverterClass
 
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 

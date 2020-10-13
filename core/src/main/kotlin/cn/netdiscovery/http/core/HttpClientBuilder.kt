@@ -19,6 +19,7 @@ import javax.net.SocketFactory
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.X509TrustManager
+import kotlin.reflect.KClass
 
 /**
  *
@@ -38,7 +39,7 @@ class HttpClientBuilder {
     private var cookiesFileName: String = "default.cookies"
     private var cookieManager: CookieManager? = null
     private var userAgent: String? = null
-    private var jsonConverter:RequestJsonConverter? = null
+    private var jsonConverterClass:KClass<out RequestJsonConverter>? = null
 
     private var isCookieJar = false
     private var isCache = false
@@ -220,8 +221,8 @@ class HttpClientBuilder {
         return this
     }
 
-    fun jsonConverter(jsonConverter: RequestJsonConverter): HttpClientBuilder {
-        this.jsonConverter = jsonConverter
+    fun jsonConverter(jsonConverterClass:KClass<out RequestJsonConverter>): HttpClientBuilder {
+        this.jsonConverterClass = jsonConverterClass
         return this
     }
 
@@ -253,7 +254,7 @@ class HttpClientBuilder {
                 this.userAgent(it)
             }
 
-            jsonConverter?.let {
+            jsonConverterClass?.let {
                 this.jsonConverter(it)
             }
         }

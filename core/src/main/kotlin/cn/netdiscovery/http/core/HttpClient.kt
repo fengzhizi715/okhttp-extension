@@ -29,9 +29,9 @@ interface HttpClient {
 
     fun getUserAgent(): String?
 
-    fun jsonConverter(jsonConverter: RequestJsonConverter): HttpClient
+    fun jsonConverter(jsonConverterClass: KClass<out RequestJsonConverter>): HttpClient
 
-    fun getJsonConverter(): RequestJsonConverter?
+    fun getJsonConverter(): KClass<out RequestJsonConverter>?
 
     /**
      * @see ClientCookieHandler
