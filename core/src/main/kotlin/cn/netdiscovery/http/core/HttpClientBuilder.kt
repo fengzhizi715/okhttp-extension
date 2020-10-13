@@ -142,6 +142,9 @@ class HttpClientBuilder {
         return this
     }
 
+    /**
+     * 通过构造 dispatcher，来支持自定义线程池
+     */
     fun dispatcher(dispatcher: Dispatcher): HttpClientBuilder {
         builder.dispatcher(dispatcher)
         return this

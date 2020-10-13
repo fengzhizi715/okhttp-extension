@@ -2,20 +2,14 @@ import cn.netdiscovery.http.core.AbstractHttpController
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
 import cn.netdiscovery.http.extension.rxjava3.asObservable
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.schedulers.Schedulers
-import okhttp3.Dispatcher
 import okhttp3.Response
-import java.util.concurrent.Executors
-import kotlin.concurrent.thread
+
 
 /**
  *
@@ -58,7 +52,6 @@ val controller by lazy {
             .addInterceptor(loggingInterceptor)
             .converter(GsonConverter())
             .jsonConverter(GlobalRequestJSONConverter::class)
-            .dispatcher(Dispatcher(Executors.newCachedThreadPool()))
             .build()
 
     TestHttpController(client)
@@ -73,7 +66,7 @@ fun testGet() {
 }
 
 fun testGetWithHeader() {
-    val header = mutableMapOf<String,String>()
+    val header = mutableMapOf<String, String>()
     header["key1"] = "value1"
     header["key2"] = "value2"
     header["key3"] = "value3"
@@ -108,28 +101,28 @@ fun testPostWithResponseMapperAndObservable() {
         }
 }
 
-class TestHttpController(client:HttpClient) : AbstractHttpController(client) {
+class TestHttpController(client: HttpClient) : AbstractHttpController(client) {
 
     fun testGet(name: String) = get<Response> {
         url = "/sayHi/$name"
     }
 
-    fun testGetWithHeader(headers:Map<String,String>) = get<Response> {
+    fun testGetWithHeader(headers: Map<String, String>) = get<Response> {
         url = "/response-headers"
         headersParams = Params.from(headers)
     }
 
-    fun testPost(body:Params) = post<Response> {
+    fun testPost(body: Params) = post<Response> {
         url = "/response-body"
         bodyParams = body
     }
 
-    fun testPostWithModel(model:RequestBody) = jsonPost<Response>{
+    fun testPostWithModel(model: RequestBody) = jsonPost<Response>{
         url = "/response-body-with-model"
         jsonModel = model
     }
 
-    fun testPostWithResponseMapper(model:RequestBody) = jsonPost<ResponseData>{
+    fun testPostWithResponseMapper(model: RequestBody) = jsonPost<ResponseData>{
         url = "/response-body-with-model"
         jsonModel = model
         responseMapper = ResponseDataMapper::class
