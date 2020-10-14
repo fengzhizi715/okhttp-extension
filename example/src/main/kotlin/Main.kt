@@ -42,7 +42,6 @@ fun Application.module() {
     install(Routing) {
 
         get("/sayHi/{name}") {
-
             val name = call.parameters["name"]
             val text = "hi $name!"
             call.respondText(text)
@@ -60,12 +59,10 @@ fun Application.module() {
             call.respond(content)
         }
         post("/response-body") {
-
             val requestBody = call.receiveText()
             call.respondText(requestBody)
         }
         post("/response-body-with-model") {
-
             val requestBody = call.receive(RequestBody::class)
             val response = WrapperResponse(data = requestBody)
             call.respond(response)

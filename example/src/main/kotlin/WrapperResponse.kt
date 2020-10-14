@@ -1,3 +1,4 @@
+import cn.netdiscovery.http.core.extension.stringBody
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
 import okhttp3.Response
 
@@ -20,6 +21,6 @@ data class ResponseData(val content: String)
 class ResponseDataMapper: ResponseMapper<ResponseData> {
 
     override fun map(response: Response): ResponseData {
-        return ResponseData(response.body!!.string())
+        return ResponseData(response.stringBody()?:"")
     }
 }

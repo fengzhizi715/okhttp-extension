@@ -102,7 +102,7 @@ fun testPostWithModel() {
 
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
-    apiService.testPostWithResponseMapper(requestBody).async()
+    apiService.testPostWithResponseMapper(requestBody).sync()
 }
 
 fun testPostWithResponseMapperAndObservable() {

@@ -143,7 +143,7 @@ class HttpClientBuilder {
     }
 
     /**
-     * 通过构造 dispatcher，来支持自定义线程池
+     * 通过构造 okhttp 的 dispatcher，来支持自定义线程池
      */
     fun dispatcher(dispatcher: Dispatcher): HttpClientBuilder {
         builder.dispatcher(dispatcher)
@@ -230,11 +230,17 @@ class HttpClientBuilder {
         return this
     }
 
+    /**
+     * 全局的 RequestJSONConverter
+     */
     fun jsonConverter(jsonConverterClass:KClass<out RequestJSONConverter>): HttpClientBuilder {
         this.jsonConverterClass = jsonConverterClass
         return this
     }
 
+    /**
+     * 构建 HttpClient
+     */
     fun build(): HttpClient {
         addInterceptor(ResponseProcessingInterceptor(processorStore))
 
