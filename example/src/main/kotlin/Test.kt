@@ -19,9 +19,7 @@ import okhttp3.Response
  * @date: 2020-10-11 01:20
  * @version: V1.0 <描述当前版本功能>
  */
-
-val apiService by lazy {
-
+val httpClient by lazy {
     LogManager.logProxy(object : LogProxy {  // 必须要实现 LogProxy ，否则无法打印网络请求的 request 、response
         override fun e(tag: String, msg: String) {
         }
@@ -47,22 +45,30 @@ val apiService by lazy {
 //        .hideVerticalLine()// 隐藏竖线边框
             .build()
 
-    val client = HttpClientBuilder()
+    HttpClientBuilder()
             .baseUrl("http://localhost:8080")
             .addInterceptor(loggingInterceptor)
             .converter(GsonConverter())
             .jsonConverter(GlobalRequestJSONConverter::class)
             .build()
+}
 
-    TestAPIService(client)
+val apiService by lazy {
+    TestAPIService(httpClient)
 }
 
 fun main() {
-    testPostWithResponseMapper()
+    testGetWithPath()
 }
 
 fun testGet() {
     apiService.testGet("Tony").sync()
+}
+
+fun testGetWithPath() {
+    val path = mutableMapOf<String, String>()
+    path["name"] = "Tony"
+    apiService.testGetWithPath(path).sync()
 }
 
 fun testGetWithHeader() {
@@ -118,6 +124,11 @@ class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
 
     fun testGet(name: String) = get<Response> {
         url = "/sayHi/$name"
+    }
+
+    fun testGetWithPath(path: Map<String, String>) = get<Response> {
+        url = "/sayHi/{name}"
+        pathParams = Params.from(path)
     }
 
     fun testGetWithHeader(headers: Map<String, String>) = get<Response> {
