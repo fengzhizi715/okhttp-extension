@@ -8,8 +8,10 @@
 
 ## TODO List:
 
+* 增加 request 的取消
 * 支持协程
 * 使用 RxCache 存储 cookie
 * 使用 RxCache 作为 OkHttp 的缓存
+* 增加拦截器
 * 支持 Retrofit、Feigin、Ktor 等框架
 * 支持 Android、Java 项目
