@@ -1,10 +1,8 @@
 package cn.netdiscovery.http.core
 
-import cn.netdiscovery.http.core.converter.Converter
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.domain.ProcessResult
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.storage.Storage
 import okhttp3.Call

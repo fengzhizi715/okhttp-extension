@@ -1,6 +1,7 @@
 package cn.netdiscovery.http.core.request.method
 
 import cn.netdiscovery.http.core.HttpClient
+import cn.netdiscovery.http.core.ProcessResult
 import cn.netdiscovery.http.core.config.resolvers
 import cn.netdiscovery.http.core.domain.*
 import cn.netdiscovery.http.core.domain.content.Content

@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.extension.rxjava2
 
-import cn.netdiscovery.http.core.domain.ProcessResult
+import cn.netdiscovery.http.core.ProcessResult
 import io.reactivex.*
 
 /**
