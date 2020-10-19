@@ -10,5 +10,5 @@ package cn.netdiscovery.http.core
  */
 interface Cancelable {
 
-    fun cancel():Boolean
+    fun cancel()
 }

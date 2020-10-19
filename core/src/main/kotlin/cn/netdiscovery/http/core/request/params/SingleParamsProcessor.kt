@@ -24,10 +24,17 @@ class SingleParamsProcessor<T>(
         private val modifications: Map<String, requestBlock>
 ) : ParamsProcessor<T>() {
 
+    private var isInterrupt = false
+
     @Suppress("UNCHECKED_CAST")
     override fun process(namedParams: Map<String, Params>): ResponseConsumer<T> {
         val methodModel = createMethodModel(namedParams)
         val call = client.processAndSend(methodModel.build())
+
+        if (isInterrupt) {
+            call.cancel()
+            return ResponseConsumer()
+        }
 
         return applyMapper(method.responseMapper, call)
     }
@@ -36,10 +43,19 @@ class SingleParamsProcessor<T>(
         val methodModel = createMethodModel(namedParams)
         val call = client.processAndSend(methodModel.build())
 
+        if (isInterrupt) {
+            call.cancel()
+            return CompletableFuture.supplyAsync({ ResponseConsumer<T>() })
+        }
+
         return call.executeAsync()
                 .thenApply {
                     applyMapper(method.responseMapper, it)
                 }
+    }
+
+    override fun cancel() {
+        isInterrupt = true
     }
 
     private fun createMethodModel(namedParams: Map<String, Params>): RequestMethodModel {

@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.request.params
 
+import cn.netdiscovery.http.core.Cancelable
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ResponseConsumer
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
@@ -19,7 +20,7 @@ import kotlin.reflect.full.primaryConstructor
  * @date: 2020-10-09 11:26
  * @version: V1.0 <描述当前版本功能>
  */
-abstract class ParamsProcessor<T> {
+abstract class ParamsProcessor<T> : Cancelable {
 
     abstract fun process(namedParams: Map<String, Params>): ResponseConsumer<T>
 
