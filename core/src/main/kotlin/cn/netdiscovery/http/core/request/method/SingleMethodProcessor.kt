@@ -54,6 +54,10 @@ class SingleMethodProcessor<T : Any>(
         return paramsProcessor.processAsync(params)
     }
 
+    override fun cancel() {
+        paramsProcessor.cancel()
+    }
+
     private fun createParams(): Map<String, Params> {
         return contents.map { it.name to it }
                 .map { it.first to contentConverter.convert(it.second) }

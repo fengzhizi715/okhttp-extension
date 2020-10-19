@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.request.method
 
+import cn.netdiscovery.http.core.Cancelable
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.ResponseConsumer
 import cn.netdiscovery.http.core.domain.content.Content
@@ -27,6 +28,11 @@ class IterableMethodProcessor<T : Any>(
         private val jsonContent: JsonContent?
 ) : AbstractRequestMethodProcessor<T>() {
 
+    @Volatile
+    private var isCancel = false
+
+    private val cancelList: MutableList<Cancelable> = mutableListOf()
+
     @Throws(IterableModelNotFoundException::class, ClassCastException::class)
     override fun process(): ResponseConsumer<T> {
         return toResponses().collect()
@@ -34,6 +40,11 @@ class IterableMethodProcessor<T : Any>(
 
     override fun processAsync(): CompletableFuture<ResponseConsumer<T>> {
         return asyncToResponses().collect().thenApply { it.collect() }
+    }
+
+    override fun cancel() {
+        isCancel = true
+        cancelList.forEach(Cancelable::cancel)
     }
 
     private fun createStream(iterableModel: Iterable<*>): Stream<*> {
@@ -66,6 +77,7 @@ class IterableMethodProcessor<T : Any>(
             contentMap[modelContent.name] = modelContent
 
             val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(), jsonContent)
+            cancelList.add(singleMethodProcessor)
 
             singleMethodProcessor.process()
         }.collect(Collectors.toList()).filterNotNull()
@@ -92,6 +104,7 @@ class IterableMethodProcessor<T : Any>(
             contentMap[modelContent.name] = modelContent
 
             val singleMethodProcessor = SingleMethodProcessor<T>(method, client, contentMap.values.toList(), jsonContent)
+            cancelList.add(singleMethodProcessor)
 
             singleMethodProcessor.processAsync()
         }.collect(Collectors.toList()).filterNotNull()
