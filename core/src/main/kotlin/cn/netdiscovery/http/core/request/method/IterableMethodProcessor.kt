@@ -29,7 +29,7 @@ class IterableMethodProcessor<T : Any>(
 ) : AbstractRequestMethodProcessor<T>() {
 
     @Volatile
-    private var isCancel = false
+    private var isCanceled = false
 
     private val cancelList: MutableList<Cancelable> = mutableListOf()
 
@@ -43,7 +43,7 @@ class IterableMethodProcessor<T : Any>(
     }
 
     override fun cancel() {
-        isCancel = true
+        isCanceled = true
         cancelList.forEach(Cancelable::cancel)
     }
 

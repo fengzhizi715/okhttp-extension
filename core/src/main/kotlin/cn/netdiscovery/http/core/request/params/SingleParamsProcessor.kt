@@ -24,14 +24,14 @@ class SingleParamsProcessor<T>(
         private val modifications: Map<String, requestBlock>
 ) : ParamsProcessor<T>() {
 
-    private var isCancel = false
+    private var isCanceled = false
 
     @Suppress("UNCHECKED_CAST")
     override fun process(namedParams: Map<String, Params>): ResponseConsumer<T> {
         val methodModel = createMethodModel(namedParams)
         val call = client.processAndSend(methodModel.build())
 
-        if (isCancel) {
+        if (isCanceled) {
             call.cancel()
             return ResponseConsumer()
         }
@@ -43,7 +43,7 @@ class SingleParamsProcessor<T>(
         val methodModel = createMethodModel(namedParams)
         val call = client.processAndSend(methodModel.build())
 
-        if (isCancel) {
+        if (isCanceled) {
             call.cancel()
             return CompletableFuture.supplyAsync({ ResponseConsumer<T>() })
         }
@@ -55,7 +55,7 @@ class SingleParamsProcessor<T>(
     }
 
     override fun cancel() {
-        isCancel = true
+        isCanceled = true
     }
 
     private fun createMethodModel(namedParams: Map<String, Params>): RequestMethodModel {
