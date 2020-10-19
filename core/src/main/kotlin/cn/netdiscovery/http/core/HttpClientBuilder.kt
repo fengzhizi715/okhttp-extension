@@ -2,13 +2,13 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.converter.Converter
 import cn.netdiscovery.http.core.converter.ConverterManager
-import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
-import cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar
-import cn.netdiscovery.http.core.request.RequestProcessor
 import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
+import cn.netdiscovery.http.core.request.RequestProcessor
+import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.response.ResponseProcessor
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
+import cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar
 import okhttp3.*
 import java.io.File
 import java.net.CookieManager
@@ -242,6 +242,7 @@ class HttpClientBuilder {
      * 构建 HttpClient
      */
     fun build(): HttpClient {
+
         addInterceptor(ResponseProcessingInterceptor(processorStore))
 
         storageProvider = storageProvider ?: DefaultStorage()

@@ -26,4 +26,11 @@ class ProcessResult <T : Any>(private val methodProcessor: RequestMethodProcesso
      * @see okhttp3.Call
      */
     fun async(): CompletableFuture<T> = methodProcessor.processAsync().thenApply(ResponseConsumer<out T>::getResult)
+
+    /**
+     * 异步取消请求
+     */
+    fun cancel() {
+        methodProcessor.cancel()
+    }
 }

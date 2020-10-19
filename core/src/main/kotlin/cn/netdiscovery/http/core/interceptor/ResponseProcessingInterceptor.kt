@@ -16,7 +16,9 @@ import java.nio.charset.Charset
  */
 class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) : Interceptor {
 
+
     override fun intercept(chain: Interceptor.Chain): Response {
+
         val request= chain.request()
         val response= chain.proceed(request)
         val body= response.body
@@ -40,5 +42,6 @@ class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) 
                     processor.process(parsableResponse)
                 }
         return response
+
     }
 }

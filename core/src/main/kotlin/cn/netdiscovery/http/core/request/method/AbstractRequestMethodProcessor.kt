@@ -12,7 +12,7 @@ import cn.netdiscovery.http.core.requestBlock
  * @date: 2020-10-09 00:22
  * @version: V1.0 <描述当前版本功能>
  */
-abstract class AbstractRequestMethodProcessor<T : Any> : RequestMethodProcessor<T>, Cancelable {
+abstract class AbstractRequestMethodProcessor<T : Any> : RequestMethodProcessor<T> {
 
     protected val contentModifications: Map<String, requestBlock> = resolvers
 
