@@ -197,12 +197,12 @@ class HttpClientBuilder {
     }
 
     fun addRequestProcessor(processor: RequestProcessor): HttpClientBuilder {
-        processorStore.registerRequestProcessor(processor)
+        processorStore.addRequestProcessor(processor)
         return this
     }
 
     fun addResponseProcessor(processor: ResponseProcessor): HttpClientBuilder {
-        processorStore.registerResponseProcessor(processor)
+        processorStore.addResponseProcessor(processor)
         return this
     }
 

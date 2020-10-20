@@ -13,13 +13,13 @@ import cn.netdiscovery.http.core.response.ResponseProcessor
  */
 interface ProcessorStore {
 
-    fun registerRequestProcessor(requestProcessor: RequestProcessor)
+    fun addRequestProcessor(requestProcessor: RequestProcessor)
 
     fun removeRequestProcessor(requestProcessor: RequestProcessor)
 
     fun getRequestProcessors(): List<RequestProcessor>
 
-    fun registerResponseProcessor(responseProcessor: ResponseProcessor)
+    fun addResponseProcessor(responseProcessor: ResponseProcessor)
 
     fun removeResponseProcessor(responseProcessor: ResponseProcessor)
 

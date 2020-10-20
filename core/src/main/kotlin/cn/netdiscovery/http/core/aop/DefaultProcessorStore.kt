@@ -14,7 +14,7 @@ import cn.netdiscovery.http.core.response.ResponseProcessor
 class DefaultProcessorStore(private val requestProcessors: MutableList<RequestProcessor>,
                             private val responseProcessors: MutableList<ResponseProcessor>) : ProcessorStore {
 
-    override fun registerRequestProcessor(requestProcessor: RequestProcessor) {
+    override fun addRequestProcessor(requestProcessor: RequestProcessor) {
         requestProcessors.add(requestProcessor)
     }
 
@@ -24,7 +24,7 @@ class DefaultProcessorStore(private val requestProcessors: MutableList<RequestPr
 
     override fun getRequestProcessors(): List<RequestProcessor> = requestProcessors
 
-    override fun registerResponseProcessor(responseProcessor: ResponseProcessor) {
+    override fun addResponseProcessor(responseProcessor: ResponseProcessor) {
         responseProcessors.add(responseProcessor)
     }
 
