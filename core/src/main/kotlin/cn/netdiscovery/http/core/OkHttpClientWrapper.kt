@@ -120,7 +120,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         var builder = request
         processorStore.getRequestProcessors()
                 .forEach {
-                    builder = it.process(this, builder)
+                    builder = it.invoke(this, builder)
                 }
 
         return send(builder.build())
@@ -166,7 +166,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.process(this, request)
+                    request = it.invoke(this, request)
                 }
 
         return request.build()
@@ -199,7 +199,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.process(this, request)
+                    request = it.invoke(this, request)
                 }
 
         return request.build()
@@ -228,7 +228,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.process(this, request)
+                    request = it.invoke(this, request)
                 }
 
         return request.build()

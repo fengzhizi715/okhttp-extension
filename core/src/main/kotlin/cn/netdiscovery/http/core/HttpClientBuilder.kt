@@ -4,7 +4,6 @@ import cn.netdiscovery.http.core.aop.DefaultProcessorStore
 import cn.netdiscovery.http.core.converter.Converter
 import cn.netdiscovery.http.core.converter.ConverterManager
 import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
-import cn.netdiscovery.http.core.request.RequestProcessor
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.response.ResponseProcessor
 import cn.netdiscovery.http.core.storage.DefaultStorage
