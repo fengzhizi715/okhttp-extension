@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.aop.DefaultProcessorStore
 import cn.netdiscovery.http.core.converter.Converter
 import cn.netdiscovery.http.core.converter.ConverterManager
 import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor

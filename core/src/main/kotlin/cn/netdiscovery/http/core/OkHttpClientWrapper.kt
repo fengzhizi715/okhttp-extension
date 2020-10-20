@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.aop.ProcessorStore
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter

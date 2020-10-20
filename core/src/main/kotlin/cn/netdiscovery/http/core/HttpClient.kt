@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core
 
+import cn.netdiscovery.http.core.aop.ProcessorStore
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params

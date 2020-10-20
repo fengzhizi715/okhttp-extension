@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.interceptor
 
-import cn.netdiscovery.http.core.ProcessorStore
+import cn.netdiscovery.http.core.aop.ProcessorStore
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -16,9 +16,7 @@ import java.nio.charset.Charset
  */
 class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) : Interceptor {
 
-
     override fun intercept(chain: Interceptor.Chain): Response {
-
         val request= chain.request()
         val response= chain.proceed(request)
         val body= response.body
@@ -42,6 +40,5 @@ class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) 
                     processor.process(parsableResponse)
                 }
         return response
-
     }
 }
