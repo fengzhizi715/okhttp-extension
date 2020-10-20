@@ -1,3 +1,5 @@
+package cn.netdiscovery.http.core
+
 import cn.netdiscovery.http.core.extension.stringBody
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
 import okhttp3.Response

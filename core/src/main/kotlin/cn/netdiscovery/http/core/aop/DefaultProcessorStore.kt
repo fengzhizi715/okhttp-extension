@@ -1,6 +1,5 @@
 package cn.netdiscovery.http.core.aop
 
-import cn.netdiscovery.http.core.aop.ProcessorStore
 import cn.netdiscovery.http.core.request.RequestProcessor
 import cn.netdiscovery.http.core.response.ResponseProcessor
 

@@ -1,3 +1,5 @@
+package cn.netdiscovery.http.core
+
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import freemarker.cache.ClassTemplateLoader
@@ -18,7 +20,7 @@ import java.text.DateFormat
 /**
  *
  * @FileName:
- *          .Main
+ *          cn.netdiscovery.http.core.Main
  * @author: Tony Shen
  * @date: 2020-10-11 02:02
  * @version: V1.0 <描述当前版本功能>

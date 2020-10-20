@@ -1,9 +1,9 @@
-import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
+package cn.netdiscovery.http.core
 
 /**
  *
  * @FileName:
- *          .RequestBody
+ *          cn.netdiscovery.http.core.RequestBody
  * @author: Tony Shen
  * @date: 2020-10-12 23:22
  * @version: V1.0 <描述当前版本功能>
