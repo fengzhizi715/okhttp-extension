@@ -15,3 +15,4 @@
 * 增加拦截器机制
 * 支持 Retrofit、Feigin、Ktor 等框架
 * 支持 Android、Java 项目
+* 支持 head、patch 请求

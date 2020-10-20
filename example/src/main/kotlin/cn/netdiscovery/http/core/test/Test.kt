@@ -1,5 +1,9 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.test
 
+import cn.netdiscovery.http.core.AbstractHttpService
+import cn.netdiscovery.http.core.HttpClient
+import cn.netdiscovery.http.core.HttpClientBuilder
+import cn.netdiscovery.http.core.test.converter.GsonConverter
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
@@ -13,7 +17,7 @@ import okhttp3.Response
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.Test
+ *          cn.netdiscovery.http.core.test.Test
  * @author: Tony Shen
  * @date: 2020-10-11 01:20
  * @version: V1.0 <描述当前版本功能>

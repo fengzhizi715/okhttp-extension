@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.test
 
 import cn.netdiscovery.http.core.extension.stringBody
 import cn.netdiscovery.http.core.response.mapper.ResponseMapper
@@ -7,7 +7,7 @@ import okhttp3.Response
 /**
  *
  * @FileName:
- *          .Response
+ *          cn.netdiscovery.http.core.test.WrapperResponse
  * @author: Tony Shen
  * @date: 2020-10-12 23:47
  * @version: V1.0 <描述当前版本功能>

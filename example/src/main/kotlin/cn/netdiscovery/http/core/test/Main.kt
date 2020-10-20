@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.test
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

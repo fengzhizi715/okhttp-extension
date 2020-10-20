@@ -1,9 +1,9 @@
-package cn.netdiscovery.http.core
+package cn.netdiscovery.http.core.test
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.RequestBody
+ *          cn.netdiscovery.http.core.test.RequestBody
  * @author: Tony Shen
  * @date: 2020-10-12 23:22
  * @version: V1.0 <描述当前版本功能>
