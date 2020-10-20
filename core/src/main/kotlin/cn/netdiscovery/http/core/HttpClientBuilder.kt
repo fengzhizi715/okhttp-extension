@@ -5,7 +5,6 @@ import cn.netdiscovery.http.core.converter.Converter
 import cn.netdiscovery.http.core.converter.ConverterManager
 import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
-import cn.netdiscovery.http.core.response.ResponseProcessor
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar

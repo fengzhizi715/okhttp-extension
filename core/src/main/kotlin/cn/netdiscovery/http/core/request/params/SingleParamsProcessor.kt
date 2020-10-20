@@ -6,7 +6,7 @@ import cn.netdiscovery.http.core.domain.ResponseConsumer
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import cn.netdiscovery.http.core.extension.executeAsync
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.requestBlock
+import cn.netdiscovery.http.core.RequestBlock
 import okhttp3.Request
 import java.util.concurrent.CompletableFuture
 
@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture
 class SingleParamsProcessor<T>(
         private val method: RequestMethod<*>,
         private val client: HttpClient,
-        private val modifications: Map<String, requestBlock>
+        private val modifications: Map<String, RequestBlock>
 ) : ParamsProcessor<T>() {
 
     private var isCanceled = false

@@ -37,7 +37,7 @@ class ResponseProcessingInterceptor(private val processorStore: ProcessorStore) 
                             .body(stringBody.toResponseBody(response.body?.contentType()))
                             .build()
 
-                    processor.process(parsableResponse)
+                    processor.invoke(parsableResponse)
                 }
         return response
     }

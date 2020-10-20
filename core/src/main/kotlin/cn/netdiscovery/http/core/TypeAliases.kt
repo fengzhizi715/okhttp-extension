@@ -3,6 +3,7 @@ package cn.netdiscovery.http.core
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import okhttp3.Request
+import okhttp3.Response
 
 /**
  *
@@ -12,6 +13,8 @@ import okhttp3.Request
  * @date: 2020-10-10 13:18
  * @version: V1.0 <描述当前版本功能>
  */
-typealias requestBlock = (Params, RequestMethodModel) -> RequestMethodModel
+typealias RequestBlock = (Params, RequestMethodModel) -> RequestMethodModel
 
 typealias RequestProcessor = (HttpClient, Request.Builder) -> Request.Builder
+
+typealias ResponseProcessor = (Response) -> Unit

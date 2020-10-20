@@ -1,8 +1,7 @@
 package cn.netdiscovery.http.core.request.method
 
-import cn.netdiscovery.http.core.Cancelable
 import cn.netdiscovery.http.core.config.resolvers
-import cn.netdiscovery.http.core.requestBlock
+import cn.netdiscovery.http.core.RequestBlock
 
 /**
  *
@@ -14,7 +13,7 @@ import cn.netdiscovery.http.core.requestBlock
  */
 abstract class AbstractRequestMethodProcessor<T : Any> : RequestMethodProcessor<T> {
 
-    protected val contentModifications: Map<String, requestBlock> = resolvers
+    protected val contentModifications: Map<String, RequestBlock> = resolvers
 
     protected fun getContentNames() = contentModifications.keys
 }
