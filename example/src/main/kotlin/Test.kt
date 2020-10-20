@@ -58,7 +58,7 @@ val apiService by lazy {
 }
 
 fun main() {
-    testGetWithPath()
+    testPostWithModel()
 }
 
 fun testGet() {
@@ -106,6 +106,11 @@ fun testPostWithModel() {
     apiService.testPostWithModel(requestBody).sync()
 }
 
+fun testPostWithJsonModel() {
+    val requestBody = RequestBody()
+    apiService.testPostWithJsonModel(requestBody).sync()
+}
+
 fun testPostWithResponseMapper() {
     val requestBody = RequestBody()
     apiService.testPostWithResponseMapper(requestBody).sync()
@@ -147,7 +152,12 @@ class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
         bodyParams = body
     }
 
-    fun testPostWithModel(model: RequestBody) = jsonPost<Response>{
+    fun testPostWithModel(model: RequestBody) = post<Response>{
+        url = "/response-body"
+        bodyModel = model
+    }
+
+    fun testPostWithJsonModel(model: RequestBody) = jsonPost<Response>{
         url = "/response-body-with-model"
         jsonModel = model
     }

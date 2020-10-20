@@ -1,7 +1,6 @@
 package cn.netdiscovery.http.core.request.converter
 
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.annotation.ParamName
 import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.params
 import java.time.format.DateTimeFormatter
@@ -31,7 +30,7 @@ class DefaultRequestModelConverter(
             if (isCollection(property))
                 return@mapNotNull null
 
-            val name = getName(property)
+            val name = property.name
 
             val value = property.getter.call(model)
             val stringValue = resolveString(value)
@@ -41,7 +40,7 @@ class DefaultRequestModelConverter(
 
         val collectionsParams = properties.filter { isCollection(it) }
                 .flatMap { property ->
-                    val name = getName(property)
+                    val name = property.name
 
                     val collection = resolveCollection(property, model)
                     collection.map {
@@ -73,14 +72,5 @@ class DefaultRequestModelConverter(
         val javaField = property.javaField
         val type = javaField?.type ?: return false
         return Collection::class.java.isAssignableFrom(type)
-    }
-
-    private fun getName(property: KProperty1<*, Any?>): String {
-        val javaField = property.javaField
-        return if (javaField?.isAnnotationPresent(ParamName::class.java) == true) {
-            javaField.getAnnotation(ParamName::class.java).name
-        } else {
-            property.name
-        }
     }
 }
