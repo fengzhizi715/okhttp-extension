@@ -29,7 +29,7 @@ class ProcessResult <T : Any>(private val methodProcessor: RequestMethodProcesso
     fun async(): CompletableFuture<T> = methodProcessor.processAsync().thenApply(ResponseConsumer<out T>::getResult)
 
     /**
-     * 异步取消请求
+     * 取消异步请求
      */
     fun cancel() {
         methodProcessor.cancel()

@@ -57,12 +57,14 @@ data class RequestMethodModel(
         when(httpMethod) {
             HttpMethodName.GET    -> requestBuilder.get()
             HttpMethodName.POST   -> {
-                requestBody ?: throw RequestMethodException("Can't send post without body")
-                requestBuilder.post(requestBody!!)
+                requestBody?.let {
+                    requestBuilder.post(it)
+                }?: throw RequestMethodException("Can't send post without body")
             }
             HttpMethodName.PUT    -> {
-                requestBody ?: throw RequestMethodException("Can't send put without body")
-                requestBuilder.put(requestBody!!)
+                requestBody?.let {
+                    requestBuilder.put(it)
+                }?: throw RequestMethodException("Can't send put without body")
             }
             HttpMethodName.DELETE -> requestBuilder.delete()
         }
