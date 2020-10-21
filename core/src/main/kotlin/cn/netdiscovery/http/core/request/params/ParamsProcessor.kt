@@ -26,11 +26,6 @@ abstract class ParamsProcessor<T> : Cancelable {
 
     abstract fun processAsync(namedParams: Map<String, Params>): CompletableFuture<ResponseConsumer<T>>
 
-    fun cloneResponse(response: Response, body: ResponseBody?): Response? {
-        body ?: return null
-        return response.newBuilder().body(ResponseBody.create(body.contentType(), body.bytes())).build()
-    }
-
     fun applyMapper(mapperClass: KClass<out ResponseMapper<*>>?, call: Call): ResponseConsumer<T> {
         return if (mapperClass != null) {
             val mapper = mapperClass.primaryConstructor?.call() ?: throw ResponseMapperNotFoundException()
