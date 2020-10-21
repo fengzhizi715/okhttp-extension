@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.core.test
 
+import cn.netdiscovery.http.core.test.domain.RequestBody
+import cn.netdiscovery.http.core.test.domain.WrapperResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import freemarker.cache.ClassTemplateLoader

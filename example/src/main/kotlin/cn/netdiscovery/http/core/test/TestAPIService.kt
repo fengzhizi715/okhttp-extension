@@ -4,6 +4,9 @@ import cn.netdiscovery.http.core.AbstractHttpService
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.params
+import cn.netdiscovery.http.core.test.domain.RequestBody
+import cn.netdiscovery.http.core.test.domain.ResponseData
+import cn.netdiscovery.http.core.test.domain.ResponseDataMapper
 import cn.netdiscovery.http.extension.rxjava3.asObservable
 import okhttp3.Response
 

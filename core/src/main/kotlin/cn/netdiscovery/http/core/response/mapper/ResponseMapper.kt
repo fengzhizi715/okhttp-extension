@@ -11,7 +11,6 @@ import okhttp3.Response
  * @version: V1.0 <描述当前版本功能>
  */
 interface ResponseMapper<out T> {
-
     fun map(response: Response): T
 }
 
