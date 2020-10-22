@@ -179,9 +179,6 @@ class HttpClientBuilder {
         return this
     }
 
-    /**
-     * Extended
-     */
     fun allTimeouts(timeout: Long, unit: TimeUnit): HttpClientBuilder {
         connectTimeout(timeout, unit)
         readTimeout(timeout, unit)
@@ -236,6 +233,11 @@ class HttpClientBuilder {
         this.jsonConverterClass = jsonConverterClass
         return this
     }
+
+    /**
+     * 构建 OkHttpClient，便于单独使用 OkHttpClient 或者给其他的库使用
+     */
+    fun buildOkHttpClient():OkHttpClient = builder.build()
 
     /**
      * 构建 HttpClient
