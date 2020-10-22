@@ -57,5 +57,7 @@ val apiService by lazy {
 }
 
 fun main() {
-    testPostWithModel(apiService)
+//    testPostWithModel(apiService)
+
+    testPostWithJsonModel(apiService)
 }

@@ -13,7 +13,7 @@ import kotlin.reflect.full.primaryConstructor
  * @date: 2020-10-09 01:33
  * @version: V1.0 <描述当前版本功能>
  */
-class ContentConverter {
+object ContentConverter {
 
     private val defaultConverter = DefaultRequestModelConverter()
 

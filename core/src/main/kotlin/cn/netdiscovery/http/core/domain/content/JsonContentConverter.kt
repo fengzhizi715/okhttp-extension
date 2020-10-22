@@ -13,7 +13,7 @@ import kotlin.reflect.full.primaryConstructor
  * @date: 2020-10-09 02:02
  * @version: V1.0 <描述当前版本功能>
  */
-class JsonContentConverter {
+object JsonContentConverter {
 
     fun convert(content: JsonContent): String? {
         return when {
