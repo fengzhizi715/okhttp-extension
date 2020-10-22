@@ -39,19 +39,14 @@ open class RequestMethod<T> protected constructor() {
 
 class GetMethod<T> : RequestMethod<T>()
 
-class PostMethod<T> : RequestMethod<T>() {
+open class PostMethod<T> : RequestMethod<T>() {
     var bodyParams: Params? = null
     var bodyMap: Map<String, String>? = null
     var bodyModel: Any? = null
     var bodyModelConverter: KClass<out RequestModelConverter>? = null
 }
 
-class PutMethod<T>: RequestMethod<T>() {
-    var bodyParams: Params? = null
-    var bodyMap: Map<String, String>? = null
-    var bodyModel: Any? = null
-    var bodyModelConverter: KClass<out RequestModelConverter>? = null
-}
+class PutMethod<T>: PostMethod<T>()
 
 class DeleteMethod<T>: RequestMethod<T>()
 
