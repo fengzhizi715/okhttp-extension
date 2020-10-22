@@ -3,6 +3,7 @@ package cn.netdiscovery.http.core.request.method
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.ProcessResult
 import cn.netdiscovery.http.core.config.resolvers
+import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.domain.*
 import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.content.JsonContent
@@ -33,6 +34,14 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
 
         responseMapper = method.responseMapper ?: getDefaultMapper(type.java)
         method.responseMapper = responseMapper
+
+        if (client.getUserAgent()!=null) {
+            if (method.headersParams!=null) {
+                method.headersParams!!.add(Pair(ua,client.getUserAgent()!!))
+            } else {
+                method.headersParams = Params.of(Pair(ua,client.getUserAgent()!!))
+            }
+        }
 
         val contents = resolvers.map { ReflectiveContentResolver(it.key).resolve(method) }.filterNotNull()
 
