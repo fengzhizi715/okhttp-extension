@@ -10,10 +10,10 @@
 
 ## TODO List:
 
+* 支持 head、patch 请求
 * 支持协程
+* 支持 Retrofit、Feign、Ktor 等框架
+* 支持 Android、Java 项目
+* 支持 websocket
 * 使用 RxCache 存储 cookie
 * 使用 RxCache 作为 OkHttp 的缓存
-* 支持 Retrofit、Feigin、Ktor 等框架
-* 支持 Android、Java 项目
-* 支持 head、patch 请求
-* 支持 websocket
