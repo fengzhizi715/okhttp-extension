@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.response.mapper
+package cn.netdiscovery.http.core.response
 
 import okhttp3.Response
 

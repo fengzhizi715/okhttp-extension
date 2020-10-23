@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import okhttp3.FormBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 /**
  *
@@ -68,7 +69,7 @@ fun processJson(json: Params, requestMethodModel: RequestMethodModel): RequestMe
 }
 
 private fun processJson(json: String, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    val requestBody = RequestBody.create(jsonMediaType, json)
+    val requestBody = json.toRequestBody(jsonMediaType)
     requestMethodModel.requestBody = requestBody
     return requestMethodModel
 }

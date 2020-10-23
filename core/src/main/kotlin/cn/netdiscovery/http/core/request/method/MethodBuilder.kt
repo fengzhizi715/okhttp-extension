@@ -10,9 +10,9 @@ import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.IterableModelException
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import cn.netdiscovery.http.core.exception.UrlNotFoundException
-import cn.netdiscovery.http.core.response.mapper.EmptyResponseMapper
-import cn.netdiscovery.http.core.response.mapper.ResponseMapper
-import cn.netdiscovery.http.core.response.mapper.StringResponseMapper
+import cn.netdiscovery.http.core.response.EmptyResponseMapper
+import cn.netdiscovery.http.core.response.ResponseMapper
+import cn.netdiscovery.http.core.response.StringResponseMapper
 import okhttp3.Call
 import okhttp3.Response
 import kotlin.reflect.KClass

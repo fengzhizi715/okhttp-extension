@@ -3,11 +3,10 @@ package cn.netdiscovery.http.core.request.params
 import cn.netdiscovery.http.core.Cancelable
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ResponseConsumer
-import cn.netdiscovery.http.core.response.mapper.ResponseMapper
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
 import okhttp3.Call
 import okhttp3.Response
-import okhttp3.ResponseBody
 import java.util.concurrent.CompletableFuture
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor

@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.test.domain
 
 import cn.netdiscovery.http.core.extension.stringBody
-import cn.netdiscovery.http.core.response.mapper.ResponseMapper
+import cn.netdiscovery.http.core.response.ResponseMapper
 import okhttp3.Response
 
 /**
