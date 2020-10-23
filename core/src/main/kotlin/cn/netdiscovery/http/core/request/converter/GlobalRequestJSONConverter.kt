@@ -8,7 +8,7 @@ import cn.netdiscovery.http.core.converter.ConverterManager
  *          cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
  * @author: Tony Shen
  * @date: 2020-10-13 15:33
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 默认全局的 request json 转换器
  */
 class GlobalRequestJSONConverter : RequestJSONConverter {
 
