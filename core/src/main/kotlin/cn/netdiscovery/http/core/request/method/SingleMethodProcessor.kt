@@ -3,8 +3,6 @@ package cn.netdiscovery.http.core.request.method
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ResponseConsumer
-import cn.netdiscovery.http.core.domain.content.ContentConverter
-import cn.netdiscovery.http.core.domain.content.JsonContentConverter
 import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.domain.params

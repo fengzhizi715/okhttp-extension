@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.domain.content
+package cn.netdiscovery.http.core.request.method
 
 import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.exception.JsonConverterNotFoundException
