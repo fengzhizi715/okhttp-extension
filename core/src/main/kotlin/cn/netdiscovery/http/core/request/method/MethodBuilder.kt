@@ -35,7 +35,7 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
         responseMapper = method.responseMapper ?: getDefaultMapper(type.java)
         method.responseMapper = responseMapper
 
-        if (client.getUserAgent()!=null) {
+        if (!client.getUserAgent().isNullOrEmpty()) {
             if (method.headersParams!=null) {
                 method.headersParams!!.add(Pair(ua,client.getUserAgent()!!))
             } else {
