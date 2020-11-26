@@ -13,6 +13,7 @@
 * 支持 head、patch 请求
 * 支持协程
 * 支持函数式
+* 支持 Reactor
 * 支持 Retrofit、Feign、Ktor 等框架
 * 支持 websocket
 * 支持 Android、Java 项目
