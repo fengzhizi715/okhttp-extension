@@ -9,6 +9,8 @@ ext {
             rxjava3                   : "3.0.7",
 
             rxjava2                   : "2.2.20",
+
+            result                    : "1.0.2"
     ]
 }
 

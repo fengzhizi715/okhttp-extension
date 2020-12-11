@@ -7,3 +7,6 @@ include 'extension:rxjava3'
 findProject(':extension:rxjava3')?.name = 'rxjava3'
 include 'extension:rxjava2'
 findProject(':extension:rxjava2')?.name = 'rxjava2'
+include 'extension:result'
+findProject(':extension:result')?.name = 'result'
+

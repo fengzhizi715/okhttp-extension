@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'kotlin'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+def libs = rootProject.ext.libraries // 库
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    implementation project(":core")
+
+    implementation "cn.netdiscovery.result:result:${libs.result}"
+}
+
+test {
+    useJUnitPlatform()
+}
