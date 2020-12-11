@@ -32,6 +32,7 @@ dependencies {
     implementation project(":extension:result")
 
     implementation 'cn.netdiscovery.http.interceptor:okhttp-logging-interceptor:1.1.0'
+    implementation "cn.netdiscovery.result:result:${libs.result}"
 }
 
 compileKotlin {
