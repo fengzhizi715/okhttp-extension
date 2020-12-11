@@ -9,4 +9,6 @@ include 'extension:rxjava2'
 findProject(':extension:rxjava2')?.name = 'rxjava2'
 include 'extension:result'
 findProject(':extension:result')?.name = 'result'
+include 'extension:coroutines'
+findProject(':extension:coroutines')?.name = 'coroutines'
 
