@@ -12,6 +12,6 @@ import cn.netdiscovery.result.resultFrom
  * @date: 2020-12-11 11:54
  * @version: V1.0 <描述当前版本功能>
  */
-fun <T> ProcessResult<out Any>.getResult():Result<T,Exception> = resultFrom {
+fun <T> ProcessResult<out Any>.asResult():Result<T,Exception> = resultFrom {
     async().get() as T
 }
