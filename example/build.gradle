@@ -18,6 +18,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
+
     implementation "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
 
     implementation "io.ktor:ktor-server-core:${libs.ktor}"
@@ -30,6 +32,7 @@ dependencies {
     implementation project(":core")
     implementation project(":extension:rxjava3")
     implementation project(":extension:result")
+    implementation project(":extension:coroutines")
 
     implementation 'cn.netdiscovery.http.interceptor:okhttp-logging-interceptor:1.1.0'
     implementation "cn.netdiscovery.result:result:${libs.result}"
