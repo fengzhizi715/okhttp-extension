@@ -25,7 +25,7 @@ import java.text.DateFormat
  *          cn.netdiscovery.http.core.Main
  * @author: Tony Shen
  * @date: 2020-10-11 02:02
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0  Mock 的 Web Server
  */
 val gson: Gson = GsonBuilder().setPrettyPrinting().create()
 
