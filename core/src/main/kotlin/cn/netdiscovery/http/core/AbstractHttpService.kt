@@ -8,7 +8,7 @@ import cn.netdiscovery.http.core.domain.*
  *          cn.netdiscovery.http.core.AbstractHttpService
  * @author: Tony Shen
  * @date: 2020-10-11 01:13
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 抽象的 HttpService
  */
 abstract class AbstractHttpService(protected val client: HttpClient) {
 

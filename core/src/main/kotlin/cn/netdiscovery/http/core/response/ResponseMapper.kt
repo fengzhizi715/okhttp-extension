@@ -8,7 +8,7 @@ import okhttp3.Response
  *          cn.netdiscovery.http.core.response.ResponseMapper
  * @author: Tony Shen
  * @date: 2020-10-05 01:34
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 Response 转换的接口
  */
 interface ResponseMapper<out T> {
     fun map(response: Response): T
