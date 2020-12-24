@@ -100,6 +100,22 @@ class OkHttpClientWrapper(private var baseUrl: String,
         }
     }
 
+    override fun head(url: String, customUrl: String?, query: Params, headers: Params?): Call {
+        return okHttpClient.newCall {
+            createRequest(url,customUrl,query,headers) {
+                it.head()
+            }
+        }
+    }
+
+    override fun patch(url: String, customUrl: String?, body: Params, headers: Params?): Call {
+        return okHttpClient.newCall{
+            createBodyRequest(url, customUrl, body, headers) { builder, body ->
+                builder.patch(body)
+            }
+        }
+    }
+
     override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Call {
         return okHttpClient.newCall{
             createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
@@ -137,7 +153,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun getStorageProvider(): Storage = storageProvider
 
     /**
-     * 创建 request 请求，适用于 GET、DELETE
+     * 创建 request 请求，适用于 GET、DELETE、HEAD
      */
     private fun createRequest(url: String,
                               customUrl: String?,

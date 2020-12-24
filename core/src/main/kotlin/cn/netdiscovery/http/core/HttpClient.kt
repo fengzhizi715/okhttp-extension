@@ -77,6 +77,10 @@ interface HttpClient {
      */
     fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Call
 
+    fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Call
+
+    fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
+
     /**
      * @see #post
      * @see Params

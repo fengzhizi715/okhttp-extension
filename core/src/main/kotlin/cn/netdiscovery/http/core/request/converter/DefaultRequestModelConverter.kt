@@ -53,13 +53,11 @@ class DefaultRequestModelConverter(
         }
     }
 
-    private fun resolveString(obj: Any?): String {
-        return when {
-            obj == null -> ""
-            String::class.java.isAssignableFrom(obj::class.java) -> obj as String
-            TemporalAccessor::class.java.isAssignableFrom(obj::class.java) -> formatter.format(obj as TemporalAccessor)
-            else -> obj.toString()
-        }
+    private fun resolveString(obj: Any?): String = when {
+        obj == null -> ""
+        String::class.java.isAssignableFrom(obj::class.java) -> obj as String
+        TemporalAccessor::class.java.isAssignableFrom(obj::class.java) -> formatter.format(obj as TemporalAccessor)
+        else -> obj.toString()
     }
 
     private fun resolveCollection(property: KProperty1<*, Any?>, model: Any): Collection<Any?> {
