@@ -53,4 +53,11 @@ abstract class AbstractHttpService(protected val client: HttpClient) {
         delete(method)
         return client.send(T::class, method)
     }
+
+    @Suppress("UNCHECKED_CAST")
+    protected inline fun <reified T : Any> head(head: HeadMethod<T>.() -> Unit): ProcessResult<T> {
+        val method = HeadMethod<T>()
+        head(method)
+        return client.send(T::class, method)
+    }
 }
