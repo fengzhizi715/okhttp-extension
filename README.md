@@ -2,6 +2,7 @@
 
 ## Features:
 
+* 支持常见的请求方法：GET、POST、HEAD、PUT、PATCH、DELETE
 * 支持 DSL 创建网络请求
 * 支持自定义线程池
 * 支持响应式(RxJava) 、函数式
@@ -11,7 +12,6 @@
 
 ## TODO List:
 
-* 支持 head、patch 请求
 * 支持 Reactor
 * 支持 Retrofit、Feign、Ktor 等框架
 * 支持 websocket 的实现
