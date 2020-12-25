@@ -11,4 +11,6 @@ include 'extension:result'
 findProject(':extension:result')?.name = 'result'
 include 'extension:coroutines'
 findProject(':extension:coroutines')?.name = 'coroutines'
+include 'extension:reactor'
+findProject(':extension:reactor')?.name = 'reactor'
 
