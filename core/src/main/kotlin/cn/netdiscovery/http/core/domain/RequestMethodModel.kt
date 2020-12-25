@@ -29,6 +29,8 @@ data class RequestMethodModel(
             is PutMethod      -> HttpMethodName.PUT
             is JsonPutMethod  -> HttpMethodName.PUT
             is DeleteMethod   -> HttpMethodName.DELETE
+            is HeadMethod     -> HttpMethodName.HEAD
+            is PatchMethod    -> HttpMethodName.PATCH
             else              -> throw IllegalStateException()
         }
     }
@@ -67,6 +69,12 @@ data class RequestMethodModel(
                 }?: throw RequestMethodException("Can't send put without body")
             }
             HttpMethodName.DELETE -> requestBuilder.delete()
+            HttpMethodName.HEAD   -> requestBuilder.head()
+            HttpMethodName.PATCH  -> {
+                requestBody?.let {
+                    requestBuilder.patch(it)
+                }?: throw RequestMethodException("Can't send patch without body")
+            }
         }
 
         return requestBuilder

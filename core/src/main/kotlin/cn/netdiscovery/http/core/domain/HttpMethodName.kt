@@ -9,5 +9,5 @@ package cn.netdiscovery.http.core.domain
  * @version: V1.0 <描述当前版本功能>
  */
 enum class HttpMethodName {
-    GET, POST, PUT, DELETE
+    GET, POST, PUT, DELETE, HEAD,PATCH
 }

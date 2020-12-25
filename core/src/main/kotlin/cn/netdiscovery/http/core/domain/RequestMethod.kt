@@ -50,6 +50,10 @@ class PutMethod<T>: PostMethod<T>()
 
 class DeleteMethod<T>: RequestMethod<T>()
 
+class HeadMethod<T>: RequestMethod<T>()
+
+class PatchMethod<T>: PostMethod<T>()
+
 open class JsonPostMethod<T>: RequestMethod<T>() {
     var json: String? = null
     var jsonModel: Any? = null
