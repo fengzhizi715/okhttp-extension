@@ -23,12 +23,12 @@ data class ResponseConsumer<T>(
     @Suppress("UNCHECKED_CAST")
     fun getResult(): T {
         val result = when {
-            call != null -> call
-            response != null -> response
-            responses != null && responses?.isNotEmpty() == true -> responses
-            responseModel != null -> responseModel
-            responseModels != null && responseModels?.isNotEmpty() == true -> responseModels
-            else -> throw RequestMethodException("ResponseConsumer is empty")
+            call != null                    -> call
+            response != null                -> response
+            !responses.isNullOrEmpty()      -> responses
+            responseModel != null           -> responseModel
+            !responseModels.isNullOrEmpty() -> responseModels
+            else                            -> throw RequestMethodException("ResponseConsumer is empty")
         }
 
         return result as T
