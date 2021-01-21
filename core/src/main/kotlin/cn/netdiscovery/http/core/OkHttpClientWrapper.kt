@@ -154,22 +154,22 @@ class OkHttpClientWrapper(private var baseUrl: String,
             customUrl ?: "$baseUrl$url"
         }
 
-        var request = Request.Builder().url(url)
+        var builder = Request.Builder().url(url)
 
-        block.invoke(request)
+        block.invoke(builder)
 
-        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader(ua, userAgent)
+            builder.addHeader(ua, userAgent)
         }
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.invoke(this, request)
+                    builder = it.invoke(this, builder)
                 }
 
-        return request.build()
+        return builder.build()
     }
 
     /**
@@ -181,12 +181,12 @@ class OkHttpClientWrapper(private var baseUrl: String,
                                   header: Params?,
                                   block: (Request.Builder, FormBody) -> Unit): Request {
 
-        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+        var builder = Request.Builder().url(customUrl ?: "$baseUrl$url")
 
-        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader(ua, userAgent)
+            builder.addHeader(ua, userAgent)
         }
 
         val formBody = FormBody.Builder()
@@ -195,14 +195,14 @@ class OkHttpClientWrapper(private var baseUrl: String,
             formBody.add(it.first, it.second)
         }
 
-        block.invoke(request, formBody.build())
+        block.invoke(builder, formBody.build())
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.invoke(this, request)
+                    builder = it.invoke(this, builder)
                 }
 
-        return request.build()
+        return builder.build()
     }
 
     /**
