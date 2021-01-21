@@ -1,10 +1,9 @@
 package cn.netdiscovery.http.core.request
 
-import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.config.jsonMediaType
+import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethodModel
 import okhttp3.FormBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 /**
@@ -16,48 +15,53 @@ import okhttp3.RequestBody.Companion.toRequestBody
  * @version: V1.0 <描述当前版本功能>
  */
 fun processQuery(params: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    var url = requestMethodModel.getUrl()
 
-    val query = params.joinToString("&") { "${it.first}=${it.second}" }
-    if(query.isNotEmpty()) {
-        url = "$url?$query"
-        requestMethodModel.setUrl(url)
+    return requestMethodModel.apply {
+        val url = requestMethodModel.getUrl()
+
+        val query = params.joinToString("&") { "${it.first}=${it.second}" }
+        if (query.isNotEmpty()) {
+            this.setUrl("$url?$query")
+        }
     }
-    return requestMethodModel
 }
 
 fun processPath(params: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    var url = requestMethodModel.getUrl()
 
-    params.forEach {
-        val name = it.first
-        val value = it.second
-        url = url.replace("{$name}", value)
+    return requestMethodModel.apply {
+        var url = requestMethodModel.getUrl()
+
+        params.forEach {
+            val name = it.first
+            val value = it.second
+            url = url.replace("{$name}", value)
+        }
+        requestMethodModel.setUrl(url)
     }
-    requestMethodModel.setUrl(url)
-    return requestMethodModel
 }
 
 fun processHeaders(params: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    params.forEach {
-        val name = it.first
-        val value = it.second
 
-        requestMethodModel.requestBuilder.addHeader(name, value)
+    return requestMethodModel.apply {
+        params.forEach {
+            val name = it.first
+            val value = it.second
+            this.requestBuilder.addHeader(name, value)
+        }
     }
-    return requestMethodModel
 }
 
 fun processBody(params: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    val requestBodyBuilder = FormBody.Builder()
-    params.forEach {
-        val name = it.first
-        val value = it.second
 
-        requestBodyBuilder.add(name, value)
+    return requestMethodModel.apply {
+        val requestBodyBuilder = FormBody.Builder()
+        params.forEach {
+            val name = it.first
+            val value = it.second
+            requestBodyBuilder.add(name, value)
+        }
+        this.requestBody = requestBodyBuilder.build()
     }
-    requestMethodModel.requestBody = requestBodyBuilder.build()
-    return requestMethodModel
 }
 
 fun processJson(json: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
@@ -69,7 +73,8 @@ fun processJson(json: Params, requestMethodModel: RequestMethodModel): RequestMe
 }
 
 private fun processJson(json: String, requestMethodModel: RequestMethodModel): RequestMethodModel {
-    val requestBody = json.toRequestBody(jsonMediaType)
-    requestMethodModel.requestBody = requestBody
-    return requestMethodModel
+
+    return requestMethodModel.apply {
+        this.requestBody = json.toRequestBody(jsonMediaType)
+    }
 }

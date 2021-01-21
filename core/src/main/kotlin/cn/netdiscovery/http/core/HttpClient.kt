@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
  *          cn.netdiscovery.http.core.HttpClient
  * @author: Tony Shen
  * @date: 2020-09-20 13:18
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 HttpClient 接口，包含了 httpClient 提供的各种方法
  */
 interface HttpClient {
 

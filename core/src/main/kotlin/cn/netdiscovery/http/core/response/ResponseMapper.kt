@@ -12,9 +12,9 @@ import okhttp3.Response
  * @version: V1.0 Response 转换的接口
  */
 interface ResponseMapper<out T> {
+
     fun map(response: Response): T
 }
-
 
 /**
  * 默认的 StringResponseMapper
