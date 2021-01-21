@@ -19,7 +19,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     implementation project(":core")
-    implementation "io.projectreactor:reactor-core:3.4.1"
+    compileOnly "io.projectreactor:reactor-core:3.4.1"
 }
 
 compileKotlin {

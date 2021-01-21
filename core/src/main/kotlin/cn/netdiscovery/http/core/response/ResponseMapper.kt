@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.response
 
+import cn.netdiscovery.http.core.extension.stringBody
 import okhttp3.Response
 
 /**
@@ -14,14 +15,19 @@ interface ResponseMapper<out T> {
     fun map(response: Response): T
 }
 
+
+/**
+ * 默认的 StringResponseMapper
+ */
 class StringResponseMapper : ResponseMapper<String> {
-    override fun map(response: Response): String {
-        return response.body?.string() ?: ""
-    }
+
+    override fun map(response: Response) = response.stringBody() ?: ""
 }
 
+/**
+ * 默认的 EmptyResponseMapper
+ */
 class EmptyResponseMapper : ResponseMapper<Response> {
-    override fun map(response: Response): Response {
-        return response
-    }
+
+    override fun map(response: Response) = response
 }

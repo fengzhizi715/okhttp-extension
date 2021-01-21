@@ -20,7 +20,7 @@ dependencies {
 
     implementation project(":core")
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
+    compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
 }
 
 compileKotlin {
