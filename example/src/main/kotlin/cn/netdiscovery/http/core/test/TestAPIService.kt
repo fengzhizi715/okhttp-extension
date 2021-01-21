@@ -3,7 +3,7 @@ package cn.netdiscovery.http.core.test
 import cn.netdiscovery.http.core.AbstractHttpService
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.test.domain.RequestBody
+import cn.netdiscovery.http.core.test.domain.RequestModel
 import cn.netdiscovery.http.core.test.domain.ResponseData
 import cn.netdiscovery.http.core.test.domain.ResponseDataMapper
 import okhttp3.Response
@@ -43,17 +43,17 @@ class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
         bodyParams = body
     }
 
-    fun testPostWithModel(model: RequestBody) = post<Response>{
+    fun testPostWithModel(model: RequestModel) = post<Response>{
         url = "/response-body"
         bodyModel = model
     }
 
-    fun testPostWithJsonModel(model: RequestBody) = jsonPost<Response>{
+    fun testPostWithJsonModel(model: RequestModel) = jsonPost<Response>{
         url = "/response-body-with-model"
         jsonModel = model
     }
 
-    fun testPostWithResponseMapper(model: RequestBody) = jsonPost<ResponseData>{
+    fun testPostWithResponseMapper(model: RequestModel) = jsonPost<ResponseData>{
         url = "/response-body-with-model"
         jsonModel = model
         responseMapper = ResponseDataMapper::class

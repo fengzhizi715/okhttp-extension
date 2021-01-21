@@ -1,7 +1,7 @@
 package cn.netdiscovery.http.core.test
 
 import cn.netdiscovery.http.core.domain.params
-import cn.netdiscovery.http.core.test.domain.RequestBody
+import cn.netdiscovery.http.core.test.domain.RequestModel
 import cn.netdiscovery.http.core.test.domain.ResponseData
 import cn.netdiscovery.http.extension.rxjava3.asObservable
 
@@ -54,23 +54,23 @@ fun testPost(apiService:TestAPIService) {
 }
 
 fun testPostWithModel(apiService:TestAPIService) {
-    val requestBody = RequestBody()
-    apiService.testPostWithModel(requestBody).sync()
+    val requestModel = RequestModel()
+    apiService.testPostWithModel(requestModel).sync()
 }
 
 fun testPostWithJsonModel(apiService:TestAPIService) {
-    val requestBody = RequestBody()
-    apiService.testPostWithJsonModel(requestBody).sync()
+    val requestModel = RequestModel()
+    apiService.testPostWithJsonModel(requestModel).sync()
 }
 
 fun testPostWithResponseMapper(apiService:TestAPIService) {
-    val requestBody = RequestBody()
-    apiService.testPostWithResponseMapper(requestBody).sync()
+    val requestModel = RequestModel()
+    apiService.testPostWithResponseMapper(requestModel).sync()
 }
 
 fun testPostWithResponseMapperAndObservable(apiService:TestAPIService) {
-    val requestBody = RequestBody()
-    apiService.testPostWithResponseMapper(requestBody)
+    val requestModel = RequestModel()
+    apiService.testPostWithResponseMapper(requestModel)
         .asObservable<ResponseData>()
         .subscribe {
             println(it.content)

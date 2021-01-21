@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.test
 
-import cn.netdiscovery.http.core.test.domain.RequestBody
+import cn.netdiscovery.http.core.test.domain.RequestModel
 import cn.netdiscovery.http.core.test.domain.WrapperResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -67,8 +67,8 @@ fun Application.module() {
             call.respondText(requestBody)
         }
         post("/response-body-with-model") {
-            val requestBody = call.receive(RequestBody::class)
-            val response = WrapperResponse(data = requestBody)
+            val requestModel = call.receive(RequestModel::class)
+            val response = WrapperResponse(data = requestModel)
             call.respond(response)
         }
     }
