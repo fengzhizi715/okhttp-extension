@@ -28,7 +28,7 @@ object ContentConverter {
 
         if (content.model != null) {
             val converter = if (content.modelConverter != null) {
-                content.modelConverter.primaryConstructor?.call()
+                content.modelConverter.primaryConstructor?.call() // 基于反射创建 content.modelConverter 对象
             } else {
                 defaultConverter
             }

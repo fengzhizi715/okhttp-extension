@@ -17,8 +17,7 @@ import kotlin.reflect.jvm.javaField
  * @date: 2020-10-09 01:39
  * @version: V1.0 <描述当前版本功能>
  */
-class DefaultRequestModelConverter(
-        dateTimePattern: String = "yyyy-MM-dd hh:mm") : RequestModelConverter {
+class DefaultRequestModelConverter(dateTimePattern: String = "yyyy-MM-dd hh:mm") : RequestModelConverter {
 
     private val formatter = DateTimeFormatter.ofPattern(dateTimePattern)
 
