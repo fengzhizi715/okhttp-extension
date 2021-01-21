@@ -57,7 +57,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return this
     }
 
-    override fun getUserAgent(): String? = userAgent
+    override fun getUserAgent(): String = userAgent
 
     override fun jsonConverter(jsonConverterClass:KClass<out RequestJSONConverter>): HttpClient {
         this.jsonConverterClass = jsonConverterClass

@@ -25,10 +25,16 @@ interface HttpClient {
 
     fun userAgent(agent: String): HttpClient
 
-    fun getUserAgent(): String?
+    fun getUserAgent(): String
 
+    /**
+     * 设置全局的 RequestJSONConverter
+     */
     fun jsonConverter(jsonConverterClass: KClass<out RequestJSONConverter>): HttpClient
 
+    /**
+     * 全局的 RequestJSONConverter
+     */
     fun getJsonConverter(): KClass<out RequestJSONConverter>?
 
     /**

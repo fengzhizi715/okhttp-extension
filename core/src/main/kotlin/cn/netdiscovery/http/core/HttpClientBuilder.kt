@@ -249,10 +249,12 @@ class HttpClientBuilder {
         storageProvider = storageProvider ?: DefaultStorage()
         cookieManager = cookieManager ?: CookieManager().apply { this.setCookiePolicy(CookiePolicy.ACCEPT_ALL) }
 
+        // TODO：是否需要？
         if(!isCookieJar) {
             cookieJar(JavaNetCookieJar(cookieManager!!))
         }
 
+        // TODO：是否需要？
         if(!isCache) {
             cache(Cache(File(storageProvider!!.cacheDir, getCacheFileName(baseUrl)), 1024))
         }

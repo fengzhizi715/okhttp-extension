@@ -12,7 +12,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
  *          cn.netdiscovery.http.core.method.ProcessRequest
  * @author: Tony Shen
  * @date: 2020-10-09 00:46
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 处理 request 的工具类
  */
 fun processQuery(params: Params, requestMethodModel: RequestMethodModel): RequestMethodModel {
 
