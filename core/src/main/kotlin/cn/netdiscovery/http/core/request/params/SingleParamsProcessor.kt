@@ -45,7 +45,7 @@ class SingleParamsProcessor<T>(
 
         if (isCanceled) {
             call.cancel()
-            return CompletableFuture.supplyAsync({ ResponseConsumer<T>() })
+            return CompletableFuture.supplyAsync{ ResponseConsumer<T>() }
         }
 
         return call.executeAsync()
@@ -62,9 +62,10 @@ class SingleParamsProcessor<T>(
         var methodModel = RequestMethodModel(requestBuilder = Request.Builder(),
                 apiUrl = method.url,
                 customUrl = method.customUrl,
-                baseUrl = client.getBaseUrl())
+                baseUrl = client.getBaseUrl()).apply {
 
-        methodModel.setMethod(method)
+            this.setMethod(method)
+        }
 
         modifications.forEach { (name, block) ->
             if (namedParams.containsKey(name))

@@ -1,9 +1,9 @@
 package cn.netdiscovery.http.core.request.method
 
-import cn.netdiscovery.http.core.domain.content.Content
-import cn.netdiscovery.http.core.domain.content.JsonContent
 import cn.netdiscovery.http.core.domain.JsonPostMethod
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.domain.content.Content
+import cn.netdiscovery.http.core.domain.content.JsonContent
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 
