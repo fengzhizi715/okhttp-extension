@@ -61,20 +61,9 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
                                                 jsonContent: JsonContent?,
                                                 method: RequestMethod<*>): RequestMethodProcessor<T> {
         return if (iterableModelContent != null) {
-            IterableMethodProcessor(
-                    method = method,
-                    client = client,
-                    iterableContent = iterableModelContent,
-                    contents = contents.toList(),
-                    jsonContent = jsonContent
-            )
+            IterableMethodProcessor(method, client, iterableModelContent, contents.toList(), jsonContent)
         } else {
-            SingleMethodProcessor(
-                    method = method,
-                    client = client,
-                    contents = contents.toList(),
-                    jsonContent = jsonContent
-            )
+            SingleMethodProcessor(method, client, contents.toList(), jsonContent)
         }
     }
 
@@ -97,7 +86,7 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
         }
 
         return when {
-            iterableModelContent.size > 1 -> throw IterableModelException("Too many iterable models")
+            iterableModelContent.size > 1  -> throw IterableModelException("Too many iterable models")
             iterableModelContent.size == 1 -> iterableModelContent.first()
             else -> null
         }

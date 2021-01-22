@@ -15,17 +15,14 @@ import kotlin.reflect.full.primaryConstructor
  */
 object JsonContentConverter {
 
-    fun convert(content: JsonContent): String? {
-
-        return when {
-            content.json != null && content.jsonModel != null          -> throw RequestMethodException("Can not apply json string and json model")
-            content.jsonModel != null && content.jsonConverter == null -> throw JsonConverterNotFoundException("for model ${content.jsonModel}")
-            content.jsonModel != null                                  -> {
-                val converter = content.jsonConverter?.primaryConstructor?.call() ?: throw JsonConverterNotFoundException("for model ${content.jsonModel}")
-                converter.convert(content.jsonModel!!) // 将 jsonModel 转换成 String 格式
-            }
-            content.json != null                                       -> content.json
-            else -> null
+    fun convert(content: JsonContent): String? = when {
+        content.json != null && content.jsonModel != null          -> throw RequestMethodException("Can not apply json string and json model")
+        content.jsonModel != null && content.jsonConverter == null -> throw JsonConverterNotFoundException("for model ${content.jsonModel}")
+        content.jsonModel != null                                  -> {
+            val converter = content.jsonConverter?.primaryConstructor?.call() ?: throw JsonConverterNotFoundException("for model ${content.jsonModel}")
+            converter.convert(content.jsonModel!!) // 将 jsonModel 转换成 String 格式
         }
+        content.json != null                                       -> content.json
+        else                                                       -> null
     }
 }
