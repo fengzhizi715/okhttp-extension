@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core.domain
 
 import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
-import cn.netdiscovery.http.core.request.converter.RequestModelConverter
+import cn.netdiscovery.http.core.request.converter.RequestContentConverter
 import kotlin.reflect.KClass
 
 /**
@@ -22,17 +22,17 @@ open class RequestMethod<T> protected constructor() {
     var queriesParams: Params? = null
     var queriesMap: Map<String, String>? = null
     var queriesModel: Any? = null
-    var queriesModelConverter: KClass<out RequestModelConverter>? = null
+    var queriesModelConverter: KClass<out RequestContentConverter>? = null
 
     var pathParams: Params? = null
     var pathMap: Map<String, String>? = null
     var pathModel: Any? = null
-    var pathModelConverter: KClass<out RequestModelConverter>? = null
+    var pathModelConverter: KClass<out RequestContentConverter>? = null
 
     var headersParams: Params? = null
     var headersMap: Map<String, String>? = null
     var headersModel: Any? = null
-    var headersModelConverter: KClass<out RequestModelConverter>? = null
+    var headersModelConverter: KClass<out RequestContentConverter>? = null
 
     var responseMapper: KClass<out ResponseMapper<*>>? = null
 }
@@ -43,7 +43,7 @@ open class PostMethod<T> : RequestMethod<T>() {
     var bodyParams: Params? = null
     var bodyMap: Map<String, String>? = null
     var bodyModel: Any? = null
-    var bodyModelConverter: KClass<out RequestModelConverter>? = null
+    var bodyModelConverter: KClass<out RequestContentConverter>? = null
 }
 
 class PutMethod<T>: PostMethod<T>()

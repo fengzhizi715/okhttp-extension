@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.domain.content
 
-import cn.netdiscovery.http.core.request.converter.RequestModelConverter
+import cn.netdiscovery.http.core.request.converter.RequestContentConverter
 import cn.netdiscovery.http.core.domain.Params
 import kotlin.reflect.KClass
 
@@ -17,7 +17,7 @@ data class Content(
         val params: Params? = null,
         val map: Map<String, String>? = null,
         val model: Any? = null,
-        val modelConverter: KClass<out RequestModelConverter>? = null
+        val modelConverter: KClass<out RequestContentConverter>? = null
 ) {
 
     fun isEmpty(): Boolean = params == null && map == null && model == null

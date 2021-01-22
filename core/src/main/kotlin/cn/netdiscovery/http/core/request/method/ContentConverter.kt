@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.request.method
 
-import cn.netdiscovery.http.core.request.converter.DefaultRequestModelConverter
+import cn.netdiscovery.http.core.request.converter.DefaultRequestContentConverter
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.content.Content
 import cn.netdiscovery.http.core.domain.params
@@ -16,7 +16,7 @@ import kotlin.reflect.full.primaryConstructor
  */
 object ContentConverter {
 
-    private val defaultConverter = DefaultRequestModelConverter()
+    private val defaultConverter = DefaultRequestContentConverter()
 
     fun convert(content: Content): Params {
         val params = content.params ?: params()

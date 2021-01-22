@@ -12,12 +12,12 @@ import kotlin.reflect.jvm.javaField
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.request.converter.DefaultRequestModelConverter
+ *          cn.netdiscovery.http.core.request.converter.DefaultRequestContentConverter
  * @author: Tony Shen
  * @date: 2020-10-09 01:39
  * @version: V1.0 <描述当前版本功能>
  */
-class DefaultRequestModelConverter(dateTimePattern: String = "yyyy-MM-dd hh:mm") : RequestModelConverter {
+class DefaultRequestContentConverter(dateTimePattern: String = "yyyy-MM-dd hh:mm") : RequestContentConverter {
 
     private val formatter = DateTimeFormatter.ofPattern(dateTimePattern)
 
