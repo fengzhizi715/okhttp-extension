@@ -9,7 +9,7 @@ import cn.netdiscovery.http.core.domain.content.Content
  *          cn.netdiscovery.http.core.request.converter.RequestContentConverter
  * @author: Tony Shen
  * @date: 2020-10-08 01:09
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 将 content 转换成 Params
  */
 interface RequestContentConverter {
 

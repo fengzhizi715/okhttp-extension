@@ -15,7 +15,7 @@ import kotlin.reflect.jvm.javaField
  *          cn.netdiscovery.http.core.request.converter.DefaultRequestContentConverter
  * @author: Tony Shen
  * @date: 2020-10-09 01:39
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 默认的将 content 转换成 Params 的 Converter
  */
 class DefaultRequestContentConverter(dateTimePattern: String = "yyyy-MM-dd hh:mm") : RequestContentConverter {
 
@@ -53,10 +53,10 @@ class DefaultRequestContentConverter(dateTimePattern: String = "yyyy-MM-dd hh:mm
     }
 
     private fun resolveString(obj: Any?): String = when {
-        obj == null -> ""
-        String::class.java.isAssignableFrom(obj::class.java) -> obj as String
+        obj == null                                                    -> ""
+        String::class.java.isAssignableFrom(obj::class.java)           -> obj as String
         TemporalAccessor::class.java.isAssignableFrom(obj::class.java) -> formatter.format(obj as TemporalAccessor)
-        else -> obj.toString()
+        else                                                           -> obj.toString()
     }
 
     private fun resolveCollection(property: KProperty1<*, Any?>, model: Any): Collection<Any?> {
