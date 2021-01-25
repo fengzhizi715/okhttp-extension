@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.extension
+package cn.netdiscovery.http.core.utils.extension
 
 import okhttp3.Call
 import okhttp3.OkHttpClient
