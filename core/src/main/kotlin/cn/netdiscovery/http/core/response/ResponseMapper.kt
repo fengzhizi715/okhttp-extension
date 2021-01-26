@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.response
 
-import cn.netdiscovery.http.core.extension.stringBody
+import cn.netdiscovery.http.core.utils.extension.stringBody
 import okhttp3.Response
 
 /**

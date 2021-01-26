@@ -7,7 +7,7 @@ import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.storage.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
-import cn.netdiscovery.http.core.extension.newCall
+import cn.netdiscovery.http.core.utils.extension.newCall
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.request.method.MethodBuilder
 import cn.netdiscovery.http.core.storage.DefaultStorage
