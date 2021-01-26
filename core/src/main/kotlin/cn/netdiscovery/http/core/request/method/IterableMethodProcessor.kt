@@ -34,13 +34,9 @@ class IterableMethodProcessor<T : Any>(
     private val cancelList: MutableList<Cancelable> = mutableListOf()
 
     @Throws(IterableModelNotFoundException::class, ClassCastException::class)
-    override fun process(): ResponseConsumer<T> {
-        return toResponses().collect()
-    }
+    override fun process(): ResponseConsumer<T> = toResponses().collect()
 
-    override fun processAsync(): CompletableFuture<ResponseConsumer<T>> {
-        return asyncToResponses().collect().thenApply { it.collect() }
-    }
+    override fun processAsync(): CompletableFuture<ResponseConsumer<T>> = asyncToResponses().collect().thenApply { it.collect() }
 
     override fun cancel() {
         isCanceled = true

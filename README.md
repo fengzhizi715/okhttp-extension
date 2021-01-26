@@ -10,7 +10,7 @@
 * 支持函数式
 * 支持异步请求的取消
 * 支持 Request、Response 的拦截器
-* 支持 traceId 的传递
+* 支持 traceId 的传递(通过拦截器)
 
 ## TODO List:
 
