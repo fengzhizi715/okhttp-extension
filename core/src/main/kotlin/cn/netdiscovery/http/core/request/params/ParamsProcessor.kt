@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.ResponseConsumer
 import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.exception.ResponseMapperNotFoundException
+import cn.netdiscovery.http.core.utils.cache
 import okhttp3.Call
 import okhttp3.Response
 import java.util.concurrent.CompletableFuture
@@ -27,7 +28,15 @@ abstract class ParamsProcessor<T> : Cancelable {
 
     fun applyMapper(mapperClass: KClass<out ResponseMapper<*>>?, call: Call): ResponseConsumer<T> {
         return if (mapperClass != null) {
-            val mapper = mapperClass.primaryConstructor?.call() ?: throw ResponseMapperNotFoundException()
+
+            val mapper = if (cache[mapperClass]!=null) {
+                cache[mapperClass] as ResponseMapper<*>
+            } else {
+                val tempMapper = mapperClass.primaryConstructor?.call() ?: throw ResponseMapperNotFoundException()
+                cache[mapperClass] = tempMapper
+                tempMapper
+            }
+
             val responseModel = mapper.map(call.execute())
             ResponseConsumer(responseModel = responseModel as T)
         } else {
@@ -38,7 +47,13 @@ abstract class ParamsProcessor<T> : Cancelable {
     @Synchronized
     fun applyMapper(mapperClass: KClass<out ResponseMapper<*>>?, response: Response): ResponseConsumer<T> {
         return if (mapperClass != null) {
-            val mapper = mapperClass.primaryConstructor?.call() ?: throw ResponseMapperNotFoundException()
+            val mapper = if (cache[mapperClass]!=null) {
+                cache[mapperClass] as ResponseMapper<*>
+            } else {
+                val tempMapper = mapperClass.primaryConstructor?.call() ?: throw ResponseMapperNotFoundException()
+                cache[mapperClass] = tempMapper
+                tempMapper
+            }
             val responseModel = mapper.map(response)
             ResponseConsumer(responseModel = responseModel as T)
         } else {
