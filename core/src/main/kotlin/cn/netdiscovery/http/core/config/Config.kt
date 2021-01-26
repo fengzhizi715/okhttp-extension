@@ -16,6 +16,8 @@ val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
 
 val ua = "User-Agent"
 
+val TRACE_ID = "traceId"
+
 val resolvers: Map<String, RequestBlock>  = mapOf(
         "queries" to ::processQuery,
         "path"    to ::processPath,
