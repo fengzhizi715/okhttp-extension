@@ -1,12 +1,9 @@
 package cn.netdiscovery.http.core.test.retrofit
 
 import cn.netdiscovery.http.core.test.httpClient
-import cn.netdiscovery.http.core.test.loggingInterceptor
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 /**
  *
