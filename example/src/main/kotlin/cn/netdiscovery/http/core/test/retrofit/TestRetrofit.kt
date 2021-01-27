@@ -10,13 +10,10 @@ package cn.netdiscovery.http.core.test.retrofit
  */
 fun main() {
 
-    val header = mutableMapOf<String, String>()
-    header["key1"] = "value1"
-    header["key2"] = "value2"
-    header["key3"] = "value3"
+    responseHeaders().subscribe {
+        println(Thread.currentThread().name)
+        println(it)
+    }
 
-    apiService.responseHeaders(header)
-        .subscribe {
-            println(it)
-        }
+    Thread.sleep(2000)
 }
