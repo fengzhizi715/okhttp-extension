@@ -8,6 +8,8 @@ ext {
 
             ktor                      : "1.4.0",
 
+            retrofit                  : "2.9.0",
+
             rxjava3                   : "3.0.7",
 
             rxjava2                   : "2.2.20",

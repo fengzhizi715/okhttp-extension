@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.test
 
+import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
 import cn.netdiscovery.http.core.test.converter.GsonConverter
@@ -43,7 +44,7 @@ val loggingInterceptor by lazy {
             .build()
 }
 
-val httpClient by lazy {
+val httpClient: HttpClient by lazy {
     HttpClientBuilder()
             .baseUrl("http://localhost:8080")
             .addInterceptor(loggingInterceptor)
