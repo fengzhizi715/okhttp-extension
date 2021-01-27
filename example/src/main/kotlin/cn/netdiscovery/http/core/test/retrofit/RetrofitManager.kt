@@ -13,8 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @date: 2021-01-27 10:48
  * @version: V1.0 <描述当前版本功能>
  */
-const val DEFAULT_CONN_TIMEOUT = 30
-
 val apiService:ApiService by lazy {
     val retrofit = Retrofit.Builder()
         .client(httpClient.okHttpClient())

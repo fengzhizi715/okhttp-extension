@@ -7,6 +7,7 @@ import cn.netdiscovery.http.core.test.converter.GsonConverter
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -16,6 +17,8 @@ import cn.netdiscovery.http.interceptor.log.LogProxy
  * @date: 2021-01-27 11:37
  * @version: V1.0 <描述当前版本功能>
  */
+const val DEFAULT_CONN_TIMEOUT = 30
+
 val loggingInterceptor by lazy {
     LogManager.logProxy(object : LogProxy {  // 必须要实现 LogProxy ，否则无法打印网络请求的 request 、response
         override fun e(tag: String, msg: String) {
@@ -46,6 +49,7 @@ val loggingInterceptor by lazy {
 val httpClient: HttpClient by lazy {
     HttpClientBuilder()
         .baseUrl("http://localhost:8080")
+        .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
         .converter(GsonConverter())
         .jsonConverter(GlobalRequestJSONConverter::class)
