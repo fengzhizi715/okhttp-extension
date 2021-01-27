@@ -3,6 +3,7 @@ package cn.netdiscovery.http.core.test.retrofit
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
+import retrofit2.http.QueryMap
 
 /**
  *
@@ -16,4 +17,7 @@ interface ApiService {
 
     @GET("/response-headers")
     fun responseHeaders(@HeaderMap headers:Map<String, String>):Observable<Map<String, List<String>>>
+
+    @GET("/response-headers-queries")
+    fun responseHeadersQueries(@HeaderMap headers:Map<String, String>, @QueryMap paramas:Map<String, String>):Observable<Map<String, List<String>>>
 }
