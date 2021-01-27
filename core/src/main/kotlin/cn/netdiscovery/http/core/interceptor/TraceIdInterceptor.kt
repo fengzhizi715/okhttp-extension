@@ -12,13 +12,13 @@ import okhttp3.Response
  * @date: 2021-01-26 18:19
  * @version: V1.0 <描述当前版本功能>
  */
-class TraceIdInterceptor(private val traceId: String): Interceptor {
+class TraceIdInterceptor(private val traceIdProvider: TraceIdProvider): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request= chain.request()
 
         request = request.newBuilder()
-            .header(TRACE_ID, traceId)
+            .header(TRACE_ID, traceIdProvider.getTraceId())
             .build()
         //继续发送原始请求
         return chain.proceed(request)

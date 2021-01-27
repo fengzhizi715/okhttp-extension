@@ -216,8 +216,8 @@ class HttpClientBuilder {
         return this
     }
 
-    fun userAgent(agent: String): HttpClientBuilder {
-        userAgent = agent
+    fun userAgent(ua: String): HttpClientBuilder {
+        userAgent = ua
         return this
     }
 
