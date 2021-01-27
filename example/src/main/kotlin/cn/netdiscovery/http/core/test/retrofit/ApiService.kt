@@ -1,9 +1,14 @@
 package cn.netdiscovery.http.core.test.retrofit
 
+import cn.netdiscovery.http.core.test.domain.RequestModel
+import cn.netdiscovery.http.core.test.domain.WrapperResponse
 import io.reactivex.rxjava3.core.Observable
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.HeaderMap
+import retrofit2.http.POST
 import retrofit2.http.QueryMap
+
 
 /**
  *
@@ -20,4 +25,7 @@ interface ApiService {
 
     @GET("/response-headers-queries")
     fun responseHeadersQueries(@HeaderMap headers:Map<String, String>, @QueryMap paramas:Map<String, String>):Observable<Map<String, List<String>>>
+
+    @POST("/response-body-with-model")
+    fun responseBodyWithModel(@Body model: RequestModel):Observable<WrapperResponse>
 }
