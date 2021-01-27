@@ -1,8 +1,7 @@
-package cn.netdiscovery.http.core.test
+package cn.netdiscovery.http.core.test.okhttpextension
 
-import cn.netdiscovery.http.core.HttpClientBuilder
-import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
-import cn.netdiscovery.http.core.test.converter.GsonConverter
+import cn.netdiscovery.http.core.test.httpClientWithUA
+import cn.netdiscovery.http.core.test.okhttpextension.ApiService
 
 /**
  *
@@ -13,7 +12,7 @@ import cn.netdiscovery.http.core.test.converter.GsonConverter
  * @version: V1.0 <描述当前版本功能>
  */
 val apiServiceWithUA by lazy {
-    TestAPIService(httpClientWithUA)
+    ApiService(httpClientWithUA)
 }
 
 fun main() {

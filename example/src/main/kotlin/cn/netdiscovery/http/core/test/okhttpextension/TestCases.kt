@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.test
+package cn.netdiscovery.http.core.test.okhttpextension
 
 import cn.netdiscovery.http.core.domain.params
 import cn.netdiscovery.http.core.test.domain.RequestModel
@@ -13,17 +13,17 @@ import cn.netdiscovery.http.extension.rxjava3.asObservable
  * @date: 2020-12-14 17:24
  * @version: V1.0 <描述当前版本功能>
  */
-fun testGet(apiService:TestAPIService) {
+fun testGet(apiService: ApiService) {
     apiService.testGet("Tony").sync()
 }
 
-fun testGetWithPath(apiService:TestAPIService) {
+fun testGetWithPath(apiService: ApiService) {
     val path = mutableMapOf<String, String>()
     path["name"] = "Tony"
     apiService.testGetWithPath(path).sync()
 }
 
-fun testGetWithHeader(apiService:TestAPIService) {
+fun testGetWithHeader(apiService: ApiService) {
     val header = mutableMapOf<String, String>()
     header["key1"] = "value1"
     header["key2"] = "value2"
@@ -31,7 +31,7 @@ fun testGetWithHeader(apiService:TestAPIService) {
     apiService.testGetWithHeader(header).sync()
 }
 
-fun testGetWithHeaderAndQuery(apiService:TestAPIService) {
+fun testGetWithHeaderAndQuery(apiService: ApiService) {
     val header = mutableMapOf<String, String>()
     header["key1"] = "value1"
     header["key2"] = "value2"
@@ -44,7 +44,7 @@ fun testGetWithHeaderAndQuery(apiService:TestAPIService) {
     apiService.testGetWithHeaderAndQuery(header,queries).sync()
 }
 
-fun testPost(apiService:TestAPIService) {
+fun testPost(apiService: ApiService) {
     val body = params(
         "name1" to "value1",
         "name2" to "value2",
@@ -53,22 +53,22 @@ fun testPost(apiService:TestAPIService) {
     apiService.testPost(body).sync()
 }
 
-fun testPostWithModel(apiService:TestAPIService) {
+fun testPostWithModel(apiService: ApiService) {
     val requestModel = RequestModel()
     apiService.testPostWithModel(requestModel).sync()
 }
 
-fun testPostWithJsonModel(apiService:TestAPIService) {
+fun testPostWithJsonModel(apiService: ApiService) {
     val requestModel = RequestModel()
     apiService.testPostWithJsonModel(requestModel).sync()
 }
 
-fun testPostWithResponseMapper(apiService:TestAPIService) {
+fun testPostWithResponseMapper(apiService: ApiService) {
     val requestModel = RequestModel()
     apiService.testPostWithResponseMapper(requestModel).sync()
 }
 
-fun testPostWithResponseMapperAndObservable(apiService:TestAPIService) {
+fun testPostWithResponseMapperAndObservable(apiService: ApiService) {
     val requestModel = RequestModel()
     apiService.testPostWithResponseMapper(requestModel)
         .asObservable<ResponseData>()

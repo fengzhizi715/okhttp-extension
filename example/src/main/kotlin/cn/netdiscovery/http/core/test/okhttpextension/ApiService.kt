@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.test
+package cn.netdiscovery.http.core.test.okhttpextension
 
 import cn.netdiscovery.http.core.AbstractHttpService
 import cn.netdiscovery.http.core.HttpClient
@@ -11,12 +11,12 @@ import okhttp3.Response
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.test.TestAPIService
+ *          cn.netdiscovery.http.core.test.okhttpextension.ApiService
  * @author: Tony Shen
  * @date: 2020-10-21 11:28
  * @version: V1.0 自定义的 APIService
  */
-class TestAPIService(client: HttpClient) : AbstractHttpService(client) {
+class ApiService(client: HttpClient) : AbstractHttpService(client) {
 
     fun testGet(name: String) = get<Response> {
         url = "/sayHi/$name"

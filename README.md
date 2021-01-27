@@ -17,6 +17,6 @@
 
 * 支持 Feign、Ktor 等框架
 * 支持 websocket 的实现
-* 支持文件上传
+* 支持文件上传、下载
 * 使用 RxCache 存储 cookie
 * 使用 RxCache 作为 OkHttp 的缓存
