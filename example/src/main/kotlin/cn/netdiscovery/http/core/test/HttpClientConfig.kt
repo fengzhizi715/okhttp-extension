@@ -59,6 +59,7 @@ val httpClient: HttpClient by lazy {
 val httpClientWithAOP by lazy {
     HttpClientBuilder()
         .baseUrl("http://localhost:8080")
+        .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
         .converter(GsonConverter())
         .jsonConverter(GlobalRequestJSONConverter::class)
@@ -75,6 +76,7 @@ val httpClientWithAOP by lazy {
 val httpClientWithUA by lazy {
     HttpClientBuilder()
         .baseUrl("http://localhost:8080")
+        .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
         .converter(GsonConverter())
         .jsonConverter(GlobalRequestJSONConverter::class)
