@@ -14,6 +14,4 @@ fun main() {
         println(Thread.currentThread().name)
         println(it)
     }
-
-    Thread.sleep(2000)
 }

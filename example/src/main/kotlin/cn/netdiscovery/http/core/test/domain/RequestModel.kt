@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.core.test.domain
 
+import cn.netdiscovery.http.core.converter.ConverterManager
+
 /**
  *
  * @FileName:
@@ -12,4 +14,6 @@ data class RequestModel(
         var a:Int = 0,
         var b:String = "test",
         var c:Double = 0.0
-)
+) {
+        override fun toString() = ConverterManager.toJson(this)!!
+}
