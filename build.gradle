@@ -10,6 +10,8 @@ ext {
 
             retrofit                  : "2.9.0",
 
+            feign                     : "10.12",
+
             rxjava3                   : "3.0.7",
 
             rxjava2                   : "2.2.20",
