@@ -15,6 +15,7 @@
 ## TODO List:
 
 * 支持 Feign 等框架
+* 整合 resilience4j
 * 支持 websocket 的实现
 * 支持文件上传、下载
 * 使用 RxCache 存储 cookie
