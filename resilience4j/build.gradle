@@ -25,6 +25,7 @@ dependencies {
     implementation "io.github.resilience4j:resilience4j-timelimiter:${libs.resilience4j}"
 
     implementation project(":core")
+    compileOnly "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
 }
 
 compileKotlin {
