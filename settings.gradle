@@ -13,4 +13,5 @@ include 'extension:coroutines'
 findProject(':extension:coroutines')?.name = 'coroutines'
 include 'extension:reactor'
 findProject(':extension:reactor')?.name = 'reactor'
+include 'resilience4j'
 
