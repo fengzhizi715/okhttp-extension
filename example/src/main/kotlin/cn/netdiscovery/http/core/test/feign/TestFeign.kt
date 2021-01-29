@@ -10,7 +10,5 @@ package cn.netdiscovery.http.core.test.feign
  */
 fun main() {
 
-    responseHeaders().let {
-        println(it)
-    }
+    println(responseHeaders())
 }
