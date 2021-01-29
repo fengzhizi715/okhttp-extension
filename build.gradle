@@ -16,6 +16,8 @@ ext {
 
             rxjava2                   : "2.2.20",
 
+            resilience4j              : "1.7.0",
+
             result                    : "1.0.2"
     ]
 }

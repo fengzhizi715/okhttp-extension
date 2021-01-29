@@ -9,6 +9,7 @@ version '1.0-SNAPSHOT'
 def libs = rootProject.ext.libraries // 库
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
