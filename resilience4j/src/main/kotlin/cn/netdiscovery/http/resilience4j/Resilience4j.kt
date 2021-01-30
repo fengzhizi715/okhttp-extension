@@ -1,9 +1,11 @@
 package cn.netdiscovery.http.resilience4j
 
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException
+import io.github.resilience4j.circuitbreaker.CircuitBreaker
 import io.github.resilience4j.timelimiter.TimeLimiter
 import okhttp3.Response
-import java.lang.Exception
 import java.util.concurrent.CompletableFuture
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -16,6 +18,33 @@ import java.util.concurrent.CompletableFuture
 object Resilience4j {
 
     /**
+     * 断路器
+     */
+    object CircuitBreak {
+        private object CircuitError : RuntimeException()
+
+        operator fun invoke(
+            circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
+            onAction: () -> Response,
+            isError: (Response) -> Boolean = { it.code != 200 },
+            onError: (Throwable) -> Unit
+        ):Response? {
+            try {
+                return circuitBreaker.executeCallable {
+                    onAction().apply {
+                        if (isError(this))
+                            circuitBreaker.onError(0, TimeUnit.MILLISECONDS, CircuitError)
+                    }
+                }
+            } catch (e: CallNotPermittedException) {
+                onError(e)
+            }
+
+            return null
+        }
+    }
+
+    /**
      * 限时器
      */
     object TimeLimite {
@@ -23,17 +52,20 @@ object Resilience4j {
         operator fun invoke(
             timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
             onAction: () -> CompletableFuture<Response>,
-            onError:  (Throwable) -> Unit) {
+            onError: (Throwable) -> Unit
+        ):CompletableFuture<Response>? {
 
             try {
-                timeLimiter.executeFutureSupplier {
+                return timeLimiter.executeFutureSupplier {
                     CompletableFuture.supplyAsync{
                         onAction()
                     }
                 }
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 onError(e)
             }
+
+            return null
         }
     }
 }

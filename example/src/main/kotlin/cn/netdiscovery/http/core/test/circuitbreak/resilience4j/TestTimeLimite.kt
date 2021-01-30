@@ -21,7 +21,7 @@ import java.time.Duration
 fun main() {
     val config = TimeLimiterConfig.custom()
         .cancelRunningFuture(true)
-        .timeoutDuration(Duration.ofMillis(1000))
+        .timeoutDuration(Duration.ofMillis(100))
         .build()
 
     // 使用自定义的全局配置创建一个TimeLimiterRegistry
