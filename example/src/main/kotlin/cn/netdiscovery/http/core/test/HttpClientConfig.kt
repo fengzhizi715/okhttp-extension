@@ -3,7 +3,6 @@ package cn.netdiscovery.http.core.test
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
-import cn.netdiscovery.http.core.test.converter.GsonConverter
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
@@ -51,7 +50,7 @@ val httpClient: HttpClient by lazy {
         .baseUrl("http://localhost:8080")
         .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
-        .converter(GsonConverter())
+        .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
         .build()
 }
@@ -61,7 +60,7 @@ val httpClientWithAOP by lazy {
         .baseUrl("http://localhost:8080")
         .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
-        .converter(GsonConverter())
+        .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
         .addRequestProcessor { httpClient, builder ->
             println("request start")
@@ -78,7 +77,7 @@ val httpClientWithUA by lazy {
         .baseUrl("http://localhost:8080")
         .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
-        .converter(GsonConverter())
+        .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
         .build()

@@ -8,7 +8,7 @@ import java.lang.reflect.Type
  *          cn.netdiscovery.http.core.serializer.SerializerManager
  * @author: Tony Shen
  * @date: 2020-10-13 15:41
- * @version: V1.0 序列化管理
+ * @version: V1.0 序列化管理类
  */
 object SerializerManager {
 

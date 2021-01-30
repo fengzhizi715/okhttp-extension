@@ -221,8 +221,8 @@ class HttpClientBuilder {
         return this
     }
 
-    fun converter(converter:Serializer): HttpClientBuilder {
-        SerializerManager.converter(converter)
+    fun serializer(serializer:Serializer): HttpClientBuilder {
+        SerializerManager.converter(serializer)
         return this
     }
 
