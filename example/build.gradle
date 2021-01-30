@@ -33,6 +33,7 @@ dependencies {
     implementation project(":extension:rxjava3")
     implementation project(":extension:result")
     implementation project(":extension:coroutines")
+    implementation project(":resilience4j")
 
     implementation 'cn.netdiscovery.http.interceptor:okhttp-logging-interceptor:1.1.0'
     implementation "cn.netdiscovery.result:result:${libs.result}"
@@ -44,6 +45,13 @@ dependencies {
     implementation "io.github.openfeign:feign-core:${libs.feign}"
     implementation "io.github.openfeign:feign-okhttp:${libs.feign}"
     implementation "io.github.openfeign:feign-gson:${libs.feign}"
+
+    implementation "io.github.resilience4j:resilience4j-circuitbreaker:${libs.resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-ratelimiter:${libs.resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-retry:${libs.resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-bulkhead:${libs.resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-cache:${libs.resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-timelimiter:${libs.resilience4j}"
 }
 
 compileKotlin {
