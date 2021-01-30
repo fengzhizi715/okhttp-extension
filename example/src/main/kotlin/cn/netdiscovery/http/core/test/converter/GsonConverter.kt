@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.test.converter
 
-import cn.netdiscovery.http.core.converter.Converter
+import cn.netdiscovery.http.core.serializer.Serializer
 import cn.netdiscovery.http.core.test.gson
 import java.lang.reflect.Type
 
@@ -12,7 +12,7 @@ import java.lang.reflect.Type
  * @date: 2020-10-13 16:10
  * @version: V1.0 <描述当前版本功能>
  */
-class GsonConverter: Converter {
+class GsonConverter: Serializer {
 
     override fun <T> fromJson(json: String, type: Type): T {
         return gson.fromJson(json,type)

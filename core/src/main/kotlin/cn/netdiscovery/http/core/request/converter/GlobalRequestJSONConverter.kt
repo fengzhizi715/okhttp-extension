@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.request.converter
 
-import cn.netdiscovery.http.core.converter.ConverterManager
+import cn.netdiscovery.http.core.serializer.SerializerManager
 
 /**
  *
@@ -12,5 +12,5 @@ import cn.netdiscovery.http.core.converter.ConverterManager
  */
 class GlobalRequestJSONConverter : RequestJSONConverter {
 
-    override fun convert(model: Any): String = ConverterManager.toJson(model) ?: ""
+    override fun convert(model: Any): String = SerializerManager.toJson(model) ?: ""
 }

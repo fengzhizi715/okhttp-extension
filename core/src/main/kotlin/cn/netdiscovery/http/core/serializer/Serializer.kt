@@ -1,19 +1,19 @@
-package cn.netdiscovery.http.core.converter
+package cn.netdiscovery.http.core.serializer
 
 import java.lang.reflect.Type
 
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.converter.Converter
+ *          cn.netdiscovery.http.core.serializer.Serializer
  * @author: Tony Shen
  * @date: 2020-10-13 15:04
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 序列化接口
  */
-interface Converter {
+interface Serializer {
 
     /**
-     * 将字符串转换成type类型的对象
+     * 将字符串转换成 type 类型的对象
      * @param json
      * @param type
      * @param <T>

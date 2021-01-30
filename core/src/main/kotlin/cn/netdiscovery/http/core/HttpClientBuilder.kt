@@ -1,8 +1,8 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.aop.DefaultProcessorStore
-import cn.netdiscovery.http.core.converter.Converter
-import cn.netdiscovery.http.core.converter.ConverterManager
+import cn.netdiscovery.http.core.serializer.Serializer
+import cn.netdiscovery.http.core.serializer.SerializerManager
 import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.DefaultStorage
@@ -221,8 +221,8 @@ class HttpClientBuilder {
         return this
     }
 
-    fun converter(converter:Converter): HttpClientBuilder {
-        ConverterManager.converter(converter)
+    fun converter(converter:Serializer): HttpClientBuilder {
+        SerializerManager.converter(converter)
         return this
     }
 

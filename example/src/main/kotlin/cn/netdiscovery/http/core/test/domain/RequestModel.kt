@@ -1,6 +1,6 @@
 package cn.netdiscovery.http.core.test.domain
 
-import cn.netdiscovery.http.core.converter.ConverterManager
+import cn.netdiscovery.http.core.serializer.SerializerManager
 
 /**
  *
@@ -15,5 +15,5 @@ data class RequestModel(
         var b:String = "test",
         var c:Double = 0.0
 ) {
-        override fun toString() = ConverterManager.toJson(this)!!
+        override fun toString() = SerializerManager.toJson(this)!!
 }
