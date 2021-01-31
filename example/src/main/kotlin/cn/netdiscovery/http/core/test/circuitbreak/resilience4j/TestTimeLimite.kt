@@ -3,10 +3,8 @@ package cn.netdiscovery.http.core.test.circuitbreak.resilience4j
 import cn.netdiscovery.http.core.test.okhttpextension.apiService
 import cn.netdiscovery.http.resilience4j.Resilience4j
 import io.github.resilience4j.timelimiter.TimeLimiter
-
-import io.github.resilience4j.timelimiter.TimeLimiterRegistry
-
 import io.github.resilience4j.timelimiter.TimeLimiterConfig
+import io.github.resilience4j.timelimiter.TimeLimiterRegistry
 import java.time.Duration
 
 
@@ -21,7 +19,7 @@ import java.time.Duration
 fun main() {
     val config = TimeLimiterConfig.custom()
         .cancelRunningFuture(true)
-        .timeoutDuration(Duration.ofMillis(100))
+        .timeoutDuration(Duration.ofMillis(1000))
         .build()
 
     // 使用自定义的全局配置创建一个TimeLimiterRegistry
@@ -30,7 +28,7 @@ fun main() {
     //registry使用默认的配置创建一个TimeLimiter
     val timeLimiterWithDefaultConfig: TimeLimiter = timeLimiterRegistry.timeLimiter("name1")
 
-    Resilience4j.TimeLimite.invoke(timeLimiterWithDefaultConfig, {
+    Resilience4j.TimeLimite.invoke(timeLimiterWithDefaultConfig, onFuture = {
         apiService.testGet("Tony").async()
     },{
         println(it.message)

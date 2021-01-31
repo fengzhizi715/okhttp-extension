@@ -42,6 +42,26 @@ object Resilience4j {
 
             return null
         }
+
+        operator fun invoke(
+            circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
+            onFuture: () -> CompletableFuture<Response>,
+            isError: (Response) -> Boolean = { it.code != 200 },
+            onError: (Throwable) -> Unit
+        ):CompletableFuture<Response>? {
+            try {
+                return circuitBreaker.executeSupplier {
+                    onFuture().apply {
+                        if (isError(this.get()))
+                            circuitBreaker.onError(0, TimeUnit.MILLISECONDS, CircuitError)
+                    }
+                }
+            } catch (e: CallNotPermittedException) {
+                onError(e)
+            }
+
+            return null
+        }
     }
 
     /**
@@ -51,14 +71,33 @@ object Resilience4j {
 
         operator fun invoke(
             timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
-            onAction: () -> CompletableFuture<Response>,
+            onAction: () -> Response,
+            onError: (Throwable) -> Unit
+        ):Response? {
+
+            try {
+                return timeLimiter.executeFutureSupplier {
+                    CompletableFuture.supplyAsync{
+                        onAction()
+                    }
+                }
+            } catch (e: Exception) {
+                onError(e)
+            }
+
+            return null
+        }
+
+        operator fun invoke(
+            timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
+            onFuture: () -> CompletableFuture<Response>,
             onError: (Throwable) -> Unit
         ):CompletableFuture<Response>? {
 
             try {
                 return timeLimiter.executeFutureSupplier {
                     CompletableFuture.supplyAsync{
-                        onAction()
+                        onFuture()
                     }
                 }
             } catch (e: Exception) {

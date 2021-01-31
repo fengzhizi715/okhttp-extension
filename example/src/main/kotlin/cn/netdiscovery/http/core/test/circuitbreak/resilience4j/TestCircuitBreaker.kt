@@ -23,9 +23,9 @@ fun main() {
 
     val customCircuitBreaker = CircuitBreaker.of("testName", circuitBreakerConfig)
 
-    Resilience4j.CircuitBreak.invoke(customCircuitBreaker,onAction = {
+    Resilience4j.CircuitBreak.invoke(customCircuitBreaker, onAction = {
         apiService.testGet("Tony").sync()
-    },onError={
+    }, onError = {
         println(it.message)
     })
 }
