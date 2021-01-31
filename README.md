@@ -7,6 +7,7 @@
 * 支持 Kotlin 协程
 * 支持响应式(RxJava、Spring Reactor) 
 * 支持函数式
+* 支持熔断器(resilience4j)
 * 支持异步请求的取消
 * 支持 Request、Response 的拦截器
 * 支持 traceId 的传递(通过拦截器)
@@ -14,7 +15,6 @@
 
 ## TODO List:
 
-* 整合 resilience4j
 * 支持 websocket 的实现
 * 支持文件上传、下载
 * 使用 RxCache 存储 cookie
