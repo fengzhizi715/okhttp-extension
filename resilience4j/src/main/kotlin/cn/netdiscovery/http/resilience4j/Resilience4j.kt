@@ -3,7 +3,9 @@ package cn.netdiscovery.http.resilience4j
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.CircuitBreaker
 import io.github.resilience4j.timelimiter.TimeLimiter
+import io.vavr.control.Try
 import okhttp3.Response
+import java.util.concurrent.Callable
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
@@ -16,6 +18,25 @@ import java.util.concurrent.TimeUnit
  * @version: V1.0 <描述当前版本功能>
  */
 object Resilience4j {
+
+    operator fun invoke(circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
+           timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
+           onFuture: () -> CompletableFuture<Response>,
+           onFallback: (Throwable)-> Response):Response {
+
+        val restrictedCall: Callable<Response> = TimeLimiter.decorateFutureSupplier(timeLimiter) {
+            onFuture()
+        }
+
+        val chainedCallable: Callable<Response> = CircuitBreaker.decorateCallable(circuitBreaker, restrictedCall)
+
+        val result: Try<Response> = Try.of{ chainedCallable.call() }
+            .recover { throwable ->
+                onFallback(throwable)
+            }
+
+        return result.get()
+    }
 
     /**
      * 断路器
