@@ -21,9 +21,9 @@ fun main() {
         .recordExceptions(IOException::class.java, TimeoutException::class.java)
         .build()
 
-    val customCircuitBreaker = CircuitBreaker.of("testName", circuitBreakerConfig)
+    val circuitBreaker = CircuitBreaker.of("testName", circuitBreakerConfig)
 
-    Resilience4j.CircuitBreak.invoke(customCircuitBreaker, onAction = {
+    Resilience4j.CircuitBreak.invoke(circuitBreaker, onAction = {
         apiService.testGet("Tony").sync()
     }, onError = {
         println(it.message)
