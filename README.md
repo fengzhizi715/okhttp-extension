@@ -1,6 +1,9 @@
 # okhttp-extension
 
-okhttp-extension 是针对 okhttp 3 增强的网络框架
+okhttp-extension 是针对 okhttp 3 增强的网络框架。使用 Kotlin 特性编写，提供便捷的 DSL 方式创建网络请求，支持协程、响应式编程等等。
+core 模块只依赖 okhttp，不会引入第三方库。
+
+okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也给开发者提供一种新的选择。 
 
 ## Features:
 
