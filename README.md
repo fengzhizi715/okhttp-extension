@@ -34,31 +34,31 @@ http-resilience4j|[ ![Download](https://api.bintray.com/packages/fengzhizi715/ma
 ## 下载
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-core:1.0.0'
+implementation 'cn.netdiscovery.http:http-core:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-coroutines:1.0.0'
+implementation 'cn.netdiscovery.http:http-coroutines:<latest-version>'
 ```
 
 ```groovy
-
+implementation 'cn.netdiscovery.http:http-rxjava3:<latest-version>'
 ```
 
 ```groovy
-
+implementation 'cn.netdiscovery.http:http-rxjava2:<latest-version>'
 ```
 
 ```groovy
-
+implementation 'cn.netdiscovery.http:http-reactor:<latest-version>'
 ```
 
 ```groovy
-
+implementation 'cn.netdiscovery.http:http-result:<latest-version>'
 ```
 
 ```groovy
-
+implementation 'cn.netdiscovery.http:http-resilience4j:<latest-version>'
 ```
 
 ## TODO List:
