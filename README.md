@@ -19,6 +19,48 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 * 支持 Retrofit、Feign 框架
 * core 模块只依赖 okhttp，不依赖其他第三方库
 
+## 最新版本
+
+模块|最新版本
+---|:-------------:
+http-core|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-core/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-core/_latestVersion)|
+http-coroutines|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-coroutines/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-coroutines/_latestVersion)|
+http-rxjava3|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-rxjava3/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-rxjava3/_latestVersion)|
+http-rxjava2|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-rxjava2/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-rxjava2/_latestVersion)|
+http-reactor|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-reactor/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-reactor/_latestVersion)|
+http-result|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-result/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-result/_latestVersion)|
+http-resilience4j|[ ![Download](https://api.bintray.com/packages/fengzhizi715/maven/http-resilience4j/images/download.svg) ](https://bintray.com/fengzhizi715/maven/http-resilience4j/_latestVersion)|
+
+## 下载
+
+```groovy
+implementation 'cn.netdiscovery.http:http-core:1.0.0'
+```
+
+```groovy
+implementation 'cn.netdiscovery.http:http-coroutines:1.0.0'
+```
+
+```groovy
+
+```
+
+```groovy
+
+```
+
+```groovy
+
+```
+
+```groovy
+
+```
+
+```groovy
+
+```
+
 ## TODO List:
 
 * 支持 websocket 的实现
