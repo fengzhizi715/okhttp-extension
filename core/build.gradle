@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'kotlin'
+    id 'com.novoda.bintray-release'
 }
 
 group 'org.example'
@@ -26,4 +27,13 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publish{
+    userOrg = 'fengzhizi715'
+    groupId = 'cn.netdiscovery.http'
+    artifactId = 'http-core'
+    publishVersion = "$http_version"
+    desc = 'A http library for using OkHttp3.'
+    website = 'https://github.com/fengzhizi715/okhttp-extension'
 }

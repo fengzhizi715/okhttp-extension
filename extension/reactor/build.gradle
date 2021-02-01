@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'kotlin'
+    id 'com.novoda.bintray-release'
 }
 
 group 'org.example'
@@ -14,9 +15,8 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     implementation project(":core")
     compileOnly "io.projectreactor:reactor-core:3.4.1"
@@ -29,6 +29,11 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-test {
-    useJUnitPlatform()
+publish{
+    userOrg = 'fengzhizi715'
+    groupId = 'cn.netdiscovery.http'
+    artifactId = 'http-reactor'
+    publishVersion = "$http_version"
+    desc = 'A http library for using OkHttp3.'
+    website = 'https://github.com/fengzhizi715/okhttp-extension'
 }
