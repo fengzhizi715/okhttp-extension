@@ -12,7 +12,7 @@ ext {
 
             feign                     : "10.12",
 
-            rxjava3                   : "3.0.7",
+            rxjava3                   : "3.0.9",
 
             rxjava2                   : "2.2.20",
 

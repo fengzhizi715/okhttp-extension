@@ -62,7 +62,7 @@ val httpClientWithAOP by lazy {
         .addInterceptor(loggingInterceptor)
         .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
-        .addRequestProcessor { httpClient, builder ->
+        .addRequestProcessor { _, builder ->
             println("request start")
             builder
         }

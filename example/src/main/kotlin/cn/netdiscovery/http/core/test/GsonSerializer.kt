@@ -13,12 +13,7 @@ import java.lang.reflect.Type
  */
 class GsonSerializer: Serializer {
 
-    override fun <T> fromJson(json: String, type: Type): T {
-        return gson.fromJson(json,type)
-    }
+    override fun <T> fromJson(json: String, type: Type): T = gson.fromJson(json,type)
 
-    override fun toJson(data: Any): String {
-        return gson.toJson(data)
-    }
-
+    override fun toJson(data: Any): String = gson.toJson(data)
 }
