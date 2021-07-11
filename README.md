@@ -66,7 +66,7 @@ implementation 'cn.netdiscovery.http:http-resilience4j:<latest-version>'
 
 ## TODO List:
 
-* 支持 websocket 的实现
+* 支持 websocket 的实现、鉴权、保活
 * 支持文件上传、下载
 * 使用 RxCache 存储 cookie
 * 使用 RxCache 作为 OkHttp 的缓存
