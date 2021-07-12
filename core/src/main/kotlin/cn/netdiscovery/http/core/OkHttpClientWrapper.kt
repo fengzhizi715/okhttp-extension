@@ -12,6 +12,7 @@ import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.request.method.MethodBuilder
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
+import cn.netdiscovery.http.core.utils.extension.newWebSocket
 import okhttp3.*
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.CookieManager
@@ -130,6 +131,13 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun <T : Any> send(clazz: KClass<T>, requestMethod: RequestMethod<T>): ProcessResult<T> = MethodBuilder(this, clazz).build(requestMethod)
 
+    override fun websocket(url: String, query: Params?, headers: Params?,listener: WebSocketListener): WebSocket {
+
+        return okHttpClient.newWebSocket({
+            createWebSocketRequest(url,query,headers)
+        },listener)
+    }
+
     override fun getProcessorStore() = processorStore
 
     override fun okHttpClient() = okHttpClient
@@ -232,5 +240,15 @@ class OkHttpClientWrapper(private var baseUrl: String,
                 }
 
         return request.build()
+    }
+
+    private fun createWebSocketRequest(url: String, query: Params?, header: Params?):Request {
+        val query = query?.joinToString("&") { "${it.first}=${it.second}" }
+
+        var builder = Request.Builder().url(url)
+
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
+
+        return builder.build()
     }
 }

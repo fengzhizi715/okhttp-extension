@@ -1,8 +1,6 @@
 package cn.netdiscovery.http.core.utils.extension
 
-import okhttp3.Call
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
 
 /**
  *
@@ -13,3 +11,5 @@ import okhttp3.Request
  * @version: V1.0 <描述当前版本功能>
  */
 fun OkHttpClient.newCall(block:()->Request):Call = this.newCall(block.invoke())
+
+fun OkHttpClient.newWebSocket(block:()->Request,listener: WebSocketListener):WebSocket = this.newWebSocket(block.invoke(),listener)
