@@ -137,23 +137,13 @@ class ReconnectWebSocketWrapper (
         webSocket.cancel()
     }
 
-    override fun close(code: Int, reason: String?): Boolean {
-        return webSocket.close(code, reason)
-    }
+    override fun close(code: Int, reason: String?): Boolean = webSocket.close(code, reason)
 
-    override fun queueSize(): Long {
-        return webSocket.queueSize()
-    }
+    override fun queueSize(): Long = webSocket.queueSize()
 
-    override fun request(): Request {
-        return webSocket.request()
-    }
+    override fun request(): Request = webSocket.request()
 
-    override fun send(text: String): Boolean {
-        return webSocket.send(text)
-    }
+    override fun send(text: String): Boolean = webSocket.send(text)
 
-    override fun send(bytes: ByteString): Boolean {
-        return webSocket.send(bytes)
-    }
+    override fun send(bytes: ByteString): Boolean = webSocket.send(bytes)
 }
