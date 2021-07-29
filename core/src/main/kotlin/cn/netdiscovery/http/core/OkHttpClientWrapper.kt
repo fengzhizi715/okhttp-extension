@@ -245,7 +245,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     private fun createWebSocketRequest(url: String, query: Params?, header: Params?):Request {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
-        var builder = Request.Builder().url(url)
+        var builder = Request.Builder().url( if (query != null) "$url?$query" else url)
 
         header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 

@@ -107,6 +107,7 @@ class ReconnectWebSocketWrapper (
         if (isConnected.get() || isConnecting.get()) {
             return
         }
+
         isConnecting.compareAndSet(false, true)
 
         onConnectStatusChangeListener?.invoke(status)
