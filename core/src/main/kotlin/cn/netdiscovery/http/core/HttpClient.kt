@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.storage.Storage
+import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import okhttp3.*
 import kotlin.reflect.KClass
 
@@ -123,7 +124,7 @@ interface HttpClient {
 
     fun <T: Any> send(clazz: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
-    fun websocket(url:String,query: Params? = null, headers: Params? = null,listener: WebSocketListener): WebSocket
+    fun websocket(url:String,query: Params? = null, headers: Params? = null,listener: WebSocketListener): ReconnectWebSocketWrapper
 
     /**
      * @see ProcessorStore
