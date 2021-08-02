@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger
  *          cn.netdiscovery.http.core.websocket.ReconnectWebSocket
  * @author: Tony Shen
  * @date: 2021-07-13 17:49
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 基于 OkHttp 的 WebSocket 实现的包装类，具有自动重新连接的功能
  */
 class ReconnectWebSocketWrapper (
     private val okHttpClient: OkHttpClient,

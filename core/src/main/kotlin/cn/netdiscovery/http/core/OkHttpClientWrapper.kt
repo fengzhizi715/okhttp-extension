@@ -133,11 +133,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun websocket(url: String, query: Params?, headers: Params?,listener: WebSocketListener): ReconnectWebSocketWrapper {
 
-        return ReconnectWebSocketWrapper (
-            okHttpClient,
-            createWebSocketRequest(url,query,headers),
-            listener
-        )
+        return ReconnectWebSocketWrapper(okHttpClient, createWebSocketRequest(url,query,headers), listener)
     }
 
     override fun getProcessorStore() = processorStore
@@ -244,6 +240,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
         return request.build()
     }
 
+    /**
+     * 创建 websocket 请求
+     */
     private fun createWebSocketRequest(url: String, query: Params?, header: Params?):Request {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
