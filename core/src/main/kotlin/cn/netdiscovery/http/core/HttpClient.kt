@@ -7,6 +7,7 @@ import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
+import cn.netdiscovery.http.core.websocket.WSConfig
 import okhttp3.*
 import kotlin.reflect.KClass
 
@@ -124,7 +125,7 @@ interface HttpClient {
 
     fun <T: Any> send(clazz: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
-    fun websocket(url:String,query: Params? = null, headers: Params? = null,listener: WebSocketListener): ReconnectWebSocketWrapper
+    fun websocket(url:String,query: Params? = null, headers: Params? = null, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper
 
     /**
      * @see ProcessorStore

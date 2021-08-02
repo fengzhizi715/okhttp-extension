@@ -13,6 +13,7 @@ import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.storage.cookie.DefaultClientCookieHandler
 import cn.netdiscovery.http.core.utils.extension.newCall
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
+import cn.netdiscovery.http.core.websocket.WSConfig
 import okhttp3.*
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.net.CookieManager
@@ -131,9 +132,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun <T : Any> send(clazz: KClass<T>, requestMethod: RequestMethod<T>): ProcessResult<T> = MethodBuilder(this, clazz).build(requestMethod)
 
-    override fun websocket(url: String, query: Params?, headers: Params?,listener: WebSocketListener): ReconnectWebSocketWrapper {
+    override fun websocket(url: String, query: Params?, headers: Params?, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper {
 
-        return ReconnectWebSocketWrapper(okHttpClient, createWebSocketRequest(url,query,headers), listener)
+        return ReconnectWebSocketWrapper(okHttpClient, createWebSocketRequest(url,query,headers), listener, wsConfig)
     }
 
     override fun getProcessorStore() = processorStore
