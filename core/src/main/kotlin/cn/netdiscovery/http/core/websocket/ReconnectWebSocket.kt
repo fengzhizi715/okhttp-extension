@@ -28,18 +28,18 @@ class ReconnectWebSocketWrapper (
     /**
      * websocket 的连接状态
      */
-    val status: WSStatus
+    private val status: WSStatus
         get() = if (isConnected.get()) WSStatus.CONNECTED else if (isConnecting.get()) WSStatus.CONNECTING else WSStatus.DISCONNECT
 
     /**
      * WSStatus 变化的监听
      */
-    var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
+    private var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
 
     /**
      * 重连次数
      */
-    val reconnectAttemptCount = AtomicInteger(0)
+    private val reconnectAttemptCount = AtomicInteger(0)
 
     private var timer: Timer? = null
 
