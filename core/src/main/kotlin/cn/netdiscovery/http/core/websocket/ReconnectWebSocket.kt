@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger
 class ReconnectWebSocketWrapper (
     private val okHttpClient: OkHttpClient,
     private val request: Request,
-    listener: WebSocketListener,
+    private val listener: WebSocketListener,
     private val config:WSConfig = WSConfig()
 ) : WebSocket {
 
@@ -26,25 +26,18 @@ class ReconnectWebSocketWrapper (
     private val isConnecting = AtomicBoolean(false)
 
     /**
-     * get the status of reconnection
+     * websocket 的连接状态
      */
     val status: WSStatus
         get() = if (isConnected.get()) WSStatus.CONNECTED else if (isConnecting.get()) WSStatus.CONNECTING else WSStatus.DISCONNECT
 
     /**
-     * if you want to listen the reconnection status change, you can set this listener
+     * WSStatus 变化的监听
      */
     var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
 
     /**
-     * this listener will be invoked before on reconnection
-     *
-     * if you want to modify request when reconnection, you can set this listener
-     */
-    var onPreReconnectListener: ((request: Request) -> Request) = { request -> request }
-
-    /**
-     * the count of attempt to reconnect
+     * 重连次数
      */
     val reconnectAttemptCount = AtomicInteger(0)
 
@@ -123,8 +116,7 @@ class ReconnectWebSocketWrapper (
 
                     if (reconnectAttemptCount.get() <= config.reconnectCount) {
                         webSocket.cancel()
-                        val reconnectRequest = onPreReconnectListener.invoke(request)
-                        webSocket = okHttpClient.newWebSocket(reconnectRequest, webSocketListener)
+                        webSocket = okHttpClient.newWebSocket(request, webSocketListener)
                     }
                 }
             }, 0, config.reconnectInterval)

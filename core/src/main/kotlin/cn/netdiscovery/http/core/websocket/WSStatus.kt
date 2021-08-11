@@ -9,7 +9,7 @@ package cn.netdiscovery.http.core.websocket
  * @version: V1.0 <描述当前版本功能>
  */
 enum class WSStatus {
-    CONNECTING,
-    CONNECTED,
-    DISCONNECT
+    CONNECTING, // 连接中
+    CONNECTED,  // 已连接
+    DISCONNECT  // 断开连接
 }
