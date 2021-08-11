@@ -125,6 +125,14 @@ interface HttpClient {
 
     fun <T: Any> send(clazz: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
+    /**
+     * 支持 websocket
+     * @param url
+     * @param query
+     * @param headers
+     * @param listener
+     * @param wsConfig
+     */
     fun websocket(url:String,query: Params? = null, headers: Params? = null, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper
 
     /**

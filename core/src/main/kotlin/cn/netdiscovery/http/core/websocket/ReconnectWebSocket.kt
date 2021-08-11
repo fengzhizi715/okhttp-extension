@@ -54,6 +54,7 @@ class ReconnectWebSocketWrapper (
         override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
             isConnected.compareAndSet(true, false)
             onConnectStatusChangeListener?.invoke(status)
+            reconnectAttemptCount.incrementAndGet()
             doReconnect()
             listener.onClosed(webSocket, code, reason)
         }
@@ -65,6 +66,7 @@ class ReconnectWebSocketWrapper (
         override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
             isConnected.compareAndSet(true, false)
             onConnectStatusChangeListener?.invoke(status)
+            reconnectAttemptCount.incrementAndGet()
             doReconnect()
             listener.onFailure(webSocket, t, response)
         }
@@ -119,12 +121,11 @@ class ReconnectWebSocketWrapper (
             timer?.scheduleAtFixedRate(object : TimerTask() {
                 override fun run() {
 
-                    if (reconnectAttemptCount.get() > config.reconnectCount) {
-
+                    if (reconnectAttemptCount.get() <= config.reconnectCount) {
+                        webSocket.cancel()
+                        val reconnectRequest = onPreReconnectListener.invoke(request)
+                        webSocket = okHttpClient.newWebSocket(reconnectRequest, webSocketListener)
                     }
-                    webSocket.cancel()
-                    val reconnectRequest = onPreReconnectListener.invoke(request)
-                    webSocket = okHttpClient.newWebSocket(reconnectRequest, webSocketListener)
                 }
             }, 0, config.reconnectInterval)
         }
