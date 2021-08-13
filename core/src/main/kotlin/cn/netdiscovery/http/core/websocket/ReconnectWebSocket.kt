@@ -34,7 +34,7 @@ class ReconnectWebSocketWrapper (
     /**
      * WSStatus 变化的监听
      */
-    private var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
+    var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
 
     /**
      * 重连次数
