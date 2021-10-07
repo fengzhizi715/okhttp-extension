@@ -1,17 +1,16 @@
 plugins {
     id 'java'
     id 'kotlin'
-    id 'com.novoda.bintray-release'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = 'com.github.fengzhizi715'
 
 def libs = rootProject.ext.libraries // 库
 
 repositories {
     jcenter()
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -34,13 +33,4 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
-}
-
-publish{
-    userOrg = 'fengzhizi715'
-    groupId = 'cn.netdiscovery.http'
-    artifactId = 'http-resilience4j'
-    publishVersion = "$http_version"
-    desc = 'A http library for using OkHttp3.'
-    website = 'https://github.com/fengzhizi715/okhttp-extension'
 }

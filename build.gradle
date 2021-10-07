@@ -22,11 +22,11 @@ ext {
     ]
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = 'com.github.fengzhizi715'
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -35,14 +35,14 @@ dependencies {
 
 buildscript {
     ext.kotlin_version = '1.4.21'
-    ext.http_version = '1.0.0'
+    ext.http_version = '1.0.1'
 
     repositories {
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.novoda:bintray-release:0.9.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
