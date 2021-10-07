@@ -38,31 +38,31 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-core:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:core:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-coroutines:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:coroutines:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-rxjava3:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:rxjava3:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-rxjava2:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:rxjava2:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-reactor:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:reactor:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-result:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:result:<latest-version>'
 ```
 
 ```groovy
-implementation 'cn.netdiscovery.http:http-resilience4j:<latest-version>'
+implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-version>'
 ```
 
 ## TODO List:
