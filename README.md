@@ -27,13 +27,13 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 ## 最新版本
 模块|最新版本
 ---|:-------------:
-http-core|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-coroutines|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-rxjava3|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-rxjava2|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-reactor|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-result|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
-http-resilience4j|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+core|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+coroutines|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+rxjava3|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+rxjava2|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+reactor|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+result|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+resilience4j|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
 
 ## 下载
 
