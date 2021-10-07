@@ -24,6 +24,17 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 * 支持 Retrofit、Feign 框架
 * core 模块只依赖 okhttp，不依赖其他第三方库
 
+## 最新版本
+模块|最新版本
+---|:-------------:
+http-core|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-coroutines|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-rxjava3|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-rxjava2|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-reactor|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-result|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+http-resilience4j|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https://jitpack.io/#fengzhizi715/okhttp-extension)|
+
 ## 下载
 
 将它添加到项目的 root build.gradle 中：
