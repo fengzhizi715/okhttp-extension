@@ -4,15 +4,15 @@ ext {
     libraries = [
             kotlinx_coroutines_core   : "1.3.9",
 
-            okhttp3                   : "4.9.0",
+            okhttp3                   : "4.9.2",
 
             ktor                      : "1.4.0",
 
             retrofit                  : "2.9.0",
 
-            feign                     : "10.12",
+            feign                     : "11.6",
 
-            rxjava3                   : "3.0.9",
+            rxjava3                   : "3.1.1",
 
             rxjava2                   : "2.2.20",
 
@@ -34,7 +34,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.4.21'
+    ext.kotlin_version = '1.4.31'
     ext.http_version = '1.0.1'
 
     repositories {
