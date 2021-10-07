@@ -25,6 +25,8 @@ class ReconnectWebSocketWrapper (
 
     private val isConnecting = AtomicBoolean(false)
 
+    private val isClosed = AtomicBoolean(false)
+
     /**
      * websocket 的连接状态
      */
@@ -103,6 +105,10 @@ class ReconnectWebSocketWrapper (
             return
         }
 
+        if (isClosed.get()) {
+            return
+        }
+
         isConnecting.compareAndSet(false, true)
 
         onConnectStatusChangeListener?.invoke(status)
@@ -131,7 +137,10 @@ class ReconnectWebSocketWrapper (
         webSocket.cancel()
     }
 
-    override fun close(code: Int, reason: String?): Boolean = webSocket.close(code, reason)
+    override fun close(code: Int, reason: String?): Boolean {
+        isClosed.compareAndSet(false,true)
+        return webSocket.close(code, reason)
+    }
 
     override fun queueSize(): Long = webSocket.queueSize()
 
