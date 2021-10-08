@@ -22,8 +22,8 @@ object JsonContentConverter {
         content.jsonModel != null && content.jsonConverter == null -> throw JsonConverterNotFoundException("for model ${content.jsonModel}")
         content.jsonModel != null                                  -> {
             val converter =
-                if (cache[content.jsonConverter] != null) {
-                    cache[content.jsonConverter] as RequestJSONConverter
+                if (cache[content.jsonConverter!!] != null) {
+                    cache[content.jsonConverter!!] as RequestJSONConverter
                 } else {
                     val tempConverter = content.jsonConverter?.primaryConstructor?.call() ?: throw JsonConverterNotFoundException("for model ${content.jsonModel}")
                     cache[content.jsonConverter!!] = tempConverter

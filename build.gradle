@@ -34,7 +34,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.4.31'
+    ext.kotlin_version = '1.5.31'
     ext.http_version = '1.0.1'
 
     repositories {
