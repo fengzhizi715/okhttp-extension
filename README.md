@@ -79,4 +79,4 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 ## TODO List:
 
 * 支持文件上传、下载
-* 支持OAuth2验证
+* 支持 OAuth2 验证
