@@ -36,7 +36,7 @@ dependencies {
     implementation project(":extension:coroutines")
     implementation project(":resilience4j")
 
-    implementation 'com.github.fengzhizi715.okhttp-logging-interceptor:core:v1.1.0'
+    implementation 'com.github.fengzhizi715.okhttp-logging-interceptor:core:v1.1.1'
     implementation "cn.netdiscovery.result:result:${libs.result}"
 
     implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
