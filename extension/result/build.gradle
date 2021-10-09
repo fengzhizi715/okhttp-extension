@@ -19,7 +19,7 @@ dependencies {
 
     implementation project(":core")
 
-    compileOnly "cn.netdiscovery.result:result:${libs.result}"
+    implementation "com.github.fengzhizi715:Result:${libs.result}"
 }
 
 compileKotlin {

@@ -18,7 +18,7 @@ ext {
 
             resilience4j              : "1.7.1",
 
-            result                    : "1.0.2"
+            result                    : "v1.0.3"
     ]
 }
 
