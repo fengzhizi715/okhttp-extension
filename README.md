@@ -12,7 +12,7 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 
 ## Features:
 
-* 支持 DSL 创建网络请求
+* 支持 DSL 创建 HTTP `GET`/`POST`/`PUT`/`HEAD`/`DELETE`/`PATCH` requests.
 * 支持 websocket 的实现、重连等
 * 支持自定义线程池
 * 支持 Kotlin 协程
