@@ -5,6 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 /**
+ * 请求签名的拦截器，支持对 query 参数进行签名。
  *
  * @FileName:
  *          cn.netdiscovery.http.core.interceptor.SigningInterceptor
