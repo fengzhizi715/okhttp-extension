@@ -23,7 +23,6 @@ suspend fun Call.suspendCall(): Response =
         }
         this.enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                println("Thread Name:"+Thread.currentThread().name)
                 cont.resume(response)
             }
 
