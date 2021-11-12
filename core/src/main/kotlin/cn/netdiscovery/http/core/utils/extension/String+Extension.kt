@@ -13,7 +13,6 @@ import okhttp3.Response
  * @date: 2021/11/9 5:26 下午
  * @version: V1.0 <描述当前版本功能>
  */
-
 fun String.httpGet(client: Call.Factory = OkHttpClient()): Response = client.call{
     Request.Builder().url(this).build()
 }

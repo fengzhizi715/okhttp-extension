@@ -80,7 +80,6 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 ## TODO List:
 
 * 增加文档
-* 完善协程相关的模块
 * 支持文件上传、下载
 * 支持 OAuth2 验证
 * 提供常用的拦截器

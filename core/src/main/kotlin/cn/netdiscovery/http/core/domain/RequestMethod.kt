@@ -13,7 +13,7 @@ import kotlin.reflect.KClass
  * @date: 2020-10-03 01:27
  * @version: V1.0 <描述当前版本功能>
  */
-open class RequestMethod<T> protected constructor() {
+sealed class RequestMethod<T> {
     var url: String? = null
     var customUrl: String? = null
     var dateTimePattern: String = "yyyy-MM-dd hh:mm"
