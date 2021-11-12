@@ -31,7 +31,6 @@ data class RequestMethodModel(
             is DeleteMethod   -> HttpMethodName.DELETE
             is HeadMethod     -> HttpMethodName.HEAD
             is PatchMethod    -> HttpMethodName.PATCH
-            else              -> throw IllegalStateException()
         }
     }
 
