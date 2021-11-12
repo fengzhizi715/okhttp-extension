@@ -49,11 +49,11 @@ interface HttpClient {
      * @query - will build query in url "url?param1=val1&param2..."
      * @headers - http headers
      *
-     * @see Call
+     * @see Response
      *
-     * @return okhttp3.Call
+     * @return okhttp3.Response
      */
-    fun get(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Call
+    fun get(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Response
 
     /**
      * Create post request
@@ -63,45 +63,45 @@ interface HttpClient {
      * @headers - http headers
      *
      * @see Params
-     * @see Call
+     * @see Response
      *
-     * @return okhttp3.Call
+     * @return okhttp3.Response
      */
-    fun post(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
+    fun post(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
     /**
      * @see #post
      * @see Params
-     * @see Call
+     * @see Response
      */
-    fun put(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
+    fun put(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
     /**
      * @see #get
      * @see Params
-     * @see Call
+     * @see Response
      */
-    fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Call
+    fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
 
-    fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Call
+    fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
 
-    fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Call
+    fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
     /**
      * @see #post
      * @see Params
-     * @see Call
+     * @see Response
      *
      * @json - used instead bady in post request
      */
-    fun jsonPost(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Call
+    fun jsonPost(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Response
 
     /**
      * @see #put and #jsonPost
      * @see Params
-     * @see Call
+     * @see Response
      */
-    fun jsonPut(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Call
+    fun jsonPut(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Response
 
     /**
      * Same as send but request will be processed by RequestProcessors
@@ -141,12 +141,12 @@ interface HttpClient {
     fun getProcessorStore(): ProcessorStore
 
     /**
-     * @see OkHttpClient
-     */
-    fun okHttpClient(): OkHttpClient
-
-    /**
      * @see StorageProvider
      */
     fun getStorageProvider(): Storage
+
+    /**
+     * @see OkHttpClient
+     */
+    fun okHttpClient(): OkHttpClient
 }

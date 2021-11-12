@@ -11,7 +11,7 @@ import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.storage.cookie.DefaultClientCookieHandler
-import cn.netdiscovery.http.core.utils.extension.newCall
+import cn.netdiscovery.http.core.utils.extension.call
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
 import okhttp3.*
@@ -70,49 +70,49 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
-    override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Call = okHttpClient.newCall{
+    override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Response = okHttpClient.call{
         createRequest(url, customUrl, query, headers) {
             it.get()
         }
     }
 
-    override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Call = okHttpClient.newCall {
+    override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.post(body)
         }
     }
 
-    override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Call = okHttpClient.newCall {
+    override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.put(body)
         }
     }
 
-    override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Call = okHttpClient.newCall{
+    override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Response = okHttpClient.call{
         createRequest(url, customUrl, query, headers) {
             it.delete()
         }
     }
 
-    override fun head(url: String, customUrl: String?, query: Params, headers: Params?): Call = okHttpClient.newCall {
+    override fun head(url: String, customUrl: String?, query: Params, headers: Params?): Response = okHttpClient.call {
         createRequest(url,customUrl,query,headers) {
             it.head()
         }
     }
 
-    override fun patch(url: String, customUrl: String?, body: Params, headers: Params?): Call = okHttpClient.newCall {
+    override fun patch(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.patch(body)
         }
     }
 
-    override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Call = okHttpClient.newCall{
+    override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Response = okHttpClient.call {
         createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
             builder.post(requestBody)
         }
     }
 
-    override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Call = okHttpClient.newCall {
+    override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Response = okHttpClient.call {
         createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
             builder.put(requestBody)
         }
