@@ -1,9 +1,6 @@
 package cn.netdiscovery.http.core.utils.extension
 
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.*
 import java.io.IOException
 import java.util.concurrent.CompletableFuture
 
@@ -15,6 +12,8 @@ import java.util.concurrent.CompletableFuture
  * @date: 2020-10-03 11:17
  * @version: V1.0 <描述当前版本功能>
  */
+fun Call.Factory.call(block:()-> Request):Response = this.newCall(block.invoke()).execute()
+
 fun Call.blockStringBody(): String? = execute().stringBody()
 
 fun <T> Call.letStringBody(block: (body: String?) -> T): T = execute().letStringBody(block)

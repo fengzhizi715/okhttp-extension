@@ -14,4 +14,6 @@ import okhttp3.Response
  * @version: V1.0 <描述当前版本功能>
  */
 
-fun String.httpGet(client: Call.Factory = OkHttpClient()): Response = client.newCall(Request.Builder().url(this).build()).execute()
+fun String.httpGet(client: Call.Factory = OkHttpClient()): Response = client.call{
+    Request.Builder().url(this).build()
+}
