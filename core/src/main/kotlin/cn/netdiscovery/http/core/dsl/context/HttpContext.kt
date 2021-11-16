@@ -15,7 +15,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
  * @version: V1.0 <描述当前版本功能>
  */
 @HttpDslMarker
-abstract class AbstractHttpContext(private val method: HttpMethodName = HttpMethodName.GET) : HttpContext {
+sealed class AbstractHttpContext(private val method: HttpMethodName = HttpMethodName.GET) : HttpContext {
 
     private val urlContext = UrlContext()
     private val headerContext = HeaderContext()
@@ -58,7 +58,7 @@ abstract class AbstractHttpContext(private val method: HttpMethodName = HttpMeth
         return build()
     }
 
-    abstract fun buildBody(): RequestBody?
+    open fun buildBody(): RequestBody? = null
 }
 
 class HttpGetContext : AbstractHttpContext() {
@@ -80,6 +80,11 @@ open class HttpPostContext: AbstractHttpContext(HttpMethodName.POST) {
 
     override fun buildBody(): RequestBody? = body
 }
+
+class HttpHeadContext : AbstractHttpContext(method = HttpMethodName.HEAD)
+class HttpPutContext : AbstractHttpContext(method = HttpMethodName.PUT)
+class HttpPatchContext : AbstractHttpContext(method = HttpMethodName.PATCH)
+class HttpDeleteContext : AbstractHttpContext(method = HttpMethodName.DELETE)
 
 internal interface HttpContext {
 
