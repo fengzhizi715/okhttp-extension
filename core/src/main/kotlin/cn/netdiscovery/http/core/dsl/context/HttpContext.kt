@@ -74,6 +74,10 @@ open class HttpPostContext: AbstractHttpContext(HttpMethodName.POST) {
         body = BodyContext(contentType).init()
     }
 
+    fun multipartBody(contentType: String? = null, init: MultipartBodyContext.() -> Unit) {
+        body = MultipartBodyContext(contentType).apply { init() }.build()
+    }
+
     override fun buildBody(): RequestBody? = body
 }
 
