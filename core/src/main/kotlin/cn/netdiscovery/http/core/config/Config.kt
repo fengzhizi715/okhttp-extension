@@ -2,6 +2,7 @@ package cn.netdiscovery.http.core.config
 
 import cn.netdiscovery.http.core.*
 import cn.netdiscovery.http.core.request.*
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 /**
@@ -13,6 +14,8 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
  * @version: V1.0 <描述当前版本功能>
  */
 val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+
+val formMediaType = "application/x-www-form-urlencoded".toMediaType()
 
 val ua = "User-Agent"
 

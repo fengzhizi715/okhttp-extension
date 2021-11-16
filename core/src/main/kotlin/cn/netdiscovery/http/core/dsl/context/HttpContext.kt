@@ -2,9 +2,9 @@ package cn.netdiscovery.http.core.dsl.context
 
 import cn.netdiscovery.http.core.domain.HttpMethodName
 import okhttp3.Headers
-import okhttp3.HttpUrl
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 /**
  *
@@ -39,8 +39,6 @@ abstract class AbstractHttpContext(private val method: HttpMethodName = HttpMeth
             urlContext.customUrl ?: "$baseUrl${urlContext.url}"
         }
 
-        println("url:$url")
-
         url(url)
 
         headers(Headers.Builder().apply {
@@ -50,20 +48,33 @@ abstract class AbstractHttpContext(private val method: HttpMethodName = HttpMeth
         }.build())
 
         when (method) {
-            HttpMethodName.POST, HttpMethodName.PUT, HttpMethodName.PATCH, HttpMethodName.DELETE -> method(method.name, makeBody())
+            HttpMethodName.POST, HttpMethodName.PUT, HttpMethodName.PATCH, HttpMethodName.DELETE -> method(method.name, buildBody())
+
             HttpMethodName.HEAD -> head()
+
             HttpMethodName.GET  -> get()
         }
 
         return build()
     }
 
-    abstract fun makeBody(): RequestBody?
+    abstract fun buildBody(): RequestBody?
 }
 
 class HttpGetContext : AbstractHttpContext() {
 
-    override fun makeBody(): RequestBody? = null
+    override fun buildBody(): RequestBody? = null
+}
+
+open class HttpPostContext: AbstractHttpContext(HttpMethodName.POST) {
+
+    private var body: RequestBody = byteArrayOf().toRequestBody(null)
+
+    fun body(contentType: String? = null, init: BodyContext.() -> RequestBody) {
+        body = BodyContext(contentType).init()
+    }
+
+    override fun buildBody(): RequestBody? = body
 }
 
 internal interface HttpContext {
@@ -73,7 +84,6 @@ internal interface HttpContext {
     fun header(init: HeaderContext.() -> Unit)
 
     fun buildRequest(baseUrl:String): Request
-
 }
 
 @DslMarker

@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.dsl.context.HttpGetContext
+import cn.netdiscovery.http.core.dsl.context.HttpPostContext
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.request.method.MethodBuilder
 import cn.netdiscovery.http.core.storage.DefaultStorage
@@ -86,6 +87,11 @@ class OkHttpClientWrapper(private var baseUrl: String,
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.post(body)
         }
+    }
+
+    override fun post(init: HttpPostContext.() -> Unit): Response = okHttpClient.call{
+        val context = HttpPostContext().apply(init)
+        context.buildRequest(baseUrl)
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
