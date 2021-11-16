@@ -2,6 +2,8 @@ package cn.netdiscovery.http.core.dsl.context
 
 import cn.netdiscovery.http.core.config.formMediaType
 import cn.netdiscovery.http.core.config.jsonMediaType
+import cn.netdiscovery.http.core.dsl.Form
+import cn.netdiscovery.http.core.dsl.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -31,7 +33,7 @@ class BodyContext(type: String?) {
 
     fun form(content: String): RequestBody = content.toRequestBody(formMediaType)
 
-//    fun json(init: Json.() -> Unit): RequestBody = Json().also(init).toString().toRequestBody(jsonMediaType)
-//
-//    fun form(init: Form.() -> Unit): RequestBody = Form().also(init).makeBody()
+    fun json(init: Json.() -> Unit): RequestBody = Json().also(init).toString().toRequestBody(jsonMediaType)
+
+    fun form(init: Form.() -> Unit): RequestBody = Form().also(init).buildBody()
 }
