@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.core.dsl.context
 
+import cn.netdiscovery.http.core.domain.Params
+
 /**
  *
  * @FileName:
@@ -10,15 +12,15 @@ package cn.netdiscovery.http.core.dsl.context
  */
 @HttpDslMarker
 class HeaderContext {
-    private val map: MutableMap<String, Any> = mutableMapOf()
+    private val params: Params = Params.from(mutableMapOf())
 
     infix fun String.to(v: Any) {
-        map[this] = v
+        params.add(Pair(this,v.toString()))
     }
 
     fun cookie(init: CookieContext.() -> Unit) {
-        map["cookie"] = CookieContext().also(init).collect()
+        params.add(Pair("cookie",CookieContext().also(init).collect()))
     }
 
-    internal fun forEach(action: (k: String, v: Any) -> Unit) = map.forEach { (k, v) -> action(k, v) }
+    internal fun forEach(action: (k: String, v: Any) -> Unit) = params.forEach { (k, v) -> action(k, v) }
 }
