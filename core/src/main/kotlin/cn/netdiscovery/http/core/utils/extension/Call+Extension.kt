@@ -14,9 +14,9 @@ import java.util.concurrent.CompletableFuture
  */
 fun Call.Factory.call(block:()-> Request):Response = this.newCall(block.invoke()).execute()
 
-fun Call.Factory.asyncCall(request: Request): CompletableFuture<Response>  {
+fun Call.Factory.asyncCall(block:()->Request): CompletableFuture<Response> {
     val future = CompletableFuture<Response>()
-    val call = newCall(request)
+    val call = newCall(block.invoke())
     call.enqueue(object : Callback {
         override fun onResponse(call: Call, response: Response) {
             future.complete(response)
