@@ -66,7 +66,7 @@ class HttpGetContext : AbstractHttpContext() {
     override fun buildBody(): RequestBody? = null
 }
 
-open class HttpPostContext: AbstractHttpContext(HttpMethodName.POST) {
+open class HttpPostContext(method: HttpMethodName = HttpMethodName.POST): AbstractHttpContext(method) {
 
     private var body: RequestBody = byteArrayOf().toRequestBody(null)
 
@@ -82,9 +82,9 @@ open class HttpPostContext: AbstractHttpContext(HttpMethodName.POST) {
 }
 
 class HttpHeadContext : AbstractHttpContext(method = HttpMethodName.HEAD)
-class HttpPutContext : AbstractHttpContext(method = HttpMethodName.PUT)
-class HttpPatchContext : AbstractHttpContext(method = HttpMethodName.PATCH)
-class HttpDeleteContext : AbstractHttpContext(method = HttpMethodName.DELETE)
+class HttpPutContext : HttpPostContext(method = HttpMethodName.PUT)
+class HttpPatchContext : HttpPostContext(method = HttpMethodName.PATCH)
+class HttpDeleteContext : HttpPostContext(method = HttpMethodName.DELETE)
 
 internal interface HttpContext {
 
