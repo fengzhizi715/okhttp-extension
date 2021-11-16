@@ -14,6 +14,22 @@ import java.util.concurrent.CompletableFuture
  */
 fun Call.Factory.call(block:()-> Request):Response = this.newCall(block.invoke()).execute()
 
+fun Call.Factory.asyncCall(request: Request): CompletableFuture<Response>  {
+    val future = CompletableFuture<Response>()
+    val call = newCall(request)
+    call.enqueue(object : Callback {
+        override fun onResponse(call: Call, response: Response) {
+            future.complete(response)
+        }
+
+        override fun onFailure(call: Call, e: IOException) {
+            future.completeExceptionally(e)
+        }
+    })
+
+    return future
+}
+
 fun Call.blockStringBody(): String? = execute().stringBody()
 
 fun <T> Call.letStringBody(block: (body: String?) -> T): T = execute().letStringBody(block)
