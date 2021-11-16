@@ -7,16 +7,19 @@ import com.google.gson.GsonBuilder
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*
 import io.ktor.content.*
+import io.ktor.content.TextContent
 import io.ktor.features.*
 import io.ktor.freemarker.*
 import io.ktor.gson.*
 import io.ktor.http.*
+import io.ktor.http.content.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.util.*
+import java.io.File
 import java.text.DateFormat
 
 /**
@@ -44,6 +47,8 @@ fun Application.module() {
         }
     }
     install(Routing) {
+        var fileDescription = ""
+        var fileName = ""
 
         get("/sayHi/{name}") {
             val name = call.parameters["name"]
@@ -70,6 +75,24 @@ fun Application.module() {
             val requestModel = call.receive(RequestModel::class)
             val response = WrapperResponse(data = requestModel)
             call.respond(response)
+        }
+        post("/upload") {
+            val multipartData = call.receiveMultipart()
+
+            multipartData.forEachPart { part ->
+                when (part) {
+                    is PartData.FormItem -> {
+                        fileDescription = part.value
+                    }
+                    is PartData.FileItem -> {
+                        fileName = part.originalFileName as String
+                        var fileBytes = part.streamProvider().readBytes()
+                        File("/Users/tony/$fileName").writeBytes(fileBytes)
+                    }
+                }
+            }
+
+            call.respondText("$fileDescription is uploaded to 'uploads/$fileName'")
         }
     }
 }
