@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.dsl.context.HttpGetContext
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
@@ -54,6 +55,8 @@ interface HttpClient {
      * @return okhttp3.Response
      */
     fun get(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Response
+
+    fun get(init: HttpGetContext.() -> Unit): Response
 
     /**
      * Create post request
