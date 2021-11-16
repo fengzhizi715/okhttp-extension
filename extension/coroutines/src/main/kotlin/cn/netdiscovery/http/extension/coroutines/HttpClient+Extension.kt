@@ -14,56 +14,26 @@ import okhttp3.Response
  * @date: 2021/11/16 8:55 下午
  * @version: V1.0 <描述当前版本功能>
  */
-fun HttpClient.asyncGet(init: HttpGetContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpGetContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncGet(init: HttpGetContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncGet.okHttpClient().suspendCall(HttpGetContext().apply(init).buildRequest(this@asyncGet.getBaseUrl()))
 }
 
-fun HttpClient.asyncPost(init: HttpPostContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpPostContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncPost(init: HttpPostContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncPost.okHttpClient().suspendCall(HttpPostContext().apply(init).buildRequest(this@asyncPost.getBaseUrl()))
 }
 
-fun HttpClient.asyncPut(init:  HttpPutContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpPutContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncPut(init:  HttpPutContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncPut.okHttpClient().suspendCall(HttpPutContext().apply(init).buildRequest(this@asyncPut.getBaseUrl()))
 }
 
-fun HttpClient.asyncDelete(init:  HttpDeleteContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpDeleteContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncDelete(init:  HttpDeleteContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncDelete.okHttpClient().suspendCall(HttpDeleteContext().apply(init).buildRequest(this@asyncDelete.getBaseUrl()))
 }
 
-fun HttpClient.asyncHead(init: HttpHeadContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpHeadContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncHead(init: HttpHeadContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncHead.okHttpClient().suspendCall(HttpHeadContext().apply(init).buildRequest(this@asyncHead.getBaseUrl()))
 }
 
-fun HttpClient.asyncPatch(init: HttpPatchContext.() -> Unit): Deferred<Response> {
-    val baseUrl = this.getBaseUrl()
-    val okHttpClient = this.okHttpClient()
-
-    return asyncInBackground{
-        okHttpClient.suspendCall(HttpPatchContext().apply(init).buildRequest(baseUrl))
-    }
+fun HttpClient.asyncPatch(init: HttpPatchContext.() -> Unit): Deferred<Response> = asyncInBackground{
+    this@asyncPatch.okHttpClient().suspendCall(HttpPatchContext().apply(init).buildRequest(this@asyncPatch.getBaseUrl()))
 }
