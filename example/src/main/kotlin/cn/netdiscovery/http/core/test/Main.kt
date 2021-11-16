@@ -94,6 +94,10 @@ fun Application.module() {
 
             call.respondText("$fileDescription is uploaded to 'uploads/$fileName'")
         }
+        put("/response-body") {
+            val requestBody = call.receiveText()
+            call.respondText(requestBody)
+        }
     }
 }
 
