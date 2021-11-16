@@ -84,7 +84,7 @@ interface HttpClient {
      */
     fun put(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
-    fun put(init:  HttpPutContext.() -> Unit): Response
+    fun put(init: HttpPutContext.() -> Unit): Response
 
     /**
      * @see #get
@@ -97,11 +97,11 @@ interface HttpClient {
 
     fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
 
-    fun head(init:  HttpHeadContext.() -> Unit): Response
+    fun head(init: HttpHeadContext.() -> Unit): Response
 
     fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
-    fun patch(init:  HttpPatchContext.() -> Unit): Response
+    fun patch(init: HttpPatchContext.() -> Unit): Response
 
     /**
      * @see #post

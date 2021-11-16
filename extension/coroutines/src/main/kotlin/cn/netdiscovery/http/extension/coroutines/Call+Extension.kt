@@ -33,7 +33,7 @@ suspend fun Call.suspendCall(): Response =
         })
     }
 
-internal suspend fun Call.Factory.suspendCall(request: Request): Response =
+suspend fun Call.Factory.suspendCall(request: Request): Response =
     suspendCancellableCoroutine { cont ->
         val call = newCall(request)
         cont.invokeOnCancellation {
