@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.dsl.context.HttpDeleteContext
 import cn.netdiscovery.http.core.dsl.context.HttpGetContext
 import cn.netdiscovery.http.core.dsl.context.HttpPostContext
 import cn.netdiscovery.http.core.dsl.context.HttpPutContext
@@ -110,6 +111,11 @@ class OkHttpClientWrapper(private var baseUrl: String,
         createRequest(url, customUrl, query, headers) {
             it.delete()
         }
+    }
+
+    override fun delete(init: HttpDeleteContext.() -> Unit): Response = okHttpClient.call {
+        val context = HttpDeleteContext().apply(init)
+        context.buildRequest(baseUrl)
     }
 
     override fun head(url: String, customUrl: String?, query: Params, headers: Params?): Response = okHttpClient.call {

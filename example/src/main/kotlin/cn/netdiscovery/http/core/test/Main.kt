@@ -98,6 +98,10 @@ fun Application.module() {
             val requestBody = call.receiveText()
             call.respondText(requestBody)
         }
+        delete("/users/{name}") {
+            val name = call.parameters["name"]
+            call.respond("$name removed successfully")
+        }
     }
 }
 

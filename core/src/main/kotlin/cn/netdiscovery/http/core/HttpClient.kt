@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
+import cn.netdiscovery.http.core.dsl.context.HttpDeleteContext
 import cn.netdiscovery.http.core.dsl.context.HttpGetContext
 import cn.netdiscovery.http.core.dsl.context.HttpPostContext
 import cn.netdiscovery.http.core.dsl.context.HttpPutContext
@@ -91,6 +92,8 @@ interface HttpClient {
      * @see Response
      */
     fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
+
+    fun delete(init:  HttpDeleteContext.() -> Unit): Response
 
     fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
 
