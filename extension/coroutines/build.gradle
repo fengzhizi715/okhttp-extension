@@ -19,7 +19,9 @@ dependencies {
 
     implementation project(":core")
     compileOnly "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
-    compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.kotlinx_coroutines_core}"
+    implementation 'com.github.fengzhizi715.Kotlin-Coroutines-Utils:common:v1.1.4'
+
 }
 
 compileKotlin {

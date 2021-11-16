@@ -1,7 +1,6 @@
 package cn.netdiscovery.http.core.test.okhttpextension
 
 import cn.netdiscovery.http.core.test.httpClient
-import java.io.File
 
 /**
  *
@@ -13,15 +12,8 @@ import java.io.File
  */
 fun main() {
 
-    val file = File("/Users/tony/Downloads/WechatIMG3.png")
-
-//    httpClient
-//        .get(customUrl = "https://baidu.com")
-//        .use {
-//            println(it)
-//        }
-
-    httpClient.upload(url = "/upload",name = "file", file = file)
+    httpClient
+        .get(customUrl = "https://baidu.com")
         .use {
             println(it)
         }
