@@ -10,6 +10,7 @@ import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
 import okhttp3.*
+import java.io.File
 import kotlin.reflect.KClass
 
 /**
@@ -73,6 +74,8 @@ interface HttpClient {
     fun post(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
 
     fun post(init: HttpPostContext.() -> Unit): Response
+
+    fun upload(url: String = "", customUrl: String? = null, headers: Params? = null, name: String, file: File): Response
 
     /**
      * @see #post

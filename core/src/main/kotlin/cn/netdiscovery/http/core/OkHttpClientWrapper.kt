@@ -16,7 +16,9 @@ import cn.netdiscovery.http.core.utils.extension.call
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
 import okhttp3.*
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 import java.net.CookieManager
 import java.net.URI
 import kotlin.reflect.KClass
@@ -91,6 +93,15 @@ class OkHttpClientWrapper(private var baseUrl: String,
     override fun post(init: HttpPostContext.() -> Unit): Response = okHttpClient.call{
         val context = HttpPostContext().apply(init)
         context.buildRequest(baseUrl)
+    }
+
+    override fun upload(url: String, customUrl: String?, headers: Params?, name: String, file: File): Response = okHttpClient.call {
+
+        val body = MultipartBody.Builder().addPart(MultipartBody.Part.createFormData(name, file.name, file.asRequestBody())).build()
+
+        createMultipartBodyRequest(url, customUrl, headers,body) { builder, body ->
+            builder.post(body)
+        }
     }
 
     override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
@@ -241,6 +252,33 @@ class OkHttpClientWrapper(private var baseUrl: String,
                 }
 
         return builder.build()
+    }
+
+    /**
+     * 创建 request 请求，适用于文件 upload
+     */
+    private fun createMultipartBodyRequest(url: String,
+                                  customUrl: String?,
+                                  header: Params?,
+                                  body: MultipartBody,
+                                  block: (Request.Builder, RequestBody) -> Unit): Request {
+
+        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+
+        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+
+        if (userAgent.isNotEmpty()) {
+            request.addHeader(ua, userAgent)
+        }
+
+        block.invoke(request, body)
+
+        processorStore.getRequestProcessors()
+            .forEach {
+                request = it.invoke(this, request)
+            }
+
+        return request.build()
     }
 
     /**
