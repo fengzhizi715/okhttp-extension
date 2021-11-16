@@ -5,10 +5,7 @@ import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.dsl.context.HttpDeleteContext
-import cn.netdiscovery.http.core.dsl.context.HttpGetContext
-import cn.netdiscovery.http.core.dsl.context.HttpPostContext
-import cn.netdiscovery.http.core.dsl.context.HttpPutContext
+import cn.netdiscovery.http.core.dsl.context.*
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.request.method.MethodBuilder
 import cn.netdiscovery.http.core.storage.DefaultStorage
@@ -124,10 +121,20 @@ class OkHttpClientWrapper(private var baseUrl: String,
         }
     }
 
+    override fun head(init: HttpHeadContext.() -> Unit): Response = okHttpClient.call{
+        val context = HttpHeadContext().apply(init)
+        context.buildRequest(baseUrl)
+    }
+
     override fun patch(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.patch(body)
         }
+    }
+
+    override fun patch(init: HttpPatchContext.() -> Unit): Response = okHttpClient.call{
+        val context = HttpPatchContext().apply(init)
+        context.buildRequest(baseUrl)
     }
 
     override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Response = okHttpClient.call {

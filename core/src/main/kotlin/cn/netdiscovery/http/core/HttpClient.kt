@@ -5,10 +5,7 @@ import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
-import cn.netdiscovery.http.core.dsl.context.HttpDeleteContext
-import cn.netdiscovery.http.core.dsl.context.HttpGetContext
-import cn.netdiscovery.http.core.dsl.context.HttpPostContext
-import cn.netdiscovery.http.core.dsl.context.HttpPutContext
+import cn.netdiscovery.http.core.dsl.context.*
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
@@ -97,7 +94,11 @@ interface HttpClient {
 
     fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
 
+    fun head(init:  HttpHeadContext.() -> Unit): Response
+
     fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
+
+    fun patch(init:  HttpPatchContext.() -> Unit): Response
 
     /**
      * @see #post
