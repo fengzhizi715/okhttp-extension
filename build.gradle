@@ -6,7 +6,7 @@ ext {
 
             okhttp3                   : "4.9.2",
 
-            ktor                      : "1.4.0",
+            ktor                      : "1.6.4",
 
             retrofit                  : "2.9.0",
 
