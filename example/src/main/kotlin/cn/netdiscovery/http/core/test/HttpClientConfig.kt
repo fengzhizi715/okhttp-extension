@@ -2,6 +2,7 @@ package cn.netdiscovery.http.core.test
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
+import cn.netdiscovery.http.core.interceptor.CurlLoggingInterceptor
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
@@ -50,6 +51,7 @@ val httpClient: HttpClient by lazy {
         .baseUrl("http://localhost:8080")
         .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
+        .addInterceptor(CurlLoggingInterceptor())
         .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
         .build()
