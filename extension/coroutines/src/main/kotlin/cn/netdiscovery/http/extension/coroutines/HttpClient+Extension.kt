@@ -49,4 +49,4 @@ fun HttpClient.flowDelete(init: HttpDeleteContext.() -> Unit): Flow<Response> = 
 
 fun HttpClient.flowHead(init: HttpHeadContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpHeadContext().apply(init).buildRequest(this.getBaseUrl()))
 
-fun HttpClient.flowPatc(init: HttpPatchContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpPatchContext().apply(init).buildRequest(this.getBaseUrl()))
+fun HttpClient.flowPatch(init: HttpPatchContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpPatchContext().apply(init).buildRequest(this.getBaseUrl()))

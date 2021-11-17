@@ -80,6 +80,7 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 ## TODO List:
 
 * 增加文档
-* 支持 OAuth2 验证
+* 支持 OAuth2 认证
+* 支持 JWT 认证
 * 提供常用的拦截器
 * 完善 Spring 和 Springboot 集成
