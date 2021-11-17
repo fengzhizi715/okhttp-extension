@@ -5,13 +5,11 @@ import okhttp3.Request
 import okhttp3.Response
 
 /**
- * 请求签名的拦截器，支持对 query 参数进行签名。
- *
  * @FileName:
  *          cn.netdiscovery.http.core.interceptor.SigningInterceptor
  * @author: Tony Shen
  * @date: 2021/11/8 11:14 上午
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 请求签名的拦截器，支持对 query 参数进行签名。
  */
 class SigningInterceptor(private val parameterName: String,
                          private val extraMap: Map<String, String>? =null,

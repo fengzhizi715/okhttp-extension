@@ -9,17 +9,18 @@ import okhttp3.*
  *          cn.netdiscovery.http.core.interceptor.CurlLoggingInterceptor
  * @author: Tony Shen
  * @date: 2021/11/17 3:45 下午
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 将网络请求转换成 curl 的命令
  */
 class CurlLoggingInterceptor(
     private val log: (String) -> Unit = ::println
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
-        log("-->")
+        log("curl:")
+        log("╔══════════════════════════════════════════════════════════════════════════════════════════════════")
         val command = buildCurlCommand(request)
-        log(command)
-        log("---")
+        log("║ "+command)
+        log("╚══════════════════════════════════════════════════════════════════════════════════════════════════")
 
         return chain.proceed(request)
     }
