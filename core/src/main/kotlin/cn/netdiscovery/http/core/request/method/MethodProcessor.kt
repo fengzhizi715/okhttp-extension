@@ -14,12 +14,12 @@ import java.util.concurrent.CompletableFuture
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.request.method.SingleMethodProcessor
+ *          cn.netdiscovery.http.core.request.method.MethodProcessor
  * @author: Tony Shen
  * @date: 2020-10-09 01:28
  * @version: V1.0 <描述当前版本功能>
  */
-class SingleMethodProcessor<T : Any>(
+class MethodProcessor<T : Any>(
         private val method: RequestMethod<*>,
         private val client: HttpClient,
         private val contents: List<Content>,
