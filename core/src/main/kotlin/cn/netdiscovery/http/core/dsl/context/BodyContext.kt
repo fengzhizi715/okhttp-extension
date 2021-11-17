@@ -4,10 +4,13 @@ import cn.netdiscovery.http.core.config.formMediaType
 import cn.netdiscovery.http.core.config.jsonMediaType
 import cn.netdiscovery.http.core.dsl.Form
 import cn.netdiscovery.http.core.dsl.Json
+import cn.netdiscovery.http.core.serializer.SerializerManager
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.internal.EMPTY_REQUEST
+import okhttp3.internal.EMPTY_RESPONSE
 import java.io.File
 
 /**
@@ -36,4 +39,6 @@ class BodyContext(type: String?) {
     fun json(init: Json.() -> Unit): RequestBody = Json().also(init).toString().toRequestBody(jsonMediaType)
 
     fun form(init: Form.() -> Unit): RequestBody = Form().also(init).buildBody()
+
+    fun json(any: Any): RequestBody = SerializerManager.toJson(any)?.toRequestBody(jsonMediaType)?: EMPTY_REQUEST
 }

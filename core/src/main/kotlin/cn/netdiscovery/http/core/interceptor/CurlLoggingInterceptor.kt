@@ -19,7 +19,7 @@ class CurlLoggingInterceptor(
         log("curl:")
         log("╔══════════════════════════════════════════════════════════════════════════════════════════════════")
         val command = buildCurlCommand(request)
-        log("║ "+command)
+        log("║ $command")
         log("╚══════════════════════════════════════════════════════════════════════════════════════════════════")
 
         return chain.proceed(request)
