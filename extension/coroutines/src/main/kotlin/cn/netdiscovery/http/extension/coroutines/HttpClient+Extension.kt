@@ -4,6 +4,7 @@ import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.dsl.context.*
 import com.safframework.kotlin.coroutines.asyncInBackground
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.flow.Flow
 import okhttp3.Response
 
 /**
@@ -37,3 +38,15 @@ fun HttpClient.asyncHead(init: HttpHeadContext.() -> Unit): Deferred<Response> =
 fun HttpClient.asyncPatch(init: HttpPatchContext.() -> Unit): Deferred<Response> = asyncInBackground{
     this@asyncPatch.okHttpClient().suspendCall(HttpPatchContext().apply(init).buildRequest(this@asyncPatch.getBaseUrl()))
 }
+
+fun HttpClient.flowGet(init: HttpGetContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpGetContext().apply(init).buildRequest(this.getBaseUrl()))
+
+fun HttpClient.flowPost(init: HttpPostContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpPostContext().apply(init).buildRequest(this.getBaseUrl()))
+
+fun HttpClient.flowPut(init: HttpPutContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpPutContext().apply(init).buildRequest(this.getBaseUrl()))
+
+fun HttpClient.flowDelete(init: HttpDeleteContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpDeleteContext().apply(init).buildRequest(this.getBaseUrl()))
+
+fun HttpClient.flowHead(init: HttpHeadContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpHeadContext().apply(init).buildRequest(this.getBaseUrl()))
+
+fun HttpClient.flowPatc(init: HttpPatchContext.() -> Unit): Flow<Response> = okHttpClient().flowCall(HttpPatchContext().apply(init).buildRequest(this.getBaseUrl()))

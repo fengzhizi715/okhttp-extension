@@ -1,5 +1,9 @@
 package cn.netdiscovery.http.extension.coroutines
 
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.Call
 import okhttp3.Callback
@@ -49,3 +53,17 @@ suspend fun Call.Factory.suspendCall(request: Request): Response =
             }
         })
     }
+
+fun Call.Factory.flowCall(request: Request): Flow<Response> = callbackFlow {
+    val call = newCall(request)
+    call.enqueue(object : Callback {
+        override fun onResponse(call: Call, response: Response) {
+            trySendBlocking(response)
+        }
+
+        override fun onFailure(call: Call, e: IOException) {
+            close()
+        }
+    })
+    awaitClose()
+}
