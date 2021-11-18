@@ -1,6 +1,14 @@
 okhttp-extension
 ===
 
+Version 1.2.0
+---
+2021-11-18
+* 增加 CurlLoggingInterceptor
+* 完善协程相关的扩展函数
+* 完善 DSL 方式创建 request
+
+
 Version 1.1.4
 ---
 2021-11-8
