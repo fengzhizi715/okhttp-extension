@@ -26,6 +26,8 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 * 提供常用的拦截器
 * core 模块只依赖 okhttp，不依赖其他第三方库
 
+![okhttp-extension](images/okhttp-extension.png)
+
 
 ## 最新版本
 模块|最新版本
