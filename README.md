@@ -13,7 +13,6 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 ## Features:
 
 * 支持 DSL 创建 HTTP `GET`/`POST`/`PUT`/`HEAD`/`DELETE`/`PATCH` requests.
-* core 模块只依赖 okhttp，不依赖其他第三方库
 * 支持自定义线程池
 * 支持 Kotlin 协程
 * 支持响应式(RxJava、Spring Reactor)
@@ -24,6 +23,8 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 * 支持 traceId 的传递(通过拦截器)
 * 支持 Retrofit、Feign 框架
 * 支持 websocket 的实现、重连等
+* 提供常用的拦截器
+* core 模块只依赖 okhttp，不依赖其他第三方库
 
 
 ## 最新版本
