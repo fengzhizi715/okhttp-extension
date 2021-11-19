@@ -102,6 +102,10 @@ fun Application.module() {
             val name = call.parameters["name"]
             call.respond("$name removed successfully")
         }
+        patch("/response-body") {
+            val requestBody = call.receiveText()
+            call.respondText(requestBody)
+        }
     }
 }
 
