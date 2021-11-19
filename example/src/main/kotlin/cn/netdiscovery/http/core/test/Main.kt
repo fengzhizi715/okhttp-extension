@@ -106,6 +106,11 @@ fun Application.module() {
             val requestBody = call.receiveText()
             call.respondText(requestBody)
         }
+        head("/response-headers") {
+            val params = call.request.headers.toMap()
+            val content = TextContent(gson.toJson(params), ContentType.Application.Json)
+            call.respond(content)
+        }
     }
 }
 
