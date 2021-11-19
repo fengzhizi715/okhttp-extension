@@ -21,7 +21,7 @@ okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也�
 * 支持异步请求的取消
 * 支持 Request、Response 的拦截器
 * 支持 traceId 的传递(通过拦截器)
-* 支持 Retrofit、Feign 框架
+* 支持整合 Retrofit、Feign 框架
 * 支持 websocket 的实现、重连等
 * 提供常用的拦截器
 * core 模块只依赖 okhttp，不依赖其他第三方库
