@@ -22,8 +22,11 @@ fun main() {
             "key2" to "value2"
         }
 
-        body("application/json") {
-            string("content")
+        body {
+            form {
+                "form1" to "value1"
+                "form2" to "value2"
+            }
         }
     }.use {
         println(it)
