@@ -1,6 +1,12 @@
 okhttp-extension
 ===
 
+Version 1.2.1
+---
+2021-11-21
+* 增加 JWTInterceptor
+* 增加 OAuth2Interceptor
+
 Version 1.2.0
 ---
 2021-11-18
