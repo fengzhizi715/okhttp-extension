@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.interceptor
+package cn.netdiscovery.http.core.interceptors
 
 import cn.netdiscovery.http.core.utils.extension.flatMap
 import okhttp3.*

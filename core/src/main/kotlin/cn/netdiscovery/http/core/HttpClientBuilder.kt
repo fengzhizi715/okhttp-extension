@@ -3,7 +3,7 @@ package cn.netdiscovery.http.core
 import cn.netdiscovery.http.core.aop.DefaultProcessorStore
 import cn.netdiscovery.http.core.serializer.Serializer
 import cn.netdiscovery.http.core.serializer.SerializerManager
-import cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
+import cn.netdiscovery.http.core.interceptors.ResponseProcessingInterceptor
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage

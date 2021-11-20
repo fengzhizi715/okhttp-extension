@@ -2,7 +2,7 @@ package cn.netdiscovery.http.core.test
 
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
-import cn.netdiscovery.http.core.interceptor.CurlLoggingInterceptor
+import cn.netdiscovery.http.core.interceptors.CurlLoggingInterceptor
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager

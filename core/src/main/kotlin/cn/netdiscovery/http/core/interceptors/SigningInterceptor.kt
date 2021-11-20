@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.interceptor
+package cn.netdiscovery.http.core.interceptors
 
 import okhttp3.Interceptor
 import okhttp3.Request

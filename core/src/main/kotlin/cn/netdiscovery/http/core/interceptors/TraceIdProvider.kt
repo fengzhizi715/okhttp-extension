@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.interceptor
+package cn.netdiscovery.http.core.interceptors
 
 /**
  *
