@@ -83,6 +83,4 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 
 ## TODO List:
 
-* 支持 OAuth2 认证
-* 支持 JWT 认证
-* 完善 Spring 和 Springboot 集成
+* 完善和 Spring/Springboot 集成以及相关示例
