@@ -27,17 +27,21 @@ class OAuth2Interceptor(private val provider: OAuth2Provider) : Interceptor {
 
         var response = chain.proceed(request)
         if (response.code == HttpURLConnection.HTTP_UNAUTHORIZED) {
-            //如果返回了401，则尝试通过 provider 获取新的 token
-            val accessToken = provider.refreshToken()
-            if (!accessToken.isNullOrEmpty()) {
-                //如果获取到了新的token，则构建一个新的请求
-                request = request.newBuilder()
-                    .removeHeader(AUTHORIZATION)
-                    .addHeader(AUTHORIZATION, "Bearer $accessToken")
-                    .build()
-                response.close()
-                response = chain.proceed(request)
+            synchronized(this) {
+                //如果返回了401，则尝试通过 provider 获取新的 token
+                val accessToken = provider.refreshToken()
+                if (!accessToken.isNullOrEmpty()) {
+                    //如果获取到了新的token，则构建一个新的请求
+                    request = request.newBuilder()
+                        .removeHeader(AUTHORIZATION)
+                        .addHeader(AUTHORIZATION, "Bearer $accessToken")
+                        .build()
+                    response.close()
+//                    response = chain.proceed(request)
+                    return chain.proceed(request)
+                }
             }
+
         }
         return response
     }
