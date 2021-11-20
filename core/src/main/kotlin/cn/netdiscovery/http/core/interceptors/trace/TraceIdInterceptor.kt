@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.interceptors
+package cn.netdiscovery.http.core.interceptors.trace
 
 import cn.netdiscovery.http.core.config.TRACE_ID
 import okhttp3.Interceptor
