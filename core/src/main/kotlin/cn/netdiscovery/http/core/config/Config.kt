@@ -21,6 +21,8 @@ val ua = "User-Agent"
 
 val TRACE_ID = "traceId"
 
+val AUTHORIZATION = "Authorization"
+
 val resolvers: Map<String, RequestBlock>  = mapOf(
         "queries" to ::processQuery,
         "path"    to ::processPath,
