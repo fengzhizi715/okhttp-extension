@@ -9,4 +9,12 @@ package cn.netdiscovery.http.core.interceptors.jwt
  * @version: V1.0 <描述当前版本功能>
  */
 interface JWTProvider {
+
+    fun getToken():String
+
+    /**
+     * 刷新token
+     * @return String?
+     */
+    fun refreshToken(): String?
 }

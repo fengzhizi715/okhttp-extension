@@ -1,4 +1,4 @@
-package cn.netdiscovery.http.core.interceptors.oauth
+package cn.netdiscovery.http.core.interceptors.jwt
 
 import cn.netdiscovery.http.core.config.AUTHORIZATION
 import okhttp3.Interceptor
@@ -8,12 +8,12 @@ import java.net.HttpURLConnection
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.interceptors.oauth.OAuth2Interceptor
+ *          cn.netdiscovery.http.core.interceptors.jwt.JWTInterceptor
  * @author: Tony Shen
- * @date: 2021/11/20 10:46 上午
+ * @date: 2021/11/20 1:45 下午
  * @version: V1.0 <描述当前版本功能>
  */
-class OAuth2Interceptor(private val provider: OAuth2Provider) : Interceptor {
+class JWTInterceptor(private val provider: JWTProvider): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
@@ -26,6 +26,7 @@ class OAuth2Interceptor(private val provider: OAuth2Provider) : Interceptor {
             .build()
 
         var response = chain.proceed(request)
+
         if (response.code == HttpURLConnection.HTTP_UNAUTHORIZED) {
             synchronized(this) {
                 //如果返回了401，则尝试通过 provider 获取新的 token
@@ -37,6 +38,7 @@ class OAuth2Interceptor(private val provider: OAuth2Provider) : Interceptor {
                         .addHeader(AUTHORIZATION, "Bearer $accessToken")
                         .build()
                     response.close()
+
                     return chain.proceed(request)
                 }
             }
