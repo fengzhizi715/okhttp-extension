@@ -10,7 +10,7 @@ package cn.netdiscovery.http.core.interceptors.jwt
  */
 interface JWTProvider {
 
-    fun getToken():String
+    fun getJWTToken():String
 
     /**
      * 刷新token

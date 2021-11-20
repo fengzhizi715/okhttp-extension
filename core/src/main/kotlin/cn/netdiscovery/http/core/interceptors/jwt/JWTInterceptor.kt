@@ -19,7 +19,7 @@ class JWTInterceptor(private val provider: JWTProvider): Interceptor {
         var request = chain.request()
             .newBuilder()
             .apply {
-                val token = provider.getToken()
+                val token = provider.getJWTToken()
                 removeHeader(AUTHORIZATION)
                 addHeader(AUTHORIZATION, "Bearer $token")
             }

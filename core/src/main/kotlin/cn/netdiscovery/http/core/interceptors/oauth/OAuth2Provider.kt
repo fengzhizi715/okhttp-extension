@@ -10,7 +10,7 @@ package cn.netdiscovery.http.core.interceptors.oauth
  */
 interface OAuth2Provider {
 
-    fun getToken():String
+    fun getOauthToken():String
 
     /**
      * 刷新token

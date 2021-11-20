@@ -19,7 +19,7 @@ class OAuth2Interceptor(private val provider: OAuth2Provider) : Interceptor {
         var request = chain.request()
             .newBuilder()
             .apply {
-                val token = provider.getToken()
+                val token = provider.getOauthToken()
                 removeHeader(AUTHORIZATION)
                 addHeader(AUTHORIZATION, "Bearer $token")
             }
