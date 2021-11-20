@@ -8,22 +8,21 @@ okhttp-extension 是针对 okhttp 3 增强的网络框架。使用 Kotlin 特性
 
 core 模块只依赖 okhttp，不会引入第三方库。
 
-okhttp-extension 可以兼容 Retrofit、Feign。 另外，okhttp-extension 也给开发者提供一种新的选择。
+okhttp-extension 可以整合 Retrofit、Feign 框架，还提供了很多常用的拦截器。 另外，okhttp-extension 也给开发者提供一种新的选择。
 
 ## Features:
 
 * 支持 DSL 创建 HTTP `GET`/`POST`/`PUT`/`HEAD`/`DELETE`/`PATCH` requests.
-* 支持自定义线程池
 * 支持 Kotlin 协程
 * 支持响应式(RxJava、Spring Reactor)
 * 支持函数式
 * 支持熔断器(Resilience4j)
 * 支持异步请求的取消
 * 支持 Request、Response 的拦截器
-* 支持 traceId 的传递(通过拦截器)
+* 支持自定义线程池
+* 提供常用的拦截器
 * 支持整合 Retrofit、Feign 框架
 * 支持 websocket 的实现、重连等
-* 提供常用的拦截器
 * core 模块只依赖 okhttp，不依赖其他第三方库
 
 ![okhttp-extension](images/okhttp-extension.png)
