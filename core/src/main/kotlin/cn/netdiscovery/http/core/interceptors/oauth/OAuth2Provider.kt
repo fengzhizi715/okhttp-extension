@@ -10,14 +10,11 @@ package cn.netdiscovery.http.core.interceptors.oauth
  */
 interface OAuth2Provider {
 
-    /**
-     * 将 token 信息放入 header 中
-     */
-    val headers: Map<String, String>
+    fun getToken():String
 
     /**
      * 刷新token
-     * @return String? 返回刷新后的新token
+     * @return String?
      */
     fun refreshToken(): String?
 }
