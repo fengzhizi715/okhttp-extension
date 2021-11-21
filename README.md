@@ -52,6 +52,8 @@ resilience4j|[![](https://jitpack.io/v/fengzhizi715/okhttp-extension.svg)](https
 	}
 ```
 
+其余，按需依赖各个模块，其中 core 是必须要依赖的
+
 ```groovy
 implementation 'com.github.fengzhizi715.okhttp-extension:core:<latest-version>'
 ```
