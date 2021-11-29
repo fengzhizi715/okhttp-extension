@@ -193,15 +193,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
                               query: Params?,
                               header: Params?,
                               block: (Request.Builder) -> Unit): Request {
-
-        val query = query?.joinToString("&") { "${it.first}=${it.second}" }
-
-        val url = if (query != null) {
-            val base = customUrl ?: "$baseUrl$url"
-            "$base?$query"
-        } else {
-            customUrl ?: "$baseUrl$url"
-        }
+        val url = buildUrl(url,customUrl,query)
 
         var builder = Request.Builder().url(url)
 
@@ -314,6 +306,19 @@ class OkHttpClientWrapper(private var baseUrl: String,
      * 创建 websocket 请求
      */
     private fun createWebSocketRequest(url: String, customUrl: String?, query: Params?, header: Params?):Request {
+        val url = buildUrl(url,customUrl,query)
+
+        var builder = Request.Builder().url(url)
+
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
+
+        return builder.build()
+    }
+
+    /**
+     * 构建 url
+     */
+    private fun buildUrl(url: String, customUrl: String?, query: Params?):String {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
         val url = if (query != null) {
@@ -323,10 +328,6 @@ class OkHttpClientWrapper(private var baseUrl: String,
             customUrl ?: "$baseUrl$url"
         }
 
-        var builder = Request.Builder().url(url)
-
-        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
-
-        return builder.build()
+        return url
     }
 }
