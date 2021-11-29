@@ -84,7 +84,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun post(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
+    override fun post(url: String, customUrl: String?, query: Params?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, body, headers) { builder, body ->
             builder.post(body)
         }
@@ -218,11 +218,14 @@ class OkHttpClientWrapper(private var baseUrl: String,
      */
     private fun createBodyRequest(url: String,
                                   customUrl: String?,
+                                  query: Params?,
                                   body: Params,
                                   header: Params?,
                                   block: (Request.Builder, FormBody) -> Unit): Request {
 
-        var builder = Request.Builder().url(customUrl ?: "$baseUrl$url")
+        val url = buildUrl(url,customUrl,query)
+
+        var builder = Request.Builder().url(url)
 
         header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
@@ -321,13 +324,11 @@ class OkHttpClientWrapper(private var baseUrl: String,
     private fun buildUrl(url: String, customUrl: String?, query: Params?):String {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
-        val url = if (query != null) {
+        return if (query != null) {
             val base = customUrl ?: "$baseUrl$url"
             "$base?$query"
         } else {
             customUrl ?: "$baseUrl$url"
         }
-
-        return url
     }
 }
