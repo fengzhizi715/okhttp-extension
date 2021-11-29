@@ -144,12 +144,13 @@ interface HttpClient {
     /**
      * 支持 websocket
      * @param url
+     * @customUrl - full url which will be used instead baseUrl + url
      * @param query
      * @param headers
      * @param listener
      * @param wsConfig
      */
-    fun websocket(url:String,query: Params? = null, headers: Params? = null, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper
+    fun websocket(url: String = "", customUrl: String?, query: Params? = null, headers: Params? = null, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper
 
     /**
      * @see ProcessorStore

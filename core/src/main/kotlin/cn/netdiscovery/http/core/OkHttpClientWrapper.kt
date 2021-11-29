@@ -174,9 +174,9 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun <T : Any> send(clazz: KClass<T>, requestMethod: RequestMethod<T>): ProcessResult<T> = MethodBuilder(this, clazz).build(requestMethod)
 
-    override fun websocket(url: String, query: Params?, headers: Params?, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper {
+    override fun websocket(url: String, customUrl: String?, query: Params?, headers: Params?, listener: WebSocketListener, wsConfig: WSConfig): ReconnectWebSocketWrapper {
 
-        return ReconnectWebSocketWrapper(okHttpClient, createWebSocketRequest(url,query,headers), listener, wsConfig)
+        return ReconnectWebSocketWrapper(okHttpClient, createWebSocketRequest(url,customUrl,query,headers), listener, wsConfig)
     }
 
     override fun getProcessorStore() = processorStore
@@ -313,10 +313,17 @@ class OkHttpClientWrapper(private var baseUrl: String,
     /**
      * 创建 websocket 请求
      */
-    private fun createWebSocketRequest(url: String, query: Params?, header: Params?):Request {
+    private fun createWebSocketRequest(url: String, customUrl: String?, query: Params?, header: Params?):Request {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
 
-        var builder = Request.Builder().url( if (query != null) "$url?$query" else url)
+        val url = if (query != null) {
+            val base = customUrl ?: "$baseUrl$url"
+            "$base?$query"
+        } else {
+            customUrl ?: "$baseUrl$url"
+        }
+
+        var builder = Request.Builder().url(url)
 
         header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
