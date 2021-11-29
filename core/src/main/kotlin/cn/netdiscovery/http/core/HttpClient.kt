@@ -63,6 +63,7 @@ interface HttpClient {
      * Create post request
      * @url - part of baseUrl
      * @customUrl - full url which will be used instead baseUrl + url
+     * @query - will build query in url "url?param1=val1&param2..."
      * @body - post body
      * @headers - http headers
      *
@@ -71,18 +72,18 @@ interface HttpClient {
      *
      * @return okhttp3.Response
      */
-    fun post(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
+    fun post(url: String = "", customUrl: String? = null, query: Params? = null, body: Params, headers: Params? = null): Response
 
     fun post(init: HttpPostContext.() -> Unit): Response
 
-    fun upload(url: String = "", customUrl: String? = null, headers: Params? = null, name: String, file: File): Response
+    fun upload(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null, name: String, file: File): Response
 
     /**
      * @see #post
      * @see Params
      * @see Response
      */
-    fun put(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
+    fun put(url: String = "", customUrl: String? = null, query: Params? = null, body: Params, headers: Params? = null): Response
 
     fun put(init: HttpPutContext.() -> Unit): Response
 
@@ -91,15 +92,15 @@ interface HttpClient {
      * @see Params
      * @see Response
      */
-    fun delete(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
+    fun delete(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Response
 
     fun delete(init:  HttpDeleteContext.() -> Unit): Response
 
-    fun head(url: String = "", customUrl: String? = null, query: Params, headers: Params? = null): Response
+    fun head(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Response
 
     fun head(init: HttpHeadContext.() -> Unit): Response
 
-    fun patch(url: String = "", customUrl: String? = null, body: Params, headers: Params? = null): Response
+    fun patch(url: String = "", customUrl: String? = null, query: Params? = null, body: Params, headers: Params? = null): Response
 
     fun patch(init: HttpPatchContext.() -> Unit): Response
 
@@ -110,14 +111,14 @@ interface HttpClient {
      *
      * @json - used instead bady in post request
      */
-    fun jsonPost(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Response
+    fun jsonPost(url: String = "", customUrl: String? = null, json: String, query: Params? = null, headers: Params? = null): Response
 
     /**
      * @see #put and #jsonPost
      * @see Params
      * @see Response
      */
-    fun jsonPut(url: String = "", customUrl: String? = null, json: String, headers: Params? = null): Response
+    fun jsonPut(url: String = "", customUrl: String? = null, json: String, query: Params? = null, headers: Params? = null): Response
 
     /**
      * Same as send but request will be processed by RequestProcessors

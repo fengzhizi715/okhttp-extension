@@ -85,7 +85,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun post(url: String, customUrl: String?, query: Params?, body: Params, headers: Params?): Response = okHttpClient.call {
-        createBodyRequest(url, customUrl, body, headers) { builder, body ->
+        createBodyRequest(url, customUrl, query, body, headers) { builder, body ->
             builder.post(body)
         }
     }
@@ -95,17 +95,17 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun upload(url: String, customUrl: String?, headers: Params?, name: String, file: File): Response = okHttpClient.call {
+    override fun upload(url: String, customUrl: String?, query: Params?, headers: Params?, name: String, file: File): Response = okHttpClient.call {
 
         val body = MultipartBody.Builder().addPart(MultipartBody.Part.createFormData(name, file.name, file.asRequestBody())).build()
 
-        createMultipartBodyRequest(url, customUrl, headers,body) { builder, body ->
+        createMultipartBodyRequest(url, customUrl, query, body, headers) { builder, body ->
             builder.post(body)
         }
     }
 
-    override fun put(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
-        createBodyRequest(url, customUrl, body, headers) { builder, body ->
+    override fun put(url: String, customUrl: String?, query: Params?, body: Params, headers: Params?): Response = okHttpClient.call {
+        createBodyRequest(url, customUrl, query, body, headers) { builder, body ->
             builder.put(body)
         }
     }
@@ -115,7 +115,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun delete(url: String, customUrl: String?, query: Params, headers: Params?): Response = okHttpClient.call{
+    override fun delete(url: String, customUrl: String?, query: Params?, headers: Params?): Response = okHttpClient.call{
         createRequest(url, customUrl, query, headers) {
             it.delete()
         }
@@ -126,7 +126,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun head(url: String, customUrl: String?, query: Params, headers: Params?): Response = okHttpClient.call {
+    override fun head(url: String, customUrl: String?, query: Params?, headers: Params?): Response = okHttpClient.call {
         createRequest(url,customUrl,query,headers) {
             it.head()
         }
@@ -137,8 +137,8 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun patch(url: String, customUrl: String?, body: Params, headers: Params?): Response = okHttpClient.call {
-        createBodyRequest(url, customUrl, body, headers) { builder, body ->
+    override fun patch(url: String, customUrl: String?, query: Params?, body: Params, headers: Params?): Response = okHttpClient.call {
+        createBodyRequest(url, customUrl,query, body, headers) { builder, body ->
             builder.patch(body)
         }
     }
@@ -148,14 +148,14 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
-    override fun jsonPost(url: String, customUrl: String?, json: String, headers: Params?): Response = okHttpClient.call {
-        createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+    override fun jsonPost(url: String, customUrl: String?, json: String, query: Params?, headers: Params?): Response = okHttpClient.call {
+        createJsonRequest(url, customUrl, query, json, headers) { builder, requestBody ->
             builder.post(requestBody)
         }
     }
 
-    override fun jsonPut(url: String, customUrl: String?, json: String, headers: Params?): Response = okHttpClient.call {
-        createJsonRequest(url, customUrl, json, headers) { builder, requestBody ->
+    override fun jsonPut(url: String, customUrl: String?, json: String, query: Params?, headers: Params?): Response = okHttpClient.call {
+        createJsonRequest(url, customUrl, query, json, headers) { builder, requestBody ->
             builder.put(requestBody)
         }
     }
@@ -254,26 +254,29 @@ class OkHttpClientWrapper(private var baseUrl: String,
      */
     private fun createMultipartBodyRequest(url: String,
                                   customUrl: String?,
-                                  header: Params?,
+                                  query: Params?,
                                   body: MultipartBody,
+                                  header: Params?,
                                   block: (Request.Builder, RequestBody) -> Unit): Request {
 
-        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+        val url = buildUrl(url,customUrl,query)
 
-        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+        var builder = Request.Builder().url(url)
+
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader(ua, userAgent)
+            builder.addHeader(ua, userAgent)
         }
 
-        block.invoke(request, body)
+        block.invoke(builder, body)
 
         processorStore.getRequestProcessors()
             .forEach {
-                request = it.invoke(this, request)
+                builder = it.invoke(this, builder)
             }
 
-        return request.build()
+        return builder.build()
     }
 
     /**
@@ -281,28 +284,31 @@ class OkHttpClientWrapper(private var baseUrl: String,
      */
     private fun createJsonRequest(url: String,
                                   customUrl: String?,
+                                  query: Params?,
                                   json: String,
                                   header: Params?,
                                   block: (Request.Builder, RequestBody) -> Unit): Request {
 
-        var request = Request.Builder().url(customUrl ?: "$baseUrl$url")
+        val url = buildUrl(url,customUrl,query)
 
-        header?.getParams()?.forEach { request.addHeader(it.first, it.second) }
+        var builder = Request.Builder().url(url)
+
+        header?.getParams()?.forEach { builder.addHeader(it.first, it.second) }
 
         if (userAgent.isNotEmpty()) {
-            request.addHeader(ua, userAgent)
+            builder.addHeader(ua, userAgent)
         }
 
         val requestBody = json.toRequestBody(jsonMediaType)
 
-        block.invoke(request, requestBody)
+        block.invoke(builder, requestBody)
 
         processorStore.getRequestProcessors()
                 .forEach {
-                    request = it.invoke(this, request)
+                    builder = it.invoke(this, builder)
                 }
 
-        return request.build()
+        return builder.build()
     }
 
     /**
