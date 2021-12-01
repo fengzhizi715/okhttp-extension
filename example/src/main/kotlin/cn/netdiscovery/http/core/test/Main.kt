@@ -1,15 +1,13 @@
 package cn.netdiscovery.http.core.test
 
+//import freemarker.cache.ClassTemplateLoader
 import cn.netdiscovery.http.core.test.domain.RequestModel
 import cn.netdiscovery.http.core.test.domain.WrapperResponse
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*
-import io.ktor.content.*
 import io.ktor.content.TextContent
 import io.ktor.features.*
-import io.ktor.freemarker.*
 import io.ktor.gson.*
 import io.ktor.http.*
 import io.ktor.http.content.*
@@ -36,10 +34,6 @@ fun Application.module() {
 
     install(DefaultHeaders)
     install(CallLogging)
-    install(FreeMarker) {
-        templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
-        defaultEncoding = "utf-8"
-    }
     install(ContentNegotiation) {
         gson {
             setDateFormat(DateFormat.LONG)
