@@ -17,12 +17,22 @@ import java.util.concurrent.TimeUnit
  * @date: 2021-01-30 16:22
  * @version: V1.0 <描述当前版本功能>
  */
+typealias OnAction = () -> Response
+
+typealias OnFuture = () -> CompletableFuture<Response>
+
+typealias OnFallback = (Throwable)-> Response
+
+typealias IsError = (Response) -> Boolean
+
+typealias OnError = (Throwable) -> Unit
+
 object Resilience4j {
 
     operator fun invoke(circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
            timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
-           onFuture: () -> CompletableFuture<Response>,
-           onFallback: (Throwable)-> Response):Response {
+           onFuture: OnFuture,
+           onFallback: OnFallback):Response {
 
         val restrictedCall: Callable<Response> = TimeLimiter.decorateFutureSupplier(timeLimiter) {
             onFuture()
@@ -46,9 +56,9 @@ object Resilience4j {
 
         operator fun invoke(
             circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
-            onAction: () -> Response,
-            isError: (Response) -> Boolean = { it.code != 200 },
-            onError: (Throwable) -> Unit
+            onAction: OnAction,
+            isError: IsError = { it.code != 200 },
+            onError: OnError
         ):Response? {
             try {
                 return circuitBreaker.executeCallable {
@@ -66,9 +76,9 @@ object Resilience4j {
 
         operator fun invoke(
             circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
-            onFuture: () -> CompletableFuture<Response>,
-            isError: (Response) -> Boolean = { it.code != 200 },
-            onError: (Throwable) -> Unit
+            onFuture: OnFuture,
+            isError: IsError = { it.code != 200 },
+            onError: OnError
         ):CompletableFuture<Response>? {
             try {
                 return circuitBreaker.executeSupplier {
@@ -92,8 +102,8 @@ object Resilience4j {
 
         operator fun invoke(
             timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
-            onAction: () -> Response,
-            onError: (Throwable) -> Unit
+            onAction: OnAction,
+            onError: OnError
         ):Response? {
 
             try {
@@ -111,8 +121,8 @@ object Resilience4j {
 
         operator fun invoke(
             timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
-            onFuture: () -> CompletableFuture<Response>,
-            onError: (Throwable) -> Unit
+            onFuture: OnFuture,
+            onError: OnError
         ):CompletableFuture<Response>? {
 
             try {
