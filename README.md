@@ -84,7 +84,8 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 ```
 
 ## 感谢
-* 参考了 [stomp](https://github.com/DinuBerinde/kotlin-stomp-client) 的实现
+* 参考了 [kohttp](https://github.com/rybalkinsd/kohttp) 的实现
+* 参考了 [kotlin-stomp-client](https://github.com/DinuBerinde/kotlin-stomp-client) 的实现
 
 ## TODO List:
 
