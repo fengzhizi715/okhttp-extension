@@ -2,6 +2,8 @@ package cn.netdiscovery.http.resilience4j
 
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.CircuitBreaker
+import io.github.resilience4j.ratelimiter.RateLimiter
+import io.github.resilience4j.retry.Retry
 import io.github.resilience4j.timelimiter.TimeLimiter
 import io.vavr.control.Try
 import okhttp3.Response
@@ -32,8 +34,8 @@ object Resilience4j {
     operator fun invoke(circuitBreaker: CircuitBreaker = CircuitBreaker.ofDefaults("circuitBreaker"),
            timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
            onFuture: OnFuture,
-           onFallback: OnFallback):Response {
-
+           onFallback: OnFallback
+    ):Response {
         val restrictedCall: Callable<Response> = TimeLimiter.decorateFutureSupplier(timeLimiter) {
             onFuture()
         }
@@ -70,7 +72,6 @@ object Resilience4j {
             } catch (e: CallNotPermittedException) {
                 onError(e)
             }
-
             return null
         }
 
@@ -90,7 +91,6 @@ object Resilience4j {
             } catch (e: CallNotPermittedException) {
                 onError(e)
             }
-
             return null
         }
     }
@@ -98,14 +98,13 @@ object Resilience4j {
     /**
      * 限时器
      */
-    object TimeLimite {
+    object TimeLimit {
 
         operator fun invoke(
             timeLimiter: TimeLimiter = TimeLimiter.ofDefaults("timeLimiter"),
             onAction: OnAction,
             onError: OnError
         ):Response? {
-
             try {
                 return timeLimiter.executeFutureSupplier {
                     CompletableFuture.supplyAsync{
@@ -115,7 +114,6 @@ object Resilience4j {
             } catch (e: Exception) {
                 onError(e)
             }
-
             return null
         }
 
@@ -124,7 +122,6 @@ object Resilience4j {
             onFuture: OnFuture,
             onError: OnError
         ):CompletableFuture<Response>? {
-
             try {
                 return timeLimiter.executeFutureSupplier {
                     CompletableFuture.supplyAsync{
@@ -134,8 +131,50 @@ object Resilience4j {
             } catch (e: Exception) {
                 onError(e)
             }
+            return null
+        }
+    }
+
+    object RateLimit {
+
+        operator fun invoke(
+            rateLimit: RateLimiter = RateLimiter.ofDefaults("rateLimiter"),
+            onAction: OnAction,
+            onError: OnError
+        ): Response? {
+            try {
+                return rateLimit.executeCallable {
+                    onAction()
+                }
+            } catch (e: Exception) {
+                onError(e)
+            }
 
             return null
+        }
+    }
+
+    object RetryFailures {
+
+        private class RetryError(val response: Response) : RuntimeException()
+
+        operator fun invoke(
+            retry: Retry = Retry.ofDefaults("retryFailures"),
+            onAction: OnAction,
+            isError: IsError = { it.code != 200 },
+            onError: OnError
+        ): Response {
+            return try {
+                retry.executeCallable {
+                    onAction().apply {
+                        if (isError(this))
+                            throw RetryError(this)
+                    }
+                }
+            } catch (e: RetryError) {
+                onError(e)
+                e.response
+            }
         }
     }
 }

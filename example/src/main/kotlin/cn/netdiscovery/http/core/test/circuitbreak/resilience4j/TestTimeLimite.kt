@@ -28,7 +28,7 @@ fun main() {
     // registry使用默认的配置创建一个TimeLimiter
     val timeLimiter: TimeLimiter = timeLimiterRegistry.timeLimiter("name1")
 
-    Resilience4j.TimeLimite.invoke(timeLimiter, onFuture = {
+    Resilience4j.TimeLimit.invoke(timeLimiter, onFuture = {
         apiService.testGet("Tony").async()
     },{
         println(it.message)
