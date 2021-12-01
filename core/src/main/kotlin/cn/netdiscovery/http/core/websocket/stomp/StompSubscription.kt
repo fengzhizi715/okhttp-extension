@@ -13,23 +13,25 @@ class StompSubscription(
     val subscriptionId: String,
     val messageHandler: MessageHandler<*>,
 ) {
-    private val LOCK = Object()
+    private val lock = Object()
     private var isSubscribed = false
 
     /**
      * Emits that the subscription is completed.
      */
     fun emitSubscription() {
-        synchronized(LOCK) { LOCK.notify() }
+        synchronized(lock) {
+            lock.notify()
+        }
     }
 
     /**
      * Awaits if necessary for the subscription to complete.
      */
     fun awaitSubscription() {
-        synchronized(LOCK) {
+        synchronized(lock) {
             if (!isSubscribed) try {
-                LOCK.wait()
+                lock.wait()
                 isSubscribed = true
             } catch (e: InterruptedException) {
             }

@@ -23,6 +23,7 @@ okhttp-extension 可以整合 Retrofit、Feign 框架，还提供了很多常用
 * 支持自定义线程池
 * 支持整合 Retrofit、Feign 框架
 * 支持 Websocket 的实现、自动重连等
+* 支持 Stomp
 * core 模块只依赖 OkHttp，不依赖其他第三方库
 
 ![okhttp-extension](images/okhttp-extension.png)
@@ -82,7 +83,9 @@ implementation 'com.github.fengzhizi715.okhttp-extension:result:<latest-version>
 implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-version>'
 ```
 
+## 感谢
+* 参考了 [stomp](https://github.com/DinuBerinde/kotlin-stomp-client) 的实现
+
 ## TODO List:
 
-* 支持 stomp 协议
 * 完善和 Spring/Springboot 集成以及相关示例

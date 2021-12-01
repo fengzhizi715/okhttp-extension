@@ -48,7 +48,7 @@ class StompClient(
     /**
      * Lock to synchronize the initial connection of the websocket client.
      */
-    private val LOCK = Object()
+    private val lock = Object()
 
     /**
      * Boolean to track whether the client is connected.
@@ -143,8 +143,8 @@ class StompClient(
      * Emits that the client is connected.
      */
     private fun emitClientConnected() {
-        synchronized(LOCK) {
-            LOCK.notify()
+        synchronized(lock) {
+            lock.notify()
         }
     }
 
@@ -152,9 +152,9 @@ class StompClient(
      * Awaits if necessary until the websocket client is connected.
      */
     private fun awaitClientConnection() {
-        synchronized(LOCK) {
+        synchronized(lock) {
             if (!isClientConnected) try {
-                LOCK.wait()
+                lock.wait()
                 isClientConnected = true
             } catch (e: InterruptedException) {
                 log("[Stomp client] Interrupted while waiting for subscription")
