@@ -1,5 +1,7 @@
 package cn.netdiscovery.http.resilience4j
 
+import io.github.resilience4j.bulkhead.Bulkhead
+import io.github.resilience4j.bulkhead.BulkheadFullException
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.CircuitBreaker
 import io.github.resilience4j.ratelimiter.RateLimiter
@@ -175,6 +177,25 @@ object Resilience4j {
                 onError(e)
                 e.response
             }
+        }
+    }
+
+    object Bulkheading {
+
+        operator fun invoke(
+            bulkhead: Bulkhead = Bulkhead.ofDefaults("bulkhead"),
+            onAction: OnAction,
+            onError: OnError
+        ): Response? {
+            try {
+                return bulkhead.executeCallable {
+                    onAction()
+                }
+            } catch (e: BulkheadFullException) {
+                onError(e)
+            }
+
+            return null
         }
     }
 }
