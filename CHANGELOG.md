@@ -1,11 +1,22 @@
 okhttp-extension
 ===
 
+Version 1.3.0
+---
+2021-12-2
+* 增加 RetryInterceptor
+* 增加 StaleIfErrorInterceptor
+* 增加 stomp 的支持
+* 优化 httpClient
+* 完善 Resilience4j 相关模块
+
+
 Version 1.2.1
 ---
 2021-11-21
 * 增加 JWTInterceptor
 * 增加 OAuth2Interceptor
+
 
 Version 1.2.0
 ---
