@@ -17,7 +17,7 @@ import okhttp3.CacheControl.Builder
  *          cn.netdiscovery.http.core.interceptors.StaleIfErrorInterceptor
  * @author: Tony Shen
  * @date: 2021/11/24 5:47 下午
- * @version: V1.0 stale-if-error 拦截器，如果原始服务器不可访问，它允许使用陈旧的缓存响应。
+ * @version: V1.0 stale-if-error 拦截器，如果原始服务器不可访问，它允许使用之前的缓存响应。
  */
 class StaleIfErrorInterceptor @JvmOverloads constructor(
     staleDuration: Int = DEFULAT_MAX_STALE_DURATION,

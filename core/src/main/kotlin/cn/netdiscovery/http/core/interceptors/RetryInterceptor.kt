@@ -10,7 +10,7 @@ import java.net.SocketTimeoutException
  *          cn.netdiscovery.http.core.interceptors.RetryInterceptor
  * @author: Tony Shen
  * @date: 2021/11/29 1:25 下午
- * @version: V1.0 重试的 拦截器，可配置重试次数、间隔时间等
+ * @version: V1.0 网络请求重试的拦截器，可配置重试次数、间隔时间、针对错误的 http status
  */
 class RetryInterceptor(
     private val failureThreshold: Int = 3,
