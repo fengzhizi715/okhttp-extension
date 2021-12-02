@@ -6,7 +6,7 @@ import okhttp3.*
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.interceptor.CurlLoggingInterceptor
+ *          cn.netdiscovery.http.core.interceptors.CurlLoggingInterceptor
  * @author: Tony Shen
  * @date: 2021/11/17 3:45 下午
  * @version: V1.0 将网络请求转换成 curl 的命令

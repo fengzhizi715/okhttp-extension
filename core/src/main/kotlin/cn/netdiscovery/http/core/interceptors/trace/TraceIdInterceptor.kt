@@ -7,7 +7,7 @@ import okhttp3.Response
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.interceptor.TraceIdInterceptor
+ *          cn.netdiscovery.http.core.interceptors.trace.TraceIdInterceptor
  * @author: Tony Shen
  * @date: 2021-01-26 18:19
  * @version: V1.0 <描述当前版本功能>

@@ -6,7 +6,7 @@ import okhttp3.Response
 
 /**
  * @FileName:
- *          cn.netdiscovery.http.core.interceptor.SigningInterceptor
+ *          cn.netdiscovery.http.core.interceptors.SigningInterceptor
  * @author: Tony Shen
  * @date: 2021/11/8 11:14 上午
  * @version: V1.0 请求签名的拦截器，支持对 query 参数进行签名。

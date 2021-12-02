@@ -26,8 +26,9 @@ okhttp-extension 可以整合 Retrofit、Feign 框架，还提供了很多常用
 * 支持 Stomp over WebSocket
 * core 模块只依赖 OkHttp，不依赖其他第三方库
 
-![okhttp-extension](images/okhttp-extension.png)
+## 更详细的功能请查看[wiki](https://github.com/fengzhizi715/okhttp-extension/wiki)
 
+![okhttp-extension](images/okhttp-extension.png)
 
 ## 最新版本
 模块|最新版本

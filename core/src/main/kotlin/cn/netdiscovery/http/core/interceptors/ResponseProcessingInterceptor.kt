@@ -9,7 +9,7 @@ import java.nio.charset.Charset
 /**
  *
  * @FileName:
- *          cn.netdiscovery.http.core.interceptor.ResponseProcessingInterceptor
+ *          cn.netdiscovery.http.core.interceptors.ResponseProcessingInterceptor
  * @author: Tony Shen
  * @date: 2020-10-03 13:36
  * @version: V1.0 <描述当前版本功能>
