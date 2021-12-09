@@ -48,7 +48,7 @@ interface HttpClient {
     /**
      * 设置预连接
      */
-    fun preConnection(url:String, callback: PreConnectCallback): OkHttpClient
+    fun preConnection(url:String, callback: PreConnectCallback)
 
     /**
      * Create post request

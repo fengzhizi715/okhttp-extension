@@ -6,7 +6,9 @@ import cn.netdiscovery.http.core.config.ua
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.dsl.context.*
+import cn.netdiscovery.http.core.exception.PreConnectionException
 import cn.netdiscovery.http.core.preconnetion.PreConnectCallback
+import cn.netdiscovery.http.core.preconnetion.PreConnectRunnable
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.request.method.MethodBuilder
 import cn.netdiscovery.http.core.storage.DefaultStorage
@@ -74,8 +76,15 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 
-    override fun preConnection(url: String, callback: PreConnectCallback): OkHttpClient {
-        TODO("Not yet implemented")
+    override fun preConnection(url: String, callback: PreConnectCallback) {
+
+        if (okHttpClient.connectionPool.idleConnectionCount() >= 5) {
+            // 空闲连接数达到5个
+            callback.connectFailed(PreConnectionException("The idle connections > 5"))
+            return
+        }
+
+        okHttpClient.dispatcher.executorService.execute(PreConnectRunnable(okHttpClient, buildUrl(url = url, customUrl = null, query = null), callback))
     }
 
     override fun get(url: String, customUrl: String?, query: Params?, headers: Params?): Response = okHttpClient.call{
