@@ -14,10 +14,10 @@ interface PreConnectCallback {
      * 连接建立完成
      * @param url
      */
-    fun connectCompleted(url: String)
+    fun preConnectCompleted(url: String)
 
     /**
      * 连接失败
      */
-    fun connectFailed(t: Throwable)
+    fun preConnectFailed(t: Throwable)
 }

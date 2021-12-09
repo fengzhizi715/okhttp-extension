@@ -21,7 +21,7 @@ import javax.net.ssl.SSLSocketFactory
  */
 internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private val url:String,private val callback: PreConnectCallback): Runnable  {
 
-    val NONE_CALL: Call = object : Call {
+    val NULL_CALL: Call = object : Call {
         override fun request(): Request {
             return null!!
         }
@@ -82,7 +82,7 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
                 okHttpClient.writeTimeoutMillis,
                 okHttpClient.pingIntervalMillis,
                 false,
-                NONE_CALL,
+                NULL_CALL,
                 EventListener.NONE
             )
             okHttpClient.routeDatabase.connected(connection.route())
@@ -195,16 +195,16 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
 
     @Throws(IOException::class)
     private fun selectRoutes(client: OkHttpClient, address: Address): List<Route>? {
-        val routeSelector = RouteSelector(address, client.routeDatabase, NONE_CALL, EventListener.NONE)
+        val routeSelector = RouteSelector(address, client.routeDatabase, NULL_CALL, EventListener.NONE)
         val selection = if (routeSelector.hasNext()) routeSelector.next() else null
         return selection?.routes
     }
 
     private fun callConnectCompleted(callback: PreConnectCallback, url: String) {
-        callback.connectCompleted(url)
+        callback.preConnectCompleted(url)
     }
 
     private fun callConnectFailed(callback: PreConnectCallback, t: Throwable) {
-        callback.connectFailed(t)
+        callback.preConnectFailed(t)
     }
 }
