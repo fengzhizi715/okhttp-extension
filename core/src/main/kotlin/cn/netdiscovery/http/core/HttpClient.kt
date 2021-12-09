@@ -6,6 +6,7 @@ import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.dsl.context.*
+import cn.netdiscovery.http.core.preconnetion.PreConnectCallback
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
@@ -43,6 +44,11 @@ interface HttpClient {
      * @see ClientCookieHandler
      */
     fun getClientCookieHandler(): ClientCookieHandler?
+
+    /**
+     * 设置预连接
+     */
+    fun preConnection(url:String, callback: PreConnectCallback): OkHttpClient
 
     /**
      * Create post request
