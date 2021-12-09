@@ -56,20 +56,21 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
         try {
             val httpUrl = createHttpUrl(url)
             if (httpUrl == null) {
-                callConnectFailed(callback, IllegalArgumentException("unexpected url: $url"))
+                callback.preConnectFailed(IllegalArgumentException("unexpected url: $url"))
                 return
             }
 
             val address = createAddress(okHttpClient, httpUrl)
             val routes = selectRoutes(okHttpClient, address)
-            if (routes == null || routes.isEmpty()) {
-                callConnectFailed(callback, IOException("No route available."))
+
+            if (routes.isNullOrEmpty()) {
+                callback.preConnectFailed(IOException("No route available."))
                 return
             }
 
             val realConnectionPool = findRealConnectionPool(okHttpClient)
             if (hasPooledConnection(realConnectionPool, address, routes, false)) {
-                callConnectFailed(callback, IllegalStateException("There is already a connection with the same address.[1]"))
+                callback.preConnectFailed(IllegalStateException("There is already a connection with the same address.[1]"))
                 return
             }
 
@@ -92,16 +93,16 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
                     connection.socket().close()
                 } catch (t: Throwable) {
                 }
-                callConnectFailed(callback, java.lang.IllegalStateException("There is already a connection with the same address.[2]"))
+                callback.preConnectFailed(IllegalStateException("There is already a connection with the same address.[2]"))
                 return
             }
 
             synchronized(connection) { realConnectionPool.put(connection) }
 
-            callConnectCompleted(callback, url)
+            callback.preConnectCompleted(url)
         } catch (t: Throwable) {
-            t.printStackTrace();
-            callConnectFailed(callback, t)
+            t.printStackTrace()
+            callback.preConnectFailed(t)
         }
     }
 
@@ -198,13 +199,5 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
         val routeSelector = RouteSelector(address, client.routeDatabase, NULL_CALL, EventListener.NONE)
         val selection = if (routeSelector.hasNext()) routeSelector.next() else null
         return selection?.routes
-    }
-
-    private fun callConnectCompleted(callback: PreConnectCallback, url: String) {
-        callback.preConnectCompleted(url)
-    }
-
-    private fun callConnectFailed(callback: PreConnectCallback, t: Throwable) {
-        callback.preConnectFailed(t)
     }
 }
