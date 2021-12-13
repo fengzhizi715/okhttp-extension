@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.preconnetion
 
+import cn.netdiscovery.http.core.exception.PreConnectionException
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.internal.connection.RealConnection
@@ -19,7 +20,11 @@ import javax.net.ssl.SSLSocketFactory
  * @date: 2021/12/9 11:37 AM
  * @version: V1.0 <描述当前版本功能>
  */
-internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private val url:String,private val callback: PreConnectCallback): Runnable  {
+internal class PreConnectRunnable(
+    private val okHttpClient: OkHttpClient,
+    private val url: String,
+    private val callback: PreConnectCallback
+) : Runnable {
 
     val NULL_CALL: Call = object : Call {
         override fun request(): Request {
@@ -56,7 +61,7 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
         try {
             val httpUrl = createHttpUrl(url)
             if (httpUrl == null) {
-                callback.preConnectFailed(IllegalArgumentException("unexpected url: $url"))
+                callback.preConnectFailed(PreConnectionException("unexpected url: $url"))
                 return
             }
 
@@ -70,7 +75,7 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
 
             val realConnectionPool = findRealConnectionPool(okHttpClient)
             if (hasPooledConnection(realConnectionPool, address, routes, false)) {
-                callback.preConnectFailed(IllegalStateException("There is already a connection with the same address.[1]"))
+                callback.preConnectFailed(PreConnectionException("There is already a connection with the same address."))
                 return
             }
 
@@ -93,7 +98,7 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
                     connection.socket().close()
                 } catch (t: Throwable) {
                 }
-                callback.preConnectFailed(IllegalStateException("There is already a connection with the same address.[2]"))
+                callback.preConnectFailed(PreConnectionException("There is already a connection with the same address."))
                 return
             }
 
@@ -106,8 +111,8 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
         }
     }
 
-    private fun createHttpUrl(oriUrl: String): HttpUrl? {
-        var url = oriUrl
+    private fun createHttpUrl(originalUrl: String): HttpUrl? {
+        var url = originalUrl
         if (url.regionMatches(0, "ws:", 0, 3, ignoreCase = true)) {
             url = "http:" + url.substring(3)
         } else if (url.regionMatches(0, "wss:", 0, 4, ignoreCase = true)) {
@@ -190,7 +195,7 @@ internal class PreConnectRunnable(private val okHttpClient: OkHttpClient,private
             false
         } catch (e: Exception) {
             e.printStackTrace()
-            throw UnsupportedOperationException("Does not support the current version of okhttp.")
+            throw PreConnectionException("Does not support the current version of okhttp.")
         }
     }
 
