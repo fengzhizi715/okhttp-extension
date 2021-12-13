@@ -163,30 +163,29 @@ internal class PreConnectRunnable(
             connectionsField.isAccessible = true
             val connections = connectionsField[realConnectionPool] as ConcurrentLinkedQueue<RealConnection>
 
-            // 遍历现存connection
             for (connection in connections) {
                 synchronized(connection) {
-                    var dup = true
+                    var b = true
 
                     if (requireMultiplexed) {
                         val isMultiplexed = connection.javaClass.getDeclaredMethod("isMultiplexed\$okhttp")
                         isMultiplexed.isAccessible = true
                         val value = isMultiplexed.invoke(connection) as Boolean
                         if (!value) {
-                            dup = false
+                            b = false
                         }
                     }
 
-                    if (dup) {
+                    if (b) {
                         val isEligible = connection.javaClass.getDeclaredMethod("isEligible\$okhttp", Address::class.java, MutableList::class.java)
                         isEligible.isAccessible = true
                         val result = isEligible.invoke(connection, address, routes) as Boolean
                         if (!result) {
-                            dup = false
+                            b = false
                         }
                     }
 
-                    if (dup) {
+                    if (b) {
                         // 已经存在connection
                         return true
                     }

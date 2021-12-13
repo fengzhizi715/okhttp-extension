@@ -80,7 +80,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
 
         if (okHttpClient.connectionPool.idleConnectionCount() >= 5) {
             // 空闲连接数达到5个
-            callback.connectFailed(PreConnectionException("The idle connections > 5"))
+            callback.preConnectFailed(PreConnectionException("The idle connections > 5"))
             return
         }
 
