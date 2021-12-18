@@ -4,6 +4,7 @@ import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.interceptors.CurlLoggingInterceptor
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
+import cn.netdiscovery.http.core.response.StringResponseMapper
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
@@ -54,6 +55,7 @@ val httpClient: HttpClient by lazy {
         .addInterceptor(CurlLoggingInterceptor())
         .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
+        .responseMapper(StringResponseMapper::class)
         .build()
 }
 

@@ -68,6 +68,11 @@ fun testPostWithResponseMapper(apiService: ApiService) {
     apiService.testPostWithResponseMapper(requestModel).sync()
 }
 
+fun testPostWithoutResponseMapper(apiService: ApiService) {
+    val requestModel = RequestModel()
+    apiService.testPostWithoutResponseMapper(requestModel).sync()
+}
+
 fun testPostWithResponseMapperAndObservable(apiService: ApiService) {
     val requestModel = RequestModel()
     apiService.testPostWithResponseMapper(requestModel)

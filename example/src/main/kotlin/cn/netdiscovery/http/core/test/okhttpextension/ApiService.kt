@@ -58,4 +58,9 @@ class ApiService(client: HttpClient) : AbstractHttpService(client) {
         jsonModel = model
         responseMapper = ResponseDataMapper::class
     }
+
+    fun testPostWithoutResponseMapper(model: RequestModel) = jsonPost<ResponseData>{
+        url = "/response-body-with-model"
+        jsonModel = model
+    }
 }
