@@ -5,7 +5,13 @@ import cn.netdiscovery.http.core.dsl.context.*
 import com.safframework.kotlin.coroutines.asyncInBackground
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resumeWithException
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
 
 /**
  *
@@ -15,6 +21,24 @@ import okhttp3.Response
  * @date: 2021/11/16 8:55 下午
  * @version: V1.0 <描述当前版本功能>
  */
+typealias ResponseHandler<T> = (Response) -> T
+
+suspend fun <T> HttpClient.request(request: Request, responseHandler: ResponseHandler<T>): T =
+    suspendCancellableCoroutine { cont ->
+        val call = this.okHttpClient().newCall(request)
+        cont.invokeOnCancellation { call.cancel() }
+        call.enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val result = runCatching { response.use(responseHandler) }
+                cont.resumeWith(result)
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                cont.resumeWithException(e)
+            }
+        })
+    }
+
 fun HttpClient.asyncGet(init: HttpGetContext.() -> Unit): Deferred<Response> = asyncInBackground{
     this@asyncGet.okHttpClient().suspendCall(HttpGetContext().apply(init).buildRequest(this@asyncGet.getBaseUrl()))
 }
