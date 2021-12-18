@@ -15,9 +15,7 @@ import okhttp3.Response
 data class ResponseConsumer<T>(
         val call: Call? = null,
         val response: Response? = null,
-        var responses: MutableList<Response>? = null,
-        val responseModel: T? = null,
-        var responseModels: MutableList<T>? = null
+        val responseModel: T? = null
 ) {
 
     @Suppress("UNCHECKED_CAST")
@@ -25,9 +23,7 @@ data class ResponseConsumer<T>(
         val result = when {
             call != null                    -> call
             response != null                -> response
-            !responses.isNullOrEmpty()      -> responses
             responseModel != null           -> responseModel
-            !responseModels.isNullOrEmpty() -> responseModels
             else                            -> throw RequestMethodException("ResponseConsumer is empty")
         }
 
