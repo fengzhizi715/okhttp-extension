@@ -11,6 +11,7 @@ import cn.netdiscovery.http.core.preconnetion.PreConnectCallback
 import cn.netdiscovery.http.core.preconnetion.PreConnectRunnable
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
 import cn.netdiscovery.http.core.request.method.MethodBuilder
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.storage.cookie.ClientCookieHandler
@@ -44,6 +45,7 @@ class OkHttpClientWrapper(private var baseUrl: String,
     private var cookieHandler: ClientCookieHandler? = null
     private var userAgent = ""
     private var jsonConverterClass:KClass<out RequestJSONConverter>? = null
+    private var responseMapperClass: KClass<out ResponseMapper<*>>? = null
 
     init {
         if (cookieManager != null) {
@@ -73,6 +75,13 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     override fun getJsonConverter(): KClass<out RequestJSONConverter>? = jsonConverterClass
+
+    override fun responseMapper(responseMapperClass: KClass<out ResponseMapper<*>>): HttpClient {
+        this.responseMapperClass =  responseMapperClass
+        return this
+    }
+
+    override fun getResponseMapper(): KClass<out ResponseMapper<*>>? = responseMapperClass
 
     override fun getClientCookieHandler(): ClientCookieHandler? = cookieHandler
 

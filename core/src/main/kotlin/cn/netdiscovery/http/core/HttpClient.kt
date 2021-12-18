@@ -7,6 +7,7 @@ import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethod
 import cn.netdiscovery.http.core.dsl.context.*
 import cn.netdiscovery.http.core.preconnetion.PreConnectCallback
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.websocket.ReconnectWebSocketWrapper
 import cn.netdiscovery.http.core.websocket.WSConfig
@@ -36,9 +37,19 @@ interface HttpClient {
     fun jsonConverter(jsonConverterClass: KClass<out RequestJSONConverter>): HttpClient
 
     /**
-     * 全局的 RequestJSONConverter
+     * 返回全局的 RequestJSONConverter
      */
     fun getJsonConverter(): KClass<out RequestJSONConverter>?
+
+    /**
+     * 设置全局的 ResponseMapper
+     */
+    fun responseMapper(responseMapperClass: KClass<out ResponseMapper<*>>): HttpClient
+
+    /**
+     * 返回全局的 ResponseMapper
+     */
+    fun getResponseMapper(): KClass<out ResponseMapper<*>>?
 
     /**
      * @see ClientCookieHandler

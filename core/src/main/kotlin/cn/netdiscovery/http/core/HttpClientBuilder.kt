@@ -5,6 +5,7 @@ import cn.netdiscovery.http.core.serializer.Serializer
 import cn.netdiscovery.http.core.serializer.SerializerManager
 import cn.netdiscovery.http.core.interceptors.ResponseProcessingInterceptor
 import cn.netdiscovery.http.core.request.converter.RequestJSONConverter
+import cn.netdiscovery.http.core.response.ResponseMapper
 import cn.netdiscovery.http.core.storage.DefaultStorage
 import cn.netdiscovery.http.core.storage.Storage
 import cn.netdiscovery.http.core.storage.cookie.JavaNetCookieJar
@@ -40,6 +41,7 @@ class HttpClientBuilder {
     private var cookieManager: CookieManager? = null
     private var userAgent: String? = null
     private var jsonConverterClass:KClass<out RequestJSONConverter>? = null
+    private var responseMapperClass: KClass<out ResponseMapper<*>>? = null
 
     private var isCookieJar = false
     private var isCache = false
@@ -227,10 +229,18 @@ class HttpClientBuilder {
     }
 
     /**
-     * 全局的 RequestJSONConverter
+     * 设置全局的 RequestJSONConverter
      */
     fun jsonConverter(jsonConverterClass:KClass<out RequestJSONConverter>): HttpClientBuilder {
         this.jsonConverterClass = jsonConverterClass
+        return this
+    }
+
+    /**
+     * 设置全局的 ResponseMapper
+     */
+    fun responseMapper(responseMapperClass: KClass<out ResponseMapper<*>>): HttpClientBuilder {
+        this.responseMapperClass  = responseMapperClass
         return this
     }
 
@@ -275,6 +285,10 @@ class HttpClientBuilder {
 
             jsonConverterClass?.let {
                 this.jsonConverter(it)
+            }
+
+            responseMapperClass?.let {
+                this.responseMapper(it)
             }
         }
     }

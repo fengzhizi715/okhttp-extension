@@ -56,6 +56,6 @@ class MethodBuilder<T: Any>(private val client: HttpClient, private val type: KC
         Response::class.java.isAssignableFrom(genericType) -> EmptyResponseMapper::class
         String::class.java.isAssignableFrom(genericType)   -> StringResponseMapper::class
         Call::class.java.isAssignableFrom(genericType)     -> null
-        else                                               -> throw ResponseMapperNotFoundException()
+        else                                               -> client.getResponseMapper() ?: throw ResponseMapperNotFoundException()
     }
 }
