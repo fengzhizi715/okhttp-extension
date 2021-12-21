@@ -17,6 +17,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+    compileOnly "com.squareup.okhttp3:okhttp:${libs.okhttp3}"
     compileOnly "io.reactivex.rxjava2:rxjava:${libs.rxjava2}"
 
     implementation project(":core")
