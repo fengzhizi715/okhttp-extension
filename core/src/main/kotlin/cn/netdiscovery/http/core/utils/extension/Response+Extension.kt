@@ -1,5 +1,6 @@
 package cn.netdiscovery.http.core.utils.extension
 
+import cn.netdiscovery.http.core.response.ResponseMapper
 import okhttp3.Response
 import okhttp3.ResponseBody
 
@@ -26,3 +27,5 @@ fun Response.applyStringBody(block: (body: String?) -> Unit) {
 fun <T> Response.letBody(block: (body: ResponseBody?) -> T): T = block.invoke(this.body)
 
 fun <T> Response.letStringBody(block: (body: String?) -> T): T = block.invoke(this.stringBody())
+
+fun <T> Response.mapper(mapper: ResponseMapper<T>): T = mapper.map(this)
