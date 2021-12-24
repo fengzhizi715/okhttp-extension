@@ -245,7 +245,8 @@ class HttpClientBuilder {
     }
 
     /**
-     * 构建 OkHttpClient，便于单独使用 OkHttpClient 或者给其他的库使用
+     * 构建 OkHttpClient 而不是 HttpClient，
+     * 便于单独使用 OkHttpClient 或者给其他的库使用。例如，可以给 Retrofit/Feign 使用
      */
     fun buildOkHttpClient():OkHttpClient = builder.build()
 

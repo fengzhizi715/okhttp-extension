@@ -1,7 +1,6 @@
 rootProject.name = 'okhttp-extension'
 include 'core'
 include 'resilience4j'
-include 'file'
 include 'example'
 
 include 'extension'

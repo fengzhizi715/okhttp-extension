@@ -20,3 +20,6 @@ typealias RequestProcessor = (HttpClient, Request.Builder) -> Request.Builder
 
 // a response interceptor
 typealias ResponseProcessor = (Response) -> Unit
+
+// download progress listener
+typealias ProgressListener = (Long, Long, Long, Boolean) -> Unit
