@@ -1,6 +1,16 @@
 okhttp-extension
 ===
 
+Version 1.3.1
+---
+2021-12-24
+* 增加预连接的功能
+* 增加全局的 ResponseMapper
+* 增加 Response 的扩展函数
+* 增加文件上传/下载的功能
+* 优化 httpClient
+
+
 Version 1.3.0
 ---
 2021-12-2
