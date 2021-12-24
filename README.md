@@ -92,6 +92,5 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 
 ## TODO List:
 
-* 支持文件下载，以及断点续传
 * 支持 kotlinx-serialization
 * 完善和 Spring/Springboot 集成以及相关示例
