@@ -107,6 +107,12 @@ class OkHttpClientWrapper(private var baseUrl: String,
         context.buildRequest(baseUrl)
     }
 
+    override fun download(url: String, customUrl: String?, query: Params?, headers: Params?): Response = okHttpClient.call {
+        createRequest(url, customUrl, query, headers) {
+            it.get()
+        }
+    }
+
     override fun post(url: String, customUrl: String?, query: Params?, body: Params, headers: Params?): Response = okHttpClient.call {
         createBodyRequest(url, customUrl, query, body, headers) { builder, body ->
             builder.post(body)

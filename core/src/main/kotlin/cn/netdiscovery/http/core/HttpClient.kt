@@ -76,6 +76,8 @@ interface HttpClient {
 
     fun get(init: HttpGetContext.() -> Unit): Response
 
+    fun download(url: String = "", customUrl: String? = null, query: Params? = null, headers: Params? = null): Response
+
     /**
      * Create post request
      * @url - part of baseUrl
