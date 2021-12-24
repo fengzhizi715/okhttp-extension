@@ -1,17 +1,21 @@
 rootProject.name = 'okhttp-extension'
 include 'core'
+include 'resilience4j'
+include 'file'
 include 'example'
 
 include 'extension'
 include 'extension:rxjava3'
 findProject(':extension:rxjava3')?.name = 'rxjava3'
+
 include 'extension:rxjava2'
 findProject(':extension:rxjava2')?.name = 'rxjava2'
+
 include 'extension:result'
 findProject(':extension:result')?.name = 'result'
+
 include 'extension:coroutines'
 findProject(':extension:coroutines')?.name = 'coroutines'
+
 include 'extension:reactor'
 findProject(':extension:reactor')?.name = 'reactor'
-include 'resilience4j'
-
