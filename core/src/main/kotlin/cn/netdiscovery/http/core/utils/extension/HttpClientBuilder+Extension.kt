@@ -13,6 +13,10 @@ import okhttp3.Response
  * @date: 2021/12/24 5:00 PM
  * @version: V1.0 <描述当前版本功能>
  */
+
+/**
+ * 下载需要进度信息的情况，最后单独使用一个 httpClient
+ */
 fun HttpClientBuilder.addProgressListener(listener: ProgressListener):HttpClientBuilder {
     this.addNetworkInterceptor { chain ->
         val originalResponse: Response = chain.proceed(chain.request())

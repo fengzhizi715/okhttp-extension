@@ -13,6 +13,7 @@ okhttp-extension 可以整合 Retrofit、Feign 框架，还提供了很多常用
 ## Features:
 
 * 支持 DSL 创建 HTTP `GET`/`POST`/`PUT`/`HEAD`/`DELETE`/`PATCH` requests.
+* 支持文件上传/下载
 * 支持 Kotlin 协程
 * 支持响应式(RxJava、Spring Reactor)
 * 支持函数式
