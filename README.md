@@ -99,4 +99,4 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 
 ## ChangeLog
 
-![ChangeLog](CHANGELOG.md)
+[ChangeLog](CHANGELOG.md)
