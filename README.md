@@ -95,3 +95,8 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 
 * 支持 kotlinx-serialization
 * 完善和 Spring/Springboot 集成以及相关示例
+
+
+## ChangeLog
+
+![ChangeLog](CHANGELOG.md)
