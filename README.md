@@ -94,6 +94,7 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 ## TODO List:
 
 * 支持 kotlinx-serialization
+* 支持 http3/quic 协议
 * 完善和 Spring/Springboot 集成以及相关示例
 
 
