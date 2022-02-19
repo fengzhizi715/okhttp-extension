@@ -10,6 +10,7 @@ package cn.netdiscovery.http.core.websocket
  */
 data class WSConfig(
     val isAllowReconnect: Boolean = true,
+    val reconnectDelay: Long = 0,
     val reconnectCount: Int = Int.MAX_VALUE,
     val reconnectInterval: Long = 5000
 )

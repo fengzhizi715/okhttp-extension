@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger
  * @date: 2021-07-13 17:49
  * @version: V1.0 基于 OkHttp 的 WebSocket 实现的包装类，具有自动重新连接的功能
  */
+typealias OnConnectStatusChangeListener = (status: WSStatus) -> Unit
+
 class ReconnectWebSocketWrapper (
     private val okHttpClient: OkHttpClient,
     private val request: Request,
@@ -36,7 +38,7 @@ class ReconnectWebSocketWrapper (
     /**
      * WSStatus 变化的监听
      */
-    var onConnectStatusChangeListener: ((status: WSStatus) -> Unit)? = null
+    var onConnectStatusChangeListener: OnConnectStatusChangeListener? = null
 
     /**
      * 重连次数
@@ -125,7 +127,7 @@ class ReconnectWebSocketWrapper (
                         webSocket = okHttpClient.newWebSocket(request, webSocketListener)
                     }
                 }
-            }, 0, config.reconnectInterval)
+            }, config.reconnectDelay, config.reconnectInterval)
         }
     }
 
