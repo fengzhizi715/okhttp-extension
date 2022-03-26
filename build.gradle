@@ -18,7 +18,9 @@ ext {
 
             resilience4j              : "1.7.1",
 
-            result                    : "v1.0.3"
+            result                    : "v1.0.3",
+
+            okhttp_logging_interceptor: "v1.1.2"
     ]
 }
 
