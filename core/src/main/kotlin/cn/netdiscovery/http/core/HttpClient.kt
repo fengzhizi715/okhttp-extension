@@ -62,7 +62,7 @@ interface HttpClient {
     fun preConnection(url:String, callback: PreConnectCallback)
 
     /**
-     * Create post request
+     * Create get request
      * @url - part of baseUrl
      * @customUrl - full url which will be used instead baseUrl + url
      * @query - will build query in url "url?param1=val1&param2..."
@@ -162,7 +162,7 @@ interface HttpClient {
     fun <T: Any> send(clazz: KClass<T>, request: RequestMethod<T>): ProcessResult<T>
 
     /**
-     * 支持 websocket
+     * 支持 websocket 协议
      * @param url
      * @customUrl - full url which will be used instead baseUrl + url
      * @param query
