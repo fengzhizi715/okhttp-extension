@@ -354,7 +354,13 @@ class OkHttpClientWrapper(private var baseUrl: String,
     }
 
     /**
-     * 构建 url
+     * 构建完整的 url 供 request 使用
+     *
+     * @param url 配合 baseUrl 生成 url
+     * @param customUrl 当 url 为 "" 时，使用 customUrl 作为 url
+     * @param query url 的 query
+     *
+     * @return 生成完整的 url
      */
     private fun buildUrl(url: String, customUrl: String?, query: Params?):String {
         val query = query?.joinToString("&") { "${it.first}=${it.second}" }
