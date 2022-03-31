@@ -2,6 +2,7 @@ package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.domain.Params
 import cn.netdiscovery.http.core.domain.RequestMethodModel
+import cn.netdiscovery.http.core.dsl.ssl.SSLContextBuilder
 import okhttp3.Request
 import okhttp3.Response
 
@@ -23,3 +24,6 @@ typealias ResponseProcessor = (Response) -> Unit
 
 // download progress listener
 typealias ProgressListener = (Long, Long, Long, Boolean) -> Unit
+
+// ssl config
+typealias SSLConfig = SSLContextBuilder.() -> Unit

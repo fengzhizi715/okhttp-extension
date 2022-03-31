@@ -1,6 +1,8 @@
 package cn.netdiscovery.http.core
 
 import cn.netdiscovery.http.core.aop.DefaultProcessorStore
+import cn.netdiscovery.http.core.dsl.ssl.DEFAULT_TLS_PROTOCOL
+import cn.netdiscovery.http.core.dsl.ssl.SSLContextBuilder
 import cn.netdiscovery.http.core.serializer.Serializer
 import cn.netdiscovery.http.core.serializer.SerializerManager
 import cn.netdiscovery.http.core.interceptors.ResponseProcessingInterceptor
@@ -100,6 +102,12 @@ class HttpClientBuilder {
 
     fun sslSocketFactory(sslSocketFactory: SSLSocketFactory, trustManager: X509TrustManager): HttpClientBuilder {
         builder.sslSocketFactory(sslSocketFactory, trustManager)
+        return this
+    }
+
+    fun sslSocketFactory(protocol: String = DEFAULT_TLS_PROTOCOL, config: SSLConfig): HttpClientBuilder {
+        val (context, trustManager) = SSLContextBuilder().apply(config).createSSLContext(protocol)
+        builder.sslSocketFactory(context.socketFactory, trustManager)
         return this
     }
 
