@@ -95,6 +95,8 @@ implementation 'com.github.fengzhizi715.okhttp-extension:resilience4j:<latest-ve
 
 * 完善和 Spring/Springboot 集成以及相关示例
 * 支持 kotlinx-serialization
+* 异常的日志记录
+* 支持 Micrometer
 
 
 ## ChangeLog
