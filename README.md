@@ -21,7 +21,7 @@ okhttp-extension 可以整合 Retrofit、Feign 框架，还提供了很多常用
 * 支持异步请求的取消
 * 支持预连接
 * 支持 Request、Response 的拦截器
-* 提供常用的拦截器
+* 提供多款常用的拦截器
 * 支持自定义线程池
 * 支持整合 Retrofit、Feign 框架
 * 支持 WebSocket 的实现、自动重连等
