@@ -83,6 +83,9 @@ fun Application.module() {
                         var fileBytes = part.streamProvider().readBytes()
                         File("/Users/tony/$fileName").writeBytes(fileBytes)
                     }
+                    else -> {
+
+                    }
                 }
             }
 

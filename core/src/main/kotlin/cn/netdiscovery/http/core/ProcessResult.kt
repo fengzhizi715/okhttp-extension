@@ -23,6 +23,7 @@ class ProcessResult<T : Any>(private val methodProcessor: RequestMethodProcessor
     fun sync(): T = methodProcessor.process().getResult()
 
     /**
+     * 采用 Active Object 模式
      * Async send, used Call.enqueue()
      *
      * @see okhttp3.Call
