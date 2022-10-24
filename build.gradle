@@ -4,7 +4,7 @@ ext {
     libraries = [
             kotlinx_coroutines_core   : "1.5.2",
 
-            okhttp3                   : "4.9.2",
+            okhttp3                   : "4.10.0",
 
             ktor                      : "1.6.4",
 

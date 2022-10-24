@@ -1,6 +1,5 @@
 package cn.netdiscovery.http.core.test
 
-//import freemarker.cache.ClassTemplateLoader
 import cn.netdiscovery.http.core.test.domain.RequestModel
 import cn.netdiscovery.http.core.test.domain.WrapperResponse
 import com.google.gson.Gson
