@@ -15,13 +15,4 @@ fun main() {
     "https://baidu.com".httpGet().use {
         println(it)
     }
-
-//    runBlocking {
-//        "https://baidu.com".asyncGet()
-//            .await()
-//            .use {
-//                println(it)
-//        }
-//    }
-
 }
