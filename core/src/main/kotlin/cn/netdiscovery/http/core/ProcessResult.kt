@@ -16,15 +16,15 @@ import java.util.concurrent.ExecutionException
 class ProcessResult<T : Any>(private val methodProcessor: RequestMethodProcessor<out T>) {
 
     /**
-     * Blocking send, used Call.execute()
+     * 同步调用，使用 Call.execute()
      *
      * @see okhttp3.Call
      */
     fun sync(): T = methodProcessor.process().getResult()
 
     /**
+     * 异步调用，使用 Call.enqueue()
      * 采用 Active Object 模式
-     * Async send, used Call.enqueue()
      *
      * @see okhttp3.Call
      */
@@ -37,7 +37,7 @@ class ProcessResult<T : Any>(private val methodProcessor: RequestMethodProcessor
     fun get():T = async().get()
 
     /**
-     * 取消异步请求
+     * 取消请求的调用
      */
     fun cancel() {
         methodProcessor.cancel()

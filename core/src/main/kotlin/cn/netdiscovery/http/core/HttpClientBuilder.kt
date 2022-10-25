@@ -131,11 +131,6 @@ class HttpClientBuilder {
         return this
     }
 
-    fun connectionPool(connectionPool: ConnectionPool): HttpClientBuilder {
-        builder.connectionPool(connectionPool)
-        return this
-    }
-
     fun followSslRedirects(followProtocolRedirects: Boolean): HttpClientBuilder {
         builder.followSslRedirects(followProtocolRedirects)
         return this
@@ -156,6 +151,11 @@ class HttpClientBuilder {
      */
     fun dispatcher(dispatcher: Dispatcher): HttpClientBuilder {
         builder.dispatcher(dispatcher)
+        return this
+    }
+
+    fun connectionPool(connectionPool: ConnectionPool): HttpClientBuilder {
+        builder.connectionPool(connectionPool)
         return this
     }
 
