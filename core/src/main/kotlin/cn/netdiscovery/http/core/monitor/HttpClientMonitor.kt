@@ -198,8 +198,8 @@ class HttpClientMonitor(
      */
     private fun calculateTime() {
         md.dnsCost = getCost(dnsEndTime, dnsStartTime)
-        md.tcpCost = getCost(secureConnectStartTime, connectStartTime)
-        md.tlsCost = getCost(secureConnectEndTime, secureConnectEndTime)
+        md.tcpCost = getCost(connectEndTime, connectStartTime)
+        md.tlsCost = getCost(secureConnectEndTime, secureConnectStartTime)
         md.conectTotalCost = md.tcpCost + md.tlsCost
         md.requestHeaderCost = getCost(requestHeadersEndTime, requestHeadersStartTime)
         md.requestBodyCost = getCost(requestBodyEndTime, requestBodyStartTime)
@@ -211,14 +211,14 @@ class HttpClientMonitor(
     }
 
     /**
-     * 链路中 所有异常 都会调用到这个方法中
+     * 链路中所有异常，都会调用到这个方法中
      */
     private fun onEventError(call: Call, ioe: IOException) {
         calculateTime()
         netMonitorCallback.onError(call, md, ioe)
     }
 
-    private fun getCost(startNano: Long,endNano: Long): Long = TimeUnit.NANOSECONDS.toMillis(endNano - startNano)
+    private fun getCost(endNano: Long, startNano: Long): Long = TimeUnit.NANOSECONDS.toMillis(endNano - startNano)
 }
 
 interface NetMonitorCallback {
