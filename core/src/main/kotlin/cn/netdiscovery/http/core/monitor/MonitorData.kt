@@ -29,15 +29,15 @@ data class MonitorData(
     var requestBodyByteCount: Long = 0,//请求体 大小 byte
     var responseBodyByteCount: Long = 0,//响应体 大小 byte
     var responseCode: Int = 0,
-    var dnsCost: Int = 0, //ms
-    var tcpCost: Int = 0,//ms
-    var tlsCost: Int = 0,//ms
-    var conectTotalCost: Int = 0, //ms   等于 tcpCost + tlsCost
-    var requestHeaderCost: Int = 0, //ms
-    var requestBodyCost: Int = 0,//ms
-    var requestTotalCost: Int = 0,//ms   等于requestHeaderCost + requestBodyCost
-    var responseHeaderCost: Int = 0,//ms
-    var responseBodyCost: Int = 0,//ms
-    var responseTotalCost: Int = 0, //ms    等于 responseHeaderCost + responseBodyCost
-    var callCoat: Int = 0 //  ms 整个链路总耗时
+    var dnsCost: Long = 0, //ms
+    var tcpCost: Long = 0,//ms
+    var tlsCost: Long = 0,//ms
+    var conectTotalCost: Long = 0, //ms   等于 tcpCost + tlsCost
+    var requestHeaderCost: Long = 0, //ms
+    var requestBodyCost: Long = 0,//ms
+    var requestTotalCost: Long = 0,//ms   等于requestHeaderCost + requestBodyCost
+    var responseHeaderCost: Long = 0,//ms
+    var responseBodyCost: Long = 0,//ms
+    var responseTotalCost: Long = 0, //ms    等于 responseHeaderCost + responseBodyCost
+    var callCoat: Long = 0 //  ms 整个链路总耗时
 )
