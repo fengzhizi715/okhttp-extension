@@ -3,11 +3,16 @@ package cn.netdiscovery.http.core.test
 import cn.netdiscovery.http.core.HttpClient
 import cn.netdiscovery.http.core.HttpClientBuilder
 import cn.netdiscovery.http.core.interceptors.CurlLoggingInterceptor
+import cn.netdiscovery.http.core.monitor.HttpClientMonitor
+import cn.netdiscovery.http.core.monitor.MonitorData
+import cn.netdiscovery.http.core.monitor.NetMonitorCallback
 import cn.netdiscovery.http.core.request.converter.GlobalRequestJSONConverter
 import cn.netdiscovery.http.core.response.StringResponseMapper
 import cn.netdiscovery.http.interceptor.LoggingInterceptor
 import cn.netdiscovery.http.interceptor.log.LogManager
 import cn.netdiscovery.http.interceptor.log.LogProxy
+import okhttp3.Call
+import okhttp3.EventListener
 import java.util.concurrent.TimeUnit
 
 /**
@@ -84,5 +89,26 @@ val httpClientWithUA by lazy {
         .serializer(GsonSerializer())
         .jsonConverter(GlobalRequestJSONConverter::class)
         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
+        .build()
+}
+
+val httpClientWithMonitor by lazy {
+    HttpClientBuilder()
+        .baseUrl("http://localhost:8080")
+        .allTimeouts(DEFAULT_CONN_TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .addInterceptor(loggingInterceptor)
+        .addInterceptor(CurlLoggingInterceptor())
+        .serializer(GsonSerializer())
+        .jsonConverter(GlobalRequestJSONConverter::class)
+        .responseMapper(StringResponseMapper::class)
+        .eventListener(HttpClientMonitor(object : NetMonitorCallback {
+            override fun onSuccess(call: Call, monitorResult: MonitorData) {
+                println(monitorResult)
+            }
+
+            override fun onError(call: Call, monitorResult: MonitorData, ioe: Exception) {
+                println(monitorResult)
+            }
+        }))
         .build()
 }
