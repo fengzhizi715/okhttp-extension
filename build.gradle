@@ -16,13 +16,15 @@ ext {
 
             rxjava2                   : "2.2.20",
 
-            reactor_core              : "3.4.1",
+            reactor_core              : "3.5.3",
 
             resilience4j              : "1.7.1",
 
             result                    : "v1.0.3",
 
-            okhttp_logging_interceptor: "v1.1.2"
+            okhttp_logging_interceptor: "v1.1.4",
+
+            coroutines_utils          : "v1.1.6"
     ]
 }
 
@@ -39,7 +41,6 @@ dependencies {
 
 buildscript {
     ext.kotlin_version = '1.7.21'
-    ext.http_version = '1.0.1'
 
     repositories {
         jcenter()
