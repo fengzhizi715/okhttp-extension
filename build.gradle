@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 ext {
     libraries = [
-            kotlinx_coroutines_core   : "1.5.2",
+            kotlinx_coroutines_core   : "1.6.4",
 
             okhttp3                   : "4.10.0",
 
@@ -10,11 +10,13 @@ ext {
 
             retrofit                  : "2.9.0",
 
-            feign                     : "11.6",
+            feign                     : "12.1",
 
             rxjava3                   : "3.1.1",
 
             rxjava2                   : "2.2.20",
+
+            reactor_core              : "3.4.1",
 
             resilience4j              : "1.7.1",
 
@@ -36,7 +38,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '1.7.21'
     ext.http_version = '1.0.1'
 
     repositories {

@@ -32,7 +32,7 @@ sealed class AbstractHttpContext(private val method: HttpMethodName = HttpMethod
 
         val query = urlContext.getParams()?.joinToString("&") { "${it.first}=${it.second}" }
 
-        val url = if (query.isNotEmpty()) {
+        val url = if (!query.isNullOrEmpty()) {
             val base = urlContext.customUrl ?: "$baseUrl${urlContext.url}"
             "$base?$query"
         } else {

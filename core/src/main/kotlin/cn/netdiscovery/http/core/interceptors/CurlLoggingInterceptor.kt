@@ -40,7 +40,7 @@ class CurlLoggingInterceptor(
         }.joinToString("")
     }
 
-    private fun buildBodyOption(body: RequestBody?): String {
+    private fun buildBodyOption(body: RequestBody?): String? {
         if (body == null) return ""
 
         return if (body is MultipartBody) {

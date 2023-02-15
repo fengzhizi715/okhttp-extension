@@ -18,7 +18,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     implementation project(":core")
-    compileOnly "io.projectreactor:reactor-core:3.4.1"
+    compileOnly "io.projectreactor:reactor-core:${libs.reactor_core}"
 }
 
 compileKotlin {
