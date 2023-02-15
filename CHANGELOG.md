@@ -5,6 +5,7 @@ Version 1.3.2
 ---
 2023-2-15
 * 升级 Kotlin 版本到1.7.21，以及依赖的第三方库
+* 增加 HttpClientMonitor
 
 Version 1.3.1
 ---
